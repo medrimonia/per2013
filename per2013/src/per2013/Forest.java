@@ -73,12 +73,21 @@ public class Forest {
 		}
 	}
 	
-	public void printE(int connectivity){
+	public void printE(Grph g, int connectivity){
 		for (int i = 0; i < connectivity; i++){
 			System.out.println("E("+i+") : ");
 			System.out.print("\t");
 			for (int e : edges[i].toIntArray()){
-				System.out.print(e + ", ");
+				System.out.print('[');
+				boolean first = true;
+				for (int id : g.getVerticesIncidentTo(e).toIntArray()){
+					if (!first){
+						System.out.print(",");
+					}
+					first = false;
+					System.out.print(id);
+				}
+				System.out.print(']');
 			}
 			System.out.println();
 		}
@@ -90,7 +99,19 @@ public class Forest {
 		g.display();
 		Forest f = new Forest(g);
 		System.out.println("Analysis done");
-		f.printE(k+ 4);		
+		f.printE(g, k+ 4);
+		Grph g2 = new Grph();
+		g2.display();
+		g2.addNVertices(4);
+		g2.addSimpleEdge(0,1,false);
+		g2.addSimpleEdge(0,2,false);
+		g2.addSimpleEdge(0,3,false);
+		g2.addSimpleEdge(1,2,false);
+		g2.addSimpleEdge(1,3,false);
+		g2.addSimpleEdge(2,3,false);
+		Forest f2 = new Forest(g2);
+		System.out.println("Analysis done");
+		f2.printE(g2, 5);
 	}
 
 }
