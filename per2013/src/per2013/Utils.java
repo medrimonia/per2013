@@ -59,5 +59,24 @@ public class Utils {
 			return false;
 		return true;
 	}
+	
+	public static String edgeIndexToString(Grph g, int edgeIndex){
+		StringBuffer sb = new StringBuffer();
+		sb.append('[');
+		for (int id : g.getVerticesIncidentTo(edgeIndex).toIntArray()){
+			sb.append(id);
+			sb.append(',');
+		}
+		sb.setCharAt(sb.length() - 1, ']');
+		return sb.toString();
+	}
+	
+	public static String edgeListToString(Grph g, IntSet list){
+		StringBuffer sb = new StringBuffer();
+		for (int edgeIndex : list.toIntArray()){
+			sb.append(edgeIndexToString(g, edgeIndex));
+		}
+		return sb.toString();
+	}
 
 }
