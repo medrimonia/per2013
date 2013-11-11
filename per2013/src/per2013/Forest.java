@@ -35,6 +35,7 @@ public class Forest {
 			edgeIsScanned[i] = false;
 		}
 		unscannedNodes = new ForestBucketCollection(nbVertices);
+		items = new ForestItem[nbVertices];
 		for (int i = 0; i < nbVertices; i++){
 			ForestItem item = new ForestItem(i, 0);
 			items[i] = item;
@@ -70,6 +71,26 @@ public class Forest {
 				edgeIsScanned[edge] = true;
 			}
 		}
+	}
+	
+	public void printE(int connectivity){
+		for (int i = 0; i < connectivity; i++){
+			System.out.println("E("+i+") : ");
+			System.out.print("\t");
+			for (int e : edges[i].toIntArray()){
+				System.out.print(e + ", ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void main(String[] args){
+		int k = 3;
+		Grph g = KConnectedGenerator.generate(15, k);
+		g.display();
+		Forest f = new Forest(g);
+		System.out.println("Analysis done");
+		f.printE(k+ 4);		
 	}
 
 }

@@ -22,7 +22,7 @@ public class ForestBucketCollection {
 	}
 	
 	private void updateMax(){
-		while (buckets[maxVal].getNext() != null && maxVal >= 0){
+		while (buckets[maxVal].getNext() == null && maxVal >= 0){
 			maxVal--;
 		}
 		
@@ -59,6 +59,10 @@ public class ForestBucketCollection {
 	
 	public boolean isEmpty(){
 		return nbItems == 0;
+	}
+	
+	public int size(){
+		return nbItems;
 	}
 
 }
