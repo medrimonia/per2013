@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="externalLibs/bsh-2.0b4.jar"/>
 	<classpathentry kind="lib" path="externalLibs/castor-1.3.3-RC2-commons.jar"/>
 	<classpathentry kind="lib" path="externalLibs/castor-1.3.3-RC2-core.jar"/>
@@ -53,5 +52,7 @@
 	<classpathentry kind="lib" path="externalLibs/xom-1.1.jar"/>
 	<classpathentry kind="lib" path="externalLibs/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="lib" path="externalLibs/xstream-1.4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/thibaud/Cours/grph"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
