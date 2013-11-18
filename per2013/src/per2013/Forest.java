@@ -82,7 +82,7 @@ public class Forest {
 	
 	public static void main(String[] args){
 		int k = 3;
-		Grph g = KConnectedGenerator.generate(15, k);
+		Grph g = KConnectedGenerator.generateGraphOfDegreeK(15, k);
 		g.display();
 		Forest f = new Forest(g);
 		System.out.println("Analysis done");

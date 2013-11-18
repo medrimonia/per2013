@@ -1,5 +1,6 @@
 package per2013;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.carrotsearch.hppc.cursors.IntCursor;
@@ -29,30 +30,85 @@ public class KConnectedGenerator {
 		System.out.println("minCutSize " + minCutSize);
 		
 		
-		Grph g10 = generate(100,3);
-		minCutSize = miniunEdgeCutSize(g10);
-		System.out.println("g10: ");
+		Grph g3 = generateGraphOfDegreeK(50,4);
+		minCutSize = miniunEdgeCutSize(g3);
+		System.out.println("g3: ");
 		System.out.println("minCutSize " + minCutSize);
-		g10.display();
+		g3.display();
+		
+		
+		Grph g4 = generateGraphWith2Component(50,4);
+		minCutSize = miniunEdgeCutSize(g4);
+		System.out.println("g4: ");
+		System.out.println("minCutSize " + minCutSize);
+		g4.display();
 	}
 	
-	public static Grph generate(int size, int k)
+	public static Grph generateGraphWith2Component(int sizeComponent, int KConnected)
+	{
+		Grph g = new Grph();
+		g.addNVertices(sizeComponent*2);
+		for(int i=0; i<sizeComponent; i++)
+		{
+			for(int j=i+1; j<sizeComponent; j++)
+			{
+				for(int k=0; k<2; k++)
+				{
+					g.addSimpleEdge(i+sizeComponent*k,j+sizeComponent*k,false);
+				}
+			}
+		}
+		
+		for(int i=0; i<KConnected; i++)
+		{
+			g.addSimpleEdge(i,i+sizeComponent,false);
+		}
+		
+		
+		return g;
+	}
+	
+	public static Grph generateGraphOfDegreeK(int size, int k)
 	{
 		Grph g = new Grph();
 		g.addNVertices(size);
 		Random rand = new Random();
 		
-		for(IntCursor i : g.getVertices())
+		ArrayList<int[]> edgeList = new ArrayList<int[]>();
+		for(int x = 0; x < size; x++)
 		{
+			for(int y = x+1; y < size; y++)
+			{
+				int[] edge = new int[2];
+				edge[0] = x;
+				edge[1] = y;
+				edgeList.add(edge);
+			}
+		}
+				
+		for(IntCursor i : g.getVertices())
+		{	
 			int j = g.getVertexDegree(i.value);
-
 			while(j < k)
 			{
-				int r = rand.nextInt(size);
-				if(r != i.value && !g.areVerticesAdjacent(i.value,r))
+				int r = rand.nextInt(size-j-1);
+				
+				for(int[] edge : edgeList)
 				{
-					g.addSimpleEdge(i.value,r,false);
-					j++;
+					if(edge[0] == i.value || edge[1] == i.value)
+					{
+						if(r == 0)
+						{
+							g.addSimpleEdge(edge[0],edge[1],false);
+							edgeList.remove(edge);
+							j++;
+							break;
+						}
+						else
+						{
+							r--;
+						}
+					}
 				}
 			}
 		}
