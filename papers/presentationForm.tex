@@ -1,0 +1,24 @@
+
+\definecolor{UniOrange}{RGB}{146,28,80}
+\definecolor{UniFont}{RGB}{255,255,255}
+\definecolor{UniViolet}{RGB}{92,30,86}
+\setbeamercolor*{palette primary}{use=structure,fg=UniFont,bg=UniViolet}
+\setbeamercolor*{palette quaternary}{fg=UniFont,bg=UniOrange}
+\setbeamercolor{structure}{fg=UniViolet,bg=UniViolet}
+
+\defbeamertemplate*{footline}{shadow theme}
+{%
+  \leavevmode%
+  \hbox{\hskip-0.05ex
+    \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\hfill\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.11\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertframenumber\,/\,\inserttotalframenumber%
+    \end{beamercolorbox}
+  }%end of hbox
+  \vskip0pt%
+}

@@ -1,0 +1,27 @@
+% re-definition of the title page
+\setbeamertemplate{title page}{
+\centering
+\begin{beamercolorbox}[rounded=true,shadow=true,sep=8pt,center]{title}
+\inserttitle \par
+\end{beamercolorbox}
+\vfill
+\centering
+\begin{columns}[T]
+  \begin{column} {.49\textwidth}
+  {\em Students :}\\
+  \tiny
+  \insertauthor
+  \end{column}
+  \begin{column} {.49\textwidth}
+  {\em Supervisors :}\\
+  \tiny
+  \supervisors
+  \end{column}
+\end{columns}
+\vfill
+\usebeamerfont{institute}\insertinstitute \par
+\vfill
+\centering
+\presentationdate\par
+\vfill
+}

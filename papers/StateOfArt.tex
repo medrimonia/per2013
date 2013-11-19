@@ -1,1 +1,50 @@
 \section{State of Art}
+
+\subsection{Undirected graphs}
+
+\paragraph{}
+Undirected graphs are mathematical objects composed of a set of vertices $V$
+and a set of edges $E$ and are noted $G = (V,E)$.
+
+\paragraph{}
+Also called nodes, vertices are mathematical objects which might virtually
+represent anything, a vertices is usually noted $v$.
+
+\paragraph{}
+Edges are an unordered pair of vertices noted $e = (u,v)$. Edges might
+contain twice the same vertex, in this case, the edge is called a {\em loop}.
+
+\subsubsection{Fundamentals notations}
+
+\paragraph{}
+The size of a graph is the number of edges it contains and is noted
+$m = |E|$.
+
+\paragraph{}
+The order of a graph is the number of vertices it contains and is noted
+$n = |V|$.
+
+\paragraph{}
+The degree of a vertex is equal to the number of edges incident to it, loops
+are counted twice.
+
+\paragraph{}
+A path of length $n$ is a sequence of alternated vertices and edged, noted
+$P = \{v_0, e_1, v_1, e_2, ..., e_n, v_n\}$ such as :
+$\forall i \in \{1,2, ..., n\}, e_i = \{v_i, v_{i-1}\}$. If $v_0 = v_n$, $P$ is
+a cycle.
+
+\paragraph{}
+A graph  is {\em connected} if $\forall u,v \in V$ a path exists from $u$
+to $v$. Otherwise, the graph is {\em unconnected}
+
+\subsubsection{Types of graphs}
+
+\paragraph{}
+A tree is an undirected graph without cycles,
+
+\subsubsection{Subgraphs}
+
+\subsubsection{Cuts}
+
+\subsubsection{$k$-connectivity}

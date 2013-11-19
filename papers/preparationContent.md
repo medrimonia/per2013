@@ -7,7 +7,9 @@ Domain
 
 Problem
 -------
-- Problem : Finding a k-partition with choosen vertices in a k-connected graphs
+- Problem : Finding a k-partition with choosen vertices in a k-connected graph
+  - authors of the article
+  - publication context
 - k-connected-graphs
   - Formal Description
   - Example
@@ -36,3 +38,4 @@ The work we have to do
     - Sparse graphs explanation
     - Implementing the algorithm
 - Algorithm implementation
+- Comparing results and theory
