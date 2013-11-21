@@ -2,13 +2,14 @@
 
 Domain
 ------
--Graph theory
+- Graph theory
   -Use in many field
   -graph definition
 
 - Undirected graphs 
   - Formal Description
   - Example
+
 Problem
 -------
 - Problem : Finding a k-partition with k chosen vertices in a k-connected graph with an O(k^2n^2) algorithm
@@ -20,6 +21,7 @@ Problem
 - k-partition
   - Formal Description
   - Example
+
 State of art
 ------------
 - Finding k
