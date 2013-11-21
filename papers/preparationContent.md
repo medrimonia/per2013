@@ -1,6 +1,10 @@
 Domain
 ------
 
+-Graph theory
+  -Use in many field
+  -graph definition
+
 - Undirected graphs
   - Formal Description
   - Example
@@ -23,6 +27,8 @@ State of art
   - flow algorithms
 - k-partition in a k-connected-graphs
   - usual complexity
+- existing algorithms
+  -finding a 2(3)-partition for a undirected 2(3)-connected graph 
 
 The work we have to do
 ----------------------
