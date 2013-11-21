@@ -10,7 +10,8 @@ REPORT_SOURCES=HeadPage.tex     \
 
 all: report.pdf presentation.pdf
 
-report.pdf: ${REPORT_SOURCES}
+report.pdf: report.tex bibliography.bib ${REPORT_SOURCES}
+	pdflatex $< && bibtex report.aux && pdflatex $< && pdflatex $<
 
 presentation.pdf: presentationFirstPage.tex presentationForm.tex
 
