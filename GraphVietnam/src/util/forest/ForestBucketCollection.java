@@ -12,9 +12,12 @@ public class ForestBucketCollection<V> {
 	private HashMap<V, ForestCell<V>> items;
 	private int maxVal;
 	
+	
 	public ForestBucketCollection(Set<V> vertices){
 		maxVal = 0;
-		buckets = new ForestCell[vertices.size()];
+		@SuppressWarnings("unchecked")
+		ForestCell<V>[] newBucket =(ForestCell<V>[])new ForestCell[vertices.size()];
+		buckets = newBucket;
 		items = new HashMap<V,ForestCell<V>>();
 		for (int i = 0; i < vertices.size(); i++){
 			buckets[i] = new ForestCell<V>();// Using watchers

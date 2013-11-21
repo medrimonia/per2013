@@ -24,13 +24,16 @@ public class Forest<V, E extends Graph.Edge<V>>  {
 	private ForestBucketCollection<V> unscannedNodes;
 	
 	public Forest(Graph<V,E> g){
-		int nbVertices = g.vertices().size();
 		edgeIsScanned = new HashMap<E, Boolean>();
-		edges = new HashSet[g.edges().size()];
+		@SuppressWarnings("unchecked")
+		Set<E> newEdges[] = new HashSet[g.edges().size()];
+		edges = newEdges;
+		for (int i = 0; i < g.edges().size(); i++)
+			edges[i] = new HashSet<E>();
 		for (E e : g.edges()){
 			edgeIsScanned.put(e, false);
 		}
-		unscannedNodes = new ForestBucketCollection(g.vertices());
+		unscannedNodes = new ForestBucketCollection<V>(g.vertices());
 		items = new HashMap<V, ForestItem<V>>();
 		for (V vertex : g.vertices()){
 			ForestItem<V> item = new ForestItem<V>(vertex, 0);
