@@ -41,6 +41,7 @@ public class KConnexity {
 		return g;
 	}
 	
+	
 	/**
 	 * Is the graph given is parameter is k-connected
 	 * @param g The graph to test
@@ -53,6 +54,12 @@ public class KConnexity {
 		return minCutSet.size() >= k;
 	}
 	
+	
+	/**
+	 * Compute the level of connexity of the graph
+	 * @param g The graph to compute on
+	 * @return The level of connexity
+	 */
 	static public <V, E extends Graph.Edge<V>> int connexityLevel(Graph<V, E> g)
 	{
 		Set<V> minCutSet = Graphs.minimumCutset(g);
