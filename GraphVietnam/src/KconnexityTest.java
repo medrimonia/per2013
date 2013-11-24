@@ -3,7 +3,7 @@ import util.connexity.KConnexity;
 import java.util.Random;
 
 public class KconnexityTest {
-	static int maxComponentSize = 40;
+	static int maxComponentSize = 20;
 	static int minComponentSize = 10;
 	static int maxkConnexity = 8;
 	static int minkConnexity = 2;
