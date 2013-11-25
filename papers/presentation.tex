@@ -6,6 +6,7 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{multimedia}
+\usepackage[]{algorithm2e}
 
 \usetheme{Warsaw}
 
@@ -61,7 +62,7 @@
     \item Representation of a social network
       \begin{itemize}
       \item Node : person
-      \item Edge : the two person are friend
+      \item Edge : the two people are friends
       \end{itemize}
     \end{itemize}
   \end{itemize}
@@ -216,8 +217,83 @@
 
 \begin{frame}
   \frametitle{Algorithm implementation}
-  %TODO
+  Different parts of the algorithm
+  	\begin{enumerate}
+    \item Graph Sparsing
+	\item Graph Partitionning
+    \end{enumerate}
+	
+	{\bfseries Graph partitionning}\\
+    	 \begin{description}
+		\item [INPUT:] \hfill \\
+		        \begin{enumerate}
+        			\item $G = (V, E)$ a $k$-connex graph 
+            		\item $k$
+            		\item $a_1, a_2 \ldots a_k$ : different vertices of $G$
+            		\item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  V(G)$
+        		       \end{enumerate}
+	\end{description}
 \end{frame}
+\begin{frame}
+    	 \begin{description}
+		\item[OUTPUT:] \hfill \\
+			A k-partition $Par$ of G such that $\forall i \ in 1..k$ 
+			\begin{itemize} 
+				\item $H_i$ is a connexe subgraph of $G$
+				\item $H_i \in Par, |V(H_i)| = n_i $
+				\item $a_i \in H_i $
+				\item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
+			\end{itemize}
+	\end{description}
+\end{frame}
+
+\begin{frame}
+	\begin{description}
+    	\item[Definitions] \hfill \\
+    	\begin{itemize}
+    		\item [$T_i$] a spanning tree which root is $a_i$.
+			\item[P] \hfill \\
+    		The proposed algorithm is similar to \emph{max flow} algorithms.
+	 		$\forall i \in 1..k,$ \bfseries P $: T_i \rightarrow n_i/|V(T_i)|$
+		\item [$n$] $= |V(G)|$
+    	\end{itemize}
+    \end{description}
+\end{frame}
+
+\begin{frame}
+	\begin{algorithm}[H]
+    	%\SetLine
+        \SetAlgoLined
+    	Initialisation\;
+		\While {$\sum_i |T_i| < n$}{
+			\While {$|T_i| < n_i$}{
+        		Add random adjacent vetices to $T_i$\;}
+		$T_i$ := the tree with highest $P$\;
+            	 $T_j$ := the tree with highest $P$ among adjacent trees to $T_i$\;
+		$U^{ij}_{adjacent}$ := the part of $T_j$ adjacent  to $T_i$\;
+		$w$	:= $max_{degree(v)} v \in T_j \bigcap  U^{ij}_{adjacent}$\;
+		Remove the subtree which root is $w$ from $T_j$\;
+		Add $w$ to $T_i$\;}
+	\end{algorithm}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Implementation}
+\begin{description}
+	\item [Objectives :] \hfill \\
+	\begin{itemize}
+		 \item Allow testing 
+		\item Observe and measure performance
+        \item verify consistency with complexity
+     \end{itemize}
+
+ \item[Tools :] \hfill \\
+		Java using Graph Library created at Labri
+  \end{description}
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{Comparing results and theory}
