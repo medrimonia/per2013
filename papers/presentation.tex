@@ -7,6 +7,8 @@
 \usepackage{graphicx}
 \usepackage{multimedia}
 \usepackage[]{algorithm2e}
+%compatible for older versions
+\providecommand{\SetAlgoLined}{\SetLine}
 
 \usetheme{Warsaw}
 
@@ -57,15 +59,11 @@
     \item relations
     \item processes
     \end{itemize}
-  \item Example
+  \item Examples
     \begin{description}
-     \item [Social network]
-      \begin{itemize}
-      \item Node : person
-      \item Edge : the two people are friends
-      \end{itemize}
-     \item [Neuroscience] : Modeling neural network  \cite{BuSp09}
-     \item [Telecommunications] : Peer-to-peer mobile networks  \cite{FaCh99}
+     \item [Social network:] Node: person, Edge: friendship relation
+     \item [Neuroscience:] Modeling neural network  \cite{BuSp09}
+     \item [Telecommunications:] Peer-to-peer mobile networks  \cite{FaCh99}
     \end{description}
   \end{itemize}
 \end{frame}
@@ -79,12 +77,37 @@
       \item $V$ an unordered set of vertex
       \item $E$ an unordered set of unorder pairs $(u,v), u \in V, v \in V$
       \end{itemize}
-    \item Example
-    	The internet
+    \item {\em Example picture coming soon...}
   \end{itemize}
 \end{frame}
 
 \section{Problem Description}
+
+\begin{frame}
+  \frametitle{$k$-connected graphs}
+  \begin{itemize}
+    \item $G$ is $k$-connected $\Leftrightarrow \forall (u,v) \in V^2$
+      \begin{itemize}
+      \item At least $k$ edge-disjoint path from $u$ to $v$
+      \end{itemize}
+    \item path of length $n$ : $\{v_0,e_1,v_1,e_2, \dots , e_n,v_n\}$
+    \item $P_1$ edge-disjoint to $P_2$ : no edges shared
+  \end{itemize}
+  {\em Example picture coming soon}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$k$-partition}
+  \begin{itemize}
+  \item Obtain $\{V_1, \dots, V_k\}$ with
+    \begin{itemize}
+    \item $\forall i, \lceil V_i \rceil$ is connected
+    \item $\sum\limits_{i=0}^k|V_i| = |V|$
+    \item $\forall i,j \in \{1, \dots, k\}^2, i \neq j, V_i \cap V_j = \emptyset$
+    \end{itemize}
+  \end{itemize}
+  {\em Example picture coming soon}
+\end{frame}
 
 \begin{frame}
   \frametitle{Article Description}
@@ -97,39 +120,11 @@
       $\sum\limits_{i}^k{n_i} = n$
     \item Complexity : $O(k^2 n^2)$
     \end{itemize}
-  \item Authors :
-    %TODO find numbers of publications etc
   \item Published in {\em ``Journal of computer science and technology''}
     \begin{itemize}
     \item National Journal
     \item Bimonthly published
     \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{$k$-connected graphs}
-  \begin{itemize}
-    \item $G$ is $k$-connected $\Leftrightarrow \forall (u,v) \in V^2$
-      \begin{itemize}
-      \item At least $k$ edge-disjoint path from $u$ to $v$
-      \end{itemize}
-    \item path of length $n$ : $\{v_0,e_1,v_1,e_2, \dots , e_n,v_n\}$
-    \item $P_1$ edge-disjoint to $P_2$ : no edges shared
-  \end{itemize}
-  %TODO example
-\end{frame}
-
-\begin{frame}
-  \frametitle{$k$-partition}
-  \begin{itemize}
-  \item Obtain $\{V_1, \dots, V_k\}$ with
-    \begin{itemize}
-    \item $\forall i, \lceil V_i \rceil$ is connected
-    \item $\sum\limits_{i=0}^k|V_i| = |V|$
-    \item $\forall i,j \in \{1, \dots, k\}^2, i \neq j, V_i \cap V_j = \emptyset$
-    \end{itemize}
-  \item Example :%TODO
   \end{itemize}
 \end{frame}
 
@@ -140,15 +135,15 @@
   \begin{itemize}
   \item  Link between :
     \begin{itemize}
-    \item k-connectivity 
-    \item Minimun vertex cut size
-    \item Maximun flow (Max-flow min-cut theorem)
+    \item $k$-connectivity 
+    \item Minimum vertex cut size
+    \item Maximum, flow (Max-flow min-cut theorem)
     \end{itemize}
 
   \item Algorithm
     \begin{itemize}
-    \item Compute maximun flow with vertex unitary capacity
-    \item Deduce the k-connectivity
+    \item Compute maximum flow with vertex unitary capacity
+    \item Deduce the $k$-connectivity
     \end{itemize}
   \end{itemize}
 
@@ -159,7 +154,7 @@
   \begin{itemize}
   \item According to the article
     \begin{itemize}
-    \item For a general graph $G$, finding a $k$-partition is a NP-hard
+    \item For a general graph $G$, finding a $k$-partition is a $NP$-hard
       problem\cite{Dyer1985139}
     \item If $G$ is a $k$-connected graph, a $k$ partition exists\cite{GE78,LL77}
     \item Polynomial solutions for $k = 2$\cite{GE78,LL77} and
@@ -188,97 +183,96 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Generating $k$-connected graphs}
-  \begin{itemize}
-    \item Random $k$-connected graph uniform generation
-      \begin{itemize}
-      \item Difficult problem
-      \end{itemize}
-    \item Trails to explore
-      \begin{itemize}
-      \item Generate complete sub-graph and link them together
-      \item Generate a graph with all vertices of degree k
-      \end{itemize}
-  \end{itemize}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Pre-processing algorithm}
-  \begin{itemize}
-  \item Original complexity in $O(k n m)$
-  \item Existing algorithm to induce a spanning subgraph\cite{NaIb92}
-    \begin{itemize}
-    \item $G' = (V,E')$
-    \item $|E'| = O(k n)$
-    \item Complexity of the algorithm : $O(m)$
-    \end{itemize}
-  \item Implementation needed to get the $O(k^2 n^2)$ complexity
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Algorithm implementation}
-  Different parts of the algorithm
-  	\begin{enumerate}
-    \item Graph Sparsing
-	\item Graph Partitionning
-    \end{enumerate}
-	
-	{\bfseries Graph partitionning}\\
-    	 \begin{description}
-		\item [INPUT:] \hfill \\
-		        \begin{enumerate}
-        			\item $G = (V, E)$ a $k$-connex graph 
-            		\item $k$
-            		\item $a_1, a_2 \ldots a_k$ : different vertices of $G$
-            		\item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  V(G)$
-        		       \end{enumerate}
-	\end{description}
-\end{frame}
-\begin{frame}
-    	 \begin{description}
-		\item[OUTPUT:] \hfill \\
-			A k-partition $Par$ of G such that $\forall i \ in 1..k$ 
-			\begin{itemize} 
-				\item $H_i$ is a connexe subgraph of $G$
-				\item $H_i \in Par, |V(H_i)| = n_i $
-				\item $a_i \in H_i $
-				\item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
-			\end{itemize}
-	\end{description}
-\end{frame}
-
-\begin{frame}
-	\begin{description}
-    	\item[Definitions] \hfill \\
-    	\begin{itemize}
-    		\item [$T_i$] a spanning tree which root is $a_i$.
-			\item[P] \hfill \\
-    		The proposed algorithm is similar to \emph{max flow} algorithms.
-	 		$\forall i \in 1..k,$ \bfseries P $: T_i \rightarrow n_i/|V(T_i)|$
-		\item [$n$] $= |V(G)|$
-    	\end{itemize}
-    \end{description}
-\end{frame}
-
-\begin{frame}
-	\begin{algorithm}[H]
-    	%\SetLine
-        \SetAlgoLined
-    	Initialisation\;
-		\While {$\sum_i |T_i| < n$}{
-			\While {$|T_i| < n_i$}{
-        		Add random adjacent vetices to $T_i$\;}
-		$T_i$ := the tree with highest $P$\;
-            	 $T_j$ := the tree with highest $P$ among adjacent trees to $T_i$\;
-		$U^{ij}_{adjacent}$ := the part of $T_j$ adjacent  to $T_i$\;
-		$w$	:= $max_{degree(v)} v \in T_j \bigcap  U^{ij}_{adjacent}$\;
-		Remove the subtree which root is $w$ from $T_j$\;
-		Add $w$ to $T_i$\;}
-	\end{algorithm}
-\end{frame}
+%\begin{frame}
+%  \frametitle{Generating $k$-connected graphs}
+%  \begin{itemize}
+%    \item Random $k$-connected graph uniform generation
+%      \begin{itemize}
+%      \item Difficult problem
+%      \end{itemize}
+%    \item Trails to explore
+%      \begin{itemize}
+%      \item Generate complete sub-graph and link them together
+%      \item Generate a graph with all vertices of degree $k$
+%      \end{itemize}
+%  \end{itemize}
+%
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Pre-processing algorithm}
+%  \begin{itemize}
+%  \item Original complexity in $O(k n m)$
+%  \item Existing algorithm to induce a spanning subgraph\cite{NaIb92}
+%    \begin{itemize}
+%    \item $G' = (V,E')$
+%    \item $|E'| = O(k n)$
+%    \item Complexity of the algorithm : $O(m)$
+%    \end{itemize}
+%  \item Implementation needed to get the $O(k^2 n^2)$ complexity
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Algorithm implementation}
+%  Different parts of the algorithm
+%  	\begin{enumerate}
+%    \item Graph Sparsing
+%	\item Graph Partitionning
+%    \end{enumerate}
+%	
+%	{\bfseries Graph partitionning}\\
+%    	 \begin{description}
+%		\item [INPUT:] \hfill \\
+%		        \begin{enumerate}
+%        			\item $G = (V, E)$ a $k$-connected graph 
+%            		\item $k$
+%            		\item $a_1, a_2 \ldots a_k$ : different vertices of $G$
+%            		\item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  V(G)$
+%        		       \end{enumerate}
+%	\end{description}
+%\end{frame}
+%\begin{frame}
+%    	 \begin{description}
+%		\item[OUTPUT:] \hfill \\
+%			A k-partition $Par$ of G such that $\forall i \ in 1..k$ 
+%			\begin{itemize} 
+%				\item $H_i$ is a connexe subgraph of $G$
+%				\item $H_i \in Par, |V(H_i)| = n_i $
+%				\item $a_i \in H_i $
+%				\item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
+%			\end{itemize}
+%	\end{description}
+%\end{frame}
+%
+%\begin{frame}
+%	\begin{description}
+%    	\item[Definitions] \hfill \\
+%    	\begin{itemize}
+%    		\item [$T_i$] a spanning tree which root is $a_i$.
+%			\item[P] \hfill \\
+%    		The proposed algorithm is similar to \emph{max flow} algorithms.
+%	 		$\forall i \in 1..k,$ \bfseries P $: T_i \rightarrow n_i/|V(T_i)|$
+%		\item [$n$] $= |V(G)|$
+%    	\end{itemize}
+%    \end{description}
+%\end{frame}
+%
+%\begin{frame}
+%	\begin{algorithm}[H]
+%    \SetAlgoLined
+%    Initialisation\;
+%		\While {$\sum_i |T_i| < n$}{
+%			\While {$|T_i| < n_i$}{
+%        		Add random adjacent vertices to $T_i$\;}
+%		$T_i$ := the tree with highest $P$\;
+%            	 $T_j$ := the tree with highest $P$ among adjacent trees to $T_i$\;
+%		$U^{ij}_{adjacent}$ := the part of $T_j$ adjacent  to $T_i$\;
+%		$w$	:= $max_{degree(v)} v \in T_j \bigcap  U^{ij}_{adjacent}$\;
+%		Remove the subtree which root is $w$ from $T_j$\;
+%		Add $w$ to $T_i$\;}
+%	\end{algorithm}
+%\end{frame}
 
 
 \begin{frame}
@@ -296,7 +290,13 @@
   \end{description}
 \end{frame}
 
-
+\begin{frame}{Implementation}
+  \begin{itemize}
+  \item Generating random $k$-connected graphs
+  \item Pre-processing graphs
+  \item Algorithm implementation
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
   \frametitle{Comparing results and theory}
