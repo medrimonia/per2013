@@ -43,6 +43,44 @@ public class KConnectivity {
 		return g;
 	}
 	
+	/**
+	 * 	Generate a k-connected graph with n complete components linked by k edge
+	 * 	@param sizeComponent The components size
+	 *  @param n The number of component
+	 * 	@param k The connectivity of the graph
+	 *  @return The k-connected generated graph
+	 * */
+	static public Graph<Integer, Graph.Edge<Integer>> genNComponent(int sizeComponent, int n, int k)
+	{
+		Graph<Integer, Graph.Edge<Integer>> g = new MultiGraph<Integer, Graph.Edge<Integer>>();
+		int size = sizeComponent*n;
+		
+		/*Adding the vertices */
+		for (int i = 0; i < size; i++)
+			g.addVertex(i);		
+		
+		/*Generate the two complete components*/
+		for (int i = 0; i < sizeComponent; i++)
+			for (int j = i + 1; j < sizeComponent; j++)
+			{
+				for(int z = 0; z < n; z++)
+				{
+					g.addEdge(new DirectedEdge<Integer>(i+sizeComponent*z,j+sizeComponent*z));
+				}
+			}
+		
+		/*Linking the two components*/
+		for(int z = 0; z < n; z++)
+		{
+			for (int i=0; i<k; i++)
+			{
+				g.addEdge(new DirectedEdge<Integer>(i+sizeComponent*z,i+(sizeComponent+1)));
+			}
+		}
+		
+		return g;
+	}
+	
 	
 	/**
 	 * 	Generate a k-connected graph
