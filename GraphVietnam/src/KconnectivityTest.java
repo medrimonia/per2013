@@ -17,6 +17,9 @@ public class KconnectivityTest {
 	static int maxComponentSize = 20;
 	static int minComponentSize = 10;
 	
+	/**
+	 * Test for the genTwoComponent function
+	 */
 	public static void testGenTwoComponent()
 	{
 		int componentSize = rand.nextInt(maxComponentSize - minComponentSize) + minComponentSize;
@@ -33,6 +36,9 @@ public class KconnectivityTest {
 	static int maxSize = 30;
 	static int minSize = 20;
 	
+	/**
+	 * Test for the genBaseOnDegree function
+	 */
 	public static void testGenBaseOnDegree()
 	{
 		int size = rand.nextInt(maxSize - minSize) + minSize;
