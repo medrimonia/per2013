@@ -1,4 +1,4 @@
-package util.connexity;
+package util.connectivity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,7 +9,7 @@ import graph.DirectedEdge;
 import graph.Graph;
 import graph.MultiGraph;
 
-public class KConnexity {
+public class KConnectivity {
 	
 	/**
 	 * 	Generate a k-connected graph with two complete components linked by k edge
