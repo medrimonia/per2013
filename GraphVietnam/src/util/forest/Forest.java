@@ -73,5 +73,23 @@ public class Forest<V, E extends Graph.Edge<V>>  {
 			System.out.println("\t" + edges[i]);
 		}
 	}
+	
+	public Set<E> getE(int index){
+		return edges[index];
+	}
+	
+	/**
+	 * Once the algorithm has been applied, return the edges describing
+	 * the k-connected sparse graph corresponding
+	 * @param kConnectivity
+	 * @return
+	 */
+	public Set<E> filteredEdges(int kConnectivity){
+		Set<E> edges = new HashSet<E>();
+		for (int i = 0; i <= kConnectivity; i++){
+			edges.addAll(getE(i));
+		}
+		return edges;
+	}
 }
 
