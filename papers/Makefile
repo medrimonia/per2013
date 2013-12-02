@@ -12,7 +12,9 @@ PRESENTATION_SOURCES=presentation.tex            \
                      presentationFirstPage.tex   \
                      presentationForm.tex
 
-TIKZ_SOURCES=k-partition.tex
+TIKZ_SOURCES=k-partition.tex      \
+             k-connected.tex      \
+             undirected-graph.tex
 
 all: report.pdf presentation.pdf
 

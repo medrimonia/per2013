@@ -78,8 +78,13 @@
       \item $V$ an unordered set of vertex
       \item $E$ an unordered set of unorder pairs $(u,v), u \in V, v \in V$
       \end{itemize}
-    \item {\em Example picture coming soon...} % TODO Ayoub
   \end{itemize}
+  \begin{figure}
+    \begin{center}
+    \input{undirected-graph.tex}
+    \end{center}
+    \caption{An undirected simple graph with 5 vertices and 4 edges}
+  \end{figure}
 \end{frame}
 
 \section{Problem Description}
@@ -95,11 +100,11 @@
     \item $P_1$ edge-disjoint to $P_2$ : no edges shared
   \end{itemize}
   \begin{figure}
-  \begin{center}
+    \begin{center}
     \input{k-connected.tex}
     \end{center}
     \caption{A 2-connected graph}
-    \end{figure}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -112,9 +117,12 @@
     \item $\forall i,j \in \{1, \dots, k\}^2, i \neq j, V_i \cap V_j = \emptyset$
     \end{itemize}
   \end{itemize}
-  \begin{center}
-    \input{k-partition.tex}
-  \end{center}
+  \begin{figure}
+    \begin{center}
+      \input{k-partition.tex}
+    \end{center}
+    \caption{A 3-partition graph}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
