@@ -26,7 +26,7 @@
 }
 
 %TODO better title
-\title[$O(k^2n^2)$ algorithm for $k$-partitionning]{Study of the article :\\``An $O(k^2n^2)$ algorithm for $k$-partition in a $k$-connected Graph''}
+\title[$O(k^2n^2)$ algorithm for $k$-partitioning]{Study of the article :\\``An $O(k^2n^2)$ algorithm for $k$-partition in a $k$-connected Graph''}
 
 \author[Lambert, Gharsalli, Hofer]
        {Thibaud Lambert\\Mohammed Ayoub Gharsalli\\Ludovic Hofer}
@@ -239,7 +239,7 @@
 %	\item Graph Partitionning
 %    \end{enumerate}
 %	
-%	{\bfseries Graph partitionning}\\
+%	{\bfseries Graph partitioning}\\
 %    	 \begin{description}
 %		\item [INPUT:] \hfill \\
 %		        \begin{enumerate}
@@ -255,7 +255,7 @@
 %		\item[OUTPUT:] \hfill \\
 %			A k-partition $Par$ of G such that $\forall i \ in 1..k$ 
 %			\begin{itemize} 
-%				\item $H_i$ is a connexe subgraph of $G$
+%				\item $H_i$ is a connex subgraph of $G$
 %				\item $H_i \in Par, |V(H_i)| = n_i $
 %				\item $a_i \in H_i $
 %				\item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
@@ -267,7 +267,7 @@
 %	\begin{description}
 %    	\item[Definitions] \hfill \\
 %    	\begin{itemize}
-%    		\item [$T_i$] a spanning tree which root is $a_i$.
+%    		\item [$T_i$] a spanning tree whose root is $a_i$.
 %			\item[P] \hfill \\
 %    		The proposed algorithm is similar to \emph{max flow} algorithms.
 %	 		$\forall i \in 1..k,$ \bfseries P $: T_i \rightarrow n_i/|V(T_i)|$
@@ -287,7 +287,7 @@
 %            	 $T_j$ := the tree with highest $P$ among adjacent trees to $T_i$\;
 %		$U^{ij}_{adjacent}$ := the part of $T_j$ adjacent  to $T_i$\;
 %		$w$	:= $max_{degree(v)} v \in T_j \bigcap  U^{ij}_{adjacent}$\;
-%		Remove the subtree which root is $w$ from $T_j$\;
+%		Remove the subtree whose root is $w$ from $T_j$\;
 %		Add $w$ to $T_i$\;}
 %	\end{algorithm}
 %\end{frame}
