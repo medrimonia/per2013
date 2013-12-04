@@ -5,6 +5,7 @@ package main;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.CORBA.NVList;
 
@@ -47,20 +48,7 @@ public class PartitionSpanningTree extends RootedSpanningTreeImpl<Vertex, Edge<V
 
 
 	public PartitionSpanningTree cutOff(Vertex root, PartitionSpanningTree newTree){
-		PartitionSpanningTree ntree = new PartitionSpanningTree(supergraph(), tree, root);
-		Iterator<Vertex> it = children(root).iterator();
-		while(it.hasNext()){
-			Vertex nVertex = it.next();
-			ntree.addVertex(nVertex);
-			Iterator<Vertex> nIt = children(nVertex).iterator();
-			while(nIt.hasNext()){
-				ntree.addVertex(nIt.next());
-			}
-		}
-	}
-	return null;
-	//TODO DFS 
-
+		return new PartitionSpanningTree(supergraph(), tree, root);
 }
 
 public int degree (Vertex x){
@@ -72,6 +60,13 @@ public int degree (Vertex x){
 		degrees.put(levelVertices.next(),i++);
 	}
 	return degrees.get(x);
+}
+
+public void addAllVertex(Set<Vertex> nEW) {
+	for(Vertex v : nEW){
+		addVertex(v);
+	}
+	
 }
 
 

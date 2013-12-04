@@ -1,5 +1,7 @@
 package main;
 
+import graph.Graph;
+
 public class DepthFirstTreatment {
 
 	public DepthFirstTreatment() {
@@ -9,9 +11,10 @@ public class DepthFirstTreatment {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void traversal (Operation op, Graph graph, Vertex root) {
+		
 	}
-
+	public interface Operation {
+		public abstract void visit(Vertex v);
+	}
 }

@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 /**
  * @author ayoub
  *
@@ -35,9 +36,7 @@ public class Partition {
 		}
 		 */
 		assert(sizes.length == k && roots .length == k);
-		for(Vertex v : graph){
-			v.n = utils.
-		}
+		
 		//Initialization//
 		//Graph graph = new MultiGraph<Vertex, Edge<Vertex>>();
 		List<PartitionSpanningTree> listTrees = new ArrayList<PartitionSpanningTree>();
@@ -88,16 +87,16 @@ public class Partition {
 						int j = 0;
 						for (Vertex v : NEW) {
 							j++;
-							Ti.add(v);
+							Ti.addVertex(v);
 							if(j==ni-Ti.size()) break;
 						}
-						for(Vertex v : Ti){
+						for(Vertex v : Ti.vertices()){
 							Tree_Node.get(v.n).add(ai);
 							P[v.n] = 1;
 						}
 					}else{
-						Ti.addAll(NEW);
-						for(Vertex v : Ti){
+						Ti.addAllVertex(NEW);
+						for(Vertex v : Ti.vertices()){
 							Tree_Node.get(v.n).add(ai);
 							P[v.n] = ni/Ti.size();
 						}
@@ -147,24 +146,24 @@ public class Partition {
 						if(Tree_Node.get(v.n).contains(aj))
 							OLD3.add(aj);
 					}
-					final Set<Vertex> Tj = listTrees.get(j);
+					final PartitionSpanningTree Tj = listTrees.get(j);
 					Vertex w = minVertex(OLD3, new Comparator<Vertex>() {
 						@Override
 						public int compare(Vertex arg0, Vertex arg1) {
-							return Partition.degreeInTree(Tj,arg0) - Partition.degreeInTree(Tj,arg1);
+							return Tj.degree(arg0) - Tj.degree(arg1);
 						}
 					});
-					if(degreeInTree(Tj, w) == 1){
-						Tj.remove(w);
-						Ti.add(w);
+					if(Tj.degree(w) == 1){
+						Tj.removeVertex(w);
+						Ti.addVertex(w);
 						Tree_Node.get(w.n).add(ai);
 					}else{
-						Ti.addAll(cutOff(Tj,w));
+						Tj.cutOff(w, Ti);
 						Tree_Node.get(w.n).add(ai);
-						for(Vertex v : Tj){
+						for(Vertex v : Tj.vertices()){
 							P[v.n] = ni/Ti.size();
 						}
-						for(Vertex v : Ti){
+						for(Vertex v : Ti.vertices()){
 							P[v.n] = sizes[j]/Tj.size();
 						}
 					}
