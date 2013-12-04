@@ -92,12 +92,14 @@
 \begin{frame}
   \frametitle{$k$-connected graphs}
   \begin{itemize}
-    \item $G$ is $k$-connected $\Leftrightarrow \forall (u,v) \in V^2$
+	\item Connectivity
+	\begin{itemize}
+	\item The minimun number of vertices which need to be removed to disconnect the graph 
+	\end{itemize}
+    \item $G$ is $k$-connected if 
       \begin{itemize}
-      \item At least $k$ edge-disjoint paths from $u$ to $v$
+      \item $\forall (u,v) \in V^2$, $\exists$ $k$ vertex-disjoint paths from $u$ to $v$
       \end{itemize}
-    \item path of length $n$ : $\{v_0,e_1,v_1,e_2, \dots , e_n,v_n\}$
-    \item $P_1$ edge-disjoint to $P_2$ : no edges shared
   \end{itemize}
   \begin{figure}
     \begin{center}
