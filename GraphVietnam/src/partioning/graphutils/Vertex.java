@@ -1,7 +1,7 @@
-package partioning;
+package partioning.graphutils;
 
 public class Vertex {
-	int n;
+	public int n;
 
 	@Override
 	public boolean equals(Object v){

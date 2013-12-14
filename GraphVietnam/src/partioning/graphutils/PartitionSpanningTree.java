@@ -1,13 +1,12 @@
 /**
  * 
  */
-package partioning;
+package partioning.graphutils;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.omg.CORBA.NVList;
 
 import util.RootedSpanningTreeImpl;
 import graph.Graph;

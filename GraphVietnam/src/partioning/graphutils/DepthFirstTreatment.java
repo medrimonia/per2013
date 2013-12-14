@@ -1,6 +1,7 @@
-package partioning;
+package partioning.graphutils;
 
 import graph.Graph;
+import graph.Graph.Edge;
 
 public class DepthFirstTreatment {
 
@@ -11,7 +12,7 @@ public class DepthFirstTreatment {
 	/**
 	 * @param args
 	 */
-	public static void traversal (Operation op, Graph graph, Vertex root) {
+	public static void traversal (Operation op, Graph<Vertex,Edge<Vertex>> graph, Vertex root) {
 		
 	}
 	public interface Operation {
