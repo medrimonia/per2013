@@ -1,4 +1,4 @@
-package main;
+package partioning;
 
 public class Vertex {
 	int n;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main;
+package partioning;
 import graph.Graph;
 import graph.Graph.Edge;
 
