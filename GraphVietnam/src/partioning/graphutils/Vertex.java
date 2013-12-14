@@ -1,25 +1,12 @@
 package partioning.graphutils;
 
 public class Vertex {
-	public int n;
+	public int rankInGraph;
 
 	@Override
 	public boolean equals(Object v){
 		return super.equals(v) || 
 				(v instanceof Vertex 
-						&& ((Vertex)v).getValue() == n); 
+						&& ((Vertex)v).rankInGraph == rankInGraph); 
 	}
-	/**
-	 * 
-	 */
-	public int getValue(){
-		return n;
-	}
-	/**
-	 * 
-	 * @param value
-	 */
-	public void setValue(int value){
-		n = value;
-	}	
 }

@@ -47,6 +47,7 @@ public class PartitionSpanningTree extends RootedSpanningTreeImpl<Vertex, Edge<V
 
 
 	public PartitionSpanningTree cutOff(Vertex root, PartitionSpanningTree newTree){
+		//TODO
 		return new PartitionSpanningTree(supergraph(), tree, root);
 }
 
@@ -61,8 +62,8 @@ public int degree (Vertex x){
 	return degrees.get(x);
 }
 
-public void addAllVertex(Set<Vertex> nEW) {
-	for(Vertex v : nEW){
+public void addAllVertex(Set<Vertex> newSetofVetices) {
+	for(Vertex v : newSetofVetices){
 		addVertex(v);
 	}
 	

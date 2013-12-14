@@ -5,6 +5,7 @@ package partioning;
 import graph.Graph;
 import graph.Graph.Edge;
 
+import java.rmi.server.Operation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import partioning.graphutils.DepthFirstTreatment;
 import partioning.graphutils.PartitionSpanningTree;
 import partioning.graphutils.Vertex;
 
@@ -20,7 +22,19 @@ import partioning.graphutils.Vertex;
  * @author ayoub
  *
  */
+
 public class Partition {
+	private static void initGraph(Graph<Vertex, Edge<Vertex>> graph){
+		Vertex root = graph.vertices().iterator().next();
+		DepthFirstTreatment.traversal(new DepthFirstTreatment.Operation() {
+			int currentIndex = 0;
+			@Override
+			public void visit(Vertex v) {
+				v.rankInGraph = currentIndex;
+				currentIndex ++;
+			}
+		}, graph, root );
+	}
 	private static int sum(int[] sizes ){
 		int sum = 0;
 		for(Integer i : sizes)
@@ -31,84 +45,76 @@ public class Partition {
 	 * @param args
 	 */
 	public static void partition(int k, int[] sizes, Vertex[] roots,Graph<Vertex, Edge<Vertex>> graph) {
-		/**
-		if(args.length == 1){
-			int k = Integer.parseInt(args[1]);
-		}else{
-			throw new IllegalArgumentException();
-		}
-		 */
 		assert(sizes.length == k && roots .length == k);
-		
+		initGraph(graph);
 		//Initialization//
-		//Graph graph = new MultiGraph<Vertex, Edge<Vertex>>();
 		List<PartitionSpanningTree> listTrees = new ArrayList<PartitionSpanningTree>();
 		List<List<Vertex>> Tree_Node = new ArrayList<List<Vertex>>();
-		int N = graph.size();
-		float[] P = new float[N];
+		int numberOfVerticesInGraph = graph.size();
+		float[] weightFactors = new float[numberOfVerticesInGraph];
 		for (int i = 0; i < k; i++) {
 			int ni = sizes[i];
-			Vertex ai = roots[i];
-			listTrees.set(i, new PartitionSpanningTree(graph,null, ai));
+			Vertex rootOfithPartition = roots[i];
+			listTrees.set(i, new PartitionSpanningTree(graph,null, rootOfithPartition));
 			//subtree Ti has one vertex ai as its root//(
 			Tree_Node.set(i, new ArrayList<Vertex>()); 
-			Tree_Node.get(i).add(ai);
-			P[i] = ni;
+			Tree_Node.get(i).add(rootOfithPartition);
+			weightFactors[i] = ni;
 		}
-		for(Vertex j : graph.vertices()){
-			if (!arrayContain(roots,j)){
-				Tree_Node.set(j.n, new ArrayList<Vertex>());
-				P[j.n] = 0;
+		for(Vertex vertexOutTree : graph.vertices()){
+			if (!arrayContain(roots,vertexOutTree)){
+				Tree_Node.set(vertexOutTree.rankInGraph, new ArrayList<Vertex>());
+				weightFactors[vertexOutTree.rankInGraph] = 0;
 			}
 		}
 
 		//i := 1; / / i is the index of subtree Ti to be expanded//
 		//Calculation//
 		int i = 0;
-		while(sum(sizes) < N){
-			Vertex ai = roots[i];
-			Integer ni = sizes[i];
-			PartitionSpanningTree Ti = listTrees.get(i);
-			if(P[ai.n] > 1){
-				Set<Vertex> auxv = new HashSet<Vertex>();
+		while(sum(sizes) < numberOfVerticesInGraph){
+			Vertex rootOfithPartition = roots[i];
+			Integer sizeOfithPartition = sizes[i];
+			PartitionSpanningTree ithPartitionTree = listTrees.get(i);
+			if(weightFactors[rootOfithPartition.rankInGraph] > 1){
+				Set<Vertex> verticesNotinPartitions = new HashSet<Vertex>();
 				for(Vertex v : graph.vertices()){
 					if(!arrayContain(roots, v)
-							|| !Ti.containsVertex(v))
-						auxv.add(v);
+							|| !ithPartitionTree.containsVertex(v))
+						verticesNotinPartitions.add(v);
 				}
-				Set<Vertex> NEW = new HashSet<Vertex>();
-				Set<Vertex> OLD = new HashSet<Vertex>();
-				for(Vertex v : auxv){
+				Set<Vertex> verticesNeverBeenInPartitions = new HashSet<Vertex>();
+				Set<Vertex> verticesWereInPartitions = new HashSet<Vertex>();
+				for(Vertex v : verticesNotinPartitions){
 					if(Tree_Node.get(i).isEmpty()){
-						NEW.add(v);
+						verticesNeverBeenInPartitions.add(v);
 					}else{
-						OLD.add(v);
+						verticesWereInPartitions.add(v);
 					}
 				}
-				if(!NEW.isEmpty()){
-					if(NEW.size() > ni-Ti.size()){
+				if(!verticesNeverBeenInPartitions.isEmpty()){
+					if(verticesNeverBeenInPartitions.size() > sizeOfithPartition-ithPartitionTree.size()){
 						int j = 0;
-						for (Vertex v : NEW) {
+						for (Vertex v : verticesNeverBeenInPartitions) {
 							j++;
-							Ti.addVertex(v);
-							if(j==ni-Ti.size()) break;
+							ithPartitionTree.addVertex(v);
+							if(j==sizeOfithPartition-ithPartitionTree.size()) break;
 						}
-						for(Vertex v : Ti.vertices()){
-							Tree_Node.get(v.n).add(ai);
-							P[v.n] = 1;
+						for(Vertex v : ithPartitionTree.vertices()){
+							Tree_Node.get(v.rankInGraph).add(rootOfithPartition);
+							weightFactors[v.rankInGraph] = 1;
 						}
 					}else{
-						Ti.addAllVertex(NEW);
-						for(Vertex v : Ti.vertices()){
-							Tree_Node.get(v.n).add(ai);
-							P[v.n] = ni/Ti.size();
+						ithPartitionTree.addAllVertex(verticesNeverBeenInPartitions);
+						for(Vertex v : ithPartitionTree.vertices()){
+							Tree_Node.get(v.rankInGraph).add(rootOfithPartition);
+							weightFactors[v.rankInGraph] = sizeOfithPartition/ithPartitionTree.size();
 						}
 					}
 				}else{
 
 					Set<Vertex> OLD1 = new HashSet<Vertex>();
-					for(Vertex v : OLD){
-						if(!Tree_Node.get(v.n).contains(ai)){
+					for(Vertex v : verticesWereInPartitions){
+						if(!Tree_Node.get(v.rankInGraph).contains(rootOfithPartition)){
 							OLD1.add(v);
 						}
 					}
@@ -117,19 +123,19 @@ public class Partition {
 						break;
 					}
 					Set<Vertex> OLD2 = new HashSet<Vertex>();
-					float[] P1 = new float[P.length];
+					float[] P1 = new float[weightFactors.length];
 					for(Vertex v : OLD1)
-						P1[v.n] = P[v.n];
+						P1[v.rankInGraph] = weightFactors[v.rankInGraph];
 
 					for(Vertex v : OLD1){
-						if(P[v.n] == arrayMin(P1)){
+						if(weightFactors[v.rankInGraph] == arrayMin(P1)){
 							OLD2.add(v);
 						}
 					}
 					// there is no subtree adjacent to Ti whose vcrtex function P value is less than t h a t of Ti//
 					boolean b = false;
 					for(Vertex v : OLD2)
-						if(P[v.n] >= P[ai.n]){
+						if(weightFactors[v.rankInGraph] >= weightFactors[rootOfithPartition.rankInGraph]){
 							b = true;
 						}
 					if(b){
@@ -140,13 +146,13 @@ public class Partition {
 					for (int t = 0; t < k; t++) {
 						j = (i+t) % (k+1);
 						for(Vertex v : OLD2)
-							if(Tree_Node.get(v.n).contains(roots[j]))
+							if(Tree_Node.get(v.rankInGraph).contains(roots[j]))
 								break;
 					}
 					Vertex aj = roots[j];
 					Set<Vertex> OLD3 = new HashSet<Vertex>();
 					for(Vertex v : OLD2){
-						if(Tree_Node.get(v.n).contains(aj))
+						if(Tree_Node.get(v.rankInGraph).contains(aj))
 							OLD3.add(aj);
 					}
 					final PartitionSpanningTree Tj = listTrees.get(j);
@@ -158,16 +164,16 @@ public class Partition {
 					});
 					if(Tj.degree(w) == 1){
 						Tj.removeVertex(w);
-						Ti.addVertex(w);
-						Tree_Node.get(w.n).add(ai);
+						ithPartitionTree.addVertex(w);
+						Tree_Node.get(w.rankInGraph).add(rootOfithPartition);
 					}else{
-						Tj.cutOff(w, Ti);
-						Tree_Node.get(w.n).add(ai);
+						Tj.cutOff(w, ithPartitionTree);
+						Tree_Node.get(w.rankInGraph).add(rootOfithPartition);
 						for(Vertex v : Tj.vertices()){
-							P[v.n] = ni/Ti.size();
+							weightFactors[v.rankInGraph] = sizeOfithPartition/ithPartitionTree.size();
 						}
-						for(Vertex v : Ti.vertices()){
-							P[v.n] = sizes[j]/Tj.size();
+						for(Vertex v : ithPartitionTree.vertices()){
+							weightFactors[v.rankInGraph] = sizes[j]/Tj.size();
 						}
 					}
 
@@ -180,7 +186,7 @@ public class Partition {
 
 	}	
 	private static Collection<? extends Vertex> cutOff(Set<Vertex> tj, Vertex w) {
-		// TODO Auto-generated method stub
+		// FIXME Use tree method
 		return null;
 	}
 
@@ -199,6 +205,8 @@ public class Partition {
 	}
 
 	private static Vertex minVertex(Iterable<Vertex> it, Comparator<Vertex> c ){
+		
+		
 		Vertex min = it.iterator().next();
 		for(Vertex v : it){
 			if(c.compare(v, min) < 0)min = v;
