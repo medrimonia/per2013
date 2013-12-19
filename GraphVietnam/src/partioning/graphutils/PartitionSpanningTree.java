@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-
+import util.DepthFirstSearch;
 import util.RootedSpanningTreeImpl;
 import graph.Graph;
 import graph.Graph.Edge;
@@ -31,24 +31,31 @@ public class PartitionSpanningTree extends RootedSpanningTreeImpl<Vertex, Edge<V
 
 	@Override
 	public boolean addVertex(Vertex vertex) {
-		tree.addVertex(vertex);
-		for(Edge<Vertex> edge : supergraph().incidentEdges(vertex))
-			tree.addEdge(edge);
-		super.addEdge(null);
-		return true;
-		//TODO DFS to switch all elements
+		return tree.addVertex(vertex);
 	}
 	@Override
 	public boolean removeVertex(Vertex vertex) {
-		throw new UnsupportedOperationException();
-		//TODO
+		return tree.removeVertex(vertex);
 	}
 
+	@Override
+	public boolean addEdge(Edge<Vertex> edge){
+		return tree.addEdge(edge);
+	}
+	@Override
+	public boolean removeEdge(Edge<Vertex> edge){
+		return tree.removeEdge(edge);
+	}
+	 
 
 
-	public PartitionSpanningTree cutOff(Vertex root, PartitionSpanningTree newTree){
-		//TODO
-		return new PartitionSpanningTree(supergraph(), tree, root);
+	public void cutOff(Vertex root){
+		new DepthFirstTreatment().traversal(new DepthFirstTreatment.Operation() {
+			@Override
+			public void visit(Vertex v) {
+				removeVertex(v);				
+			}
+		}, this, root);
 }
 
 public int degree (Vertex x){
