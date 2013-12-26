@@ -17,7 +17,14 @@ public class KPartitionTest {
 	
 	public static void main(String[] args){
 		figure2Test();
-		randomTest();
+		int nbTests = 100;
+		for (int i = 1; i <= nbTests; i++){
+			if (!randomTest()){
+				System.err.println("A test failed!!!");
+				break;
+			}
+			System.out.println(i + "/" + nbTests);
+		}
 	}
 	
 	/** Warning, since execution is not determinist, getting once the
@@ -62,7 +69,7 @@ public class KPartitionTest {
 		return g;
 	}
 
-	public static void randomTest(){
+	public static boolean randomTest(){
 		int k = 12;
 		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(80, 10, k);
 		List<Integer> vertices = new ArrayList<Integer>(g.vertices());
@@ -80,7 +87,6 @@ public class KPartitionTest {
 		}
 		List<Set<Integer>> p;
 		p = Partitioning.calculateKPartition(g, k, roots, partitionSizes);
-		boolean testPassed = Partitioning.isValidPartition(p, g, k, roots, partitionSizes);
-		System.out.println("Test passed : " + testPassed);
+		return Partitioning.isValidPartition(p, g, k, roots, partitionSizes);
 	}
 }
