@@ -72,7 +72,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		trees = new ArrayList<Tree<V>>(k);
 		// Importing content
 		for (int i = 0; i < k; i ++){
-			rootVertices.set(i, roots.get(i));
+			rootVertices.add(i, roots.get(i));
 			this.partitionSizes[i] = partitionSizes.get(i);
 		}
 		initMapping();
@@ -89,18 +89,21 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	}
 
 	private void initialize(){
+		trees.clear();
 		for (int i = 0; i < k; i++){
-			trees.set(i, new Tree(rootVertices.get(i)));
+			trees.add(i, new Tree<V>(rootVertices.get(i)));
 		}
+		treeNode.clear();
 		// default values
 		for (int i = 0; i < g.vertices().size(); i++){
 			p[i] = 0;
-			treeNode.set(i, new HashSet<V>());
+			treeNode.add(i, new HashSet<V>());
 		}
 		// roots values
-		for (V root : rootVertices){
+		for (int i = 0; i < k; i++ ){
+			V root = rootVertices.get(i);
 			int rootIndex = indexMapping.get(root);
-			p[rootIndex] = partitionSizes[rootIndex];
+			p[rootIndex] = partitionSizes[i];
 			treeNode.get(rootIndex).add(root);
 		}
 	}

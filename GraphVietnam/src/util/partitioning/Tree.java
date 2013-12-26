@@ -20,6 +20,7 @@ class Tree<V> {
 
 	public Tree(V root) {
 		this.root = root;
+		fathers = new HashMap<V,V>();
 		fathers.put(root, null);
 		childs = new HashMap<V,Set<V>>();
 		childs.put(root, new HashSet<V>());
