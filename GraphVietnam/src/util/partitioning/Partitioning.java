@@ -50,7 +50,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	 * The trees associated to the rootVertices
 	 */
 	private ArrayList<Tree<V>> trees;
-	
+		
 	/**
 	 * This class should only be used by static method, that's the reason of
 	 * the private
@@ -105,6 +105,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		}
 	}
 
+	/** Class must have been initialized @see initialize */
 	private void compute(){
 		int rootIndex = 0;
 		while(nbVerticesUsed() < g.vertices().size()){
@@ -121,6 +122,26 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			}
 			rootIndex = (rootIndex + 1) % k;
 		}
+	}
+	
+	/** Algorithm must have been computed @see compute */
+	private List<Set<V>> getResult(){
+		List<Set<V>> result = new ArrayList<Set<V>>();
+		for (int i = 0; i < k; i++){
+			result.set(i, trees.get(i).vertices());
+		}
+		return result;
+	}
+
+	public static <V, E extends Graph.Edge<V>> List<Set<V>> calculateKPartition(
+			Graph<V,E> g,
+			int k,
+			List<V> roots,
+			List<Integer> partitionSizes){
+		Partitioning<V,E> p = new Partitioning<V,E>(g, k, roots, partitionSizes);
+		p.initialize();
+		p.compute();
+		return p.getResult();
 	}
 
 	private int nbVerticesUsed(){
