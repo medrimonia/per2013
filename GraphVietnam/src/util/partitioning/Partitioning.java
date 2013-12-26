@@ -243,8 +243,8 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			int vertexId = indexMapping.get(v);
 			addVertexToTree(v, rootIndex);
 			treeNode.get(vertexId).add(rootVertices.get(rootIndex));
-			p[vertexId] = wishedSize / (double) finalSize;
 		}
+		updatePValues(rootIndex);
 		
 	}
 	
