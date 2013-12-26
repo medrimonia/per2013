@@ -81,5 +81,7 @@ public class KPartitionTest {
 		List<Set<Integer>> p;
 		p = Partitioning.calculateKPartition(g, k, roots, partitionSizes);
 		System.out.println(p);
+		boolean testPassed = Partitioning.isValidPartition(p, g, k, roots, partitionSizes);
+		System.out.println("Test passed : " + testPassed);
 	}
 }

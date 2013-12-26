@@ -147,6 +147,35 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		p.compute();
 		return p.getResult();
 	}
+	
+	/** Return true if the partition is valid according to given parameters */
+	public static <V, E extends Graph.Edge<V>> boolean isValidPartition(
+			List<Set<V>> partition,
+			Graph<V,E> g,
+			int k,
+			List<V> roots,
+			List<Integer> partitionSizes){
+		Collection<V> usedVertices = new HashSet<V>();
+		// Every element should be in g.vertices and should be used only once
+		for (int i = 0; i < k; i++){
+			Set<V> s = partition.get(i);
+			for (V v : s){
+				// v in graph
+				if (!g.vertices().contains(v))
+					return false;
+				// v used only once
+				if (!usedVertices.add(v))
+					return false;
+			}
+			//Each subgraph must have the specified size
+			if (partitionSizes.get(i) != s.size())
+				return false;
+			//Each root should be in the corresponding subgraph
+			if (!s.contains(roots.get(i)))
+				return false;
+		}
+		return true;
+	}
 
 	private int nbVerticesUsed(){
 		int total = 0;
