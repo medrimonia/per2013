@@ -33,6 +33,7 @@ class Tree<V> {
 	public void addChild(V father, V child){
 		childs.get(father).add(child);
 		childs.put(child, new HashSet<V>());
+		fathers.put(child, father);
 	}
 	
 	/** Insert the given subTree as a child of root */
@@ -80,7 +81,7 @@ class Tree<V> {
 	public V lowestDegreeVertex(Set<V> vertices){
 		V bestVertex = null;
 		int minDegree = Integer.MAX_VALUE;
-		for (V v : vertices()){
+		for (V v : vertices){
 			int deg = internalDegree(v);
 			if (deg < minDegree){
 				minDegree = deg;

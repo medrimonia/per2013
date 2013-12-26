@@ -134,7 +134,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	private List<Set<V>> getResult(){
 		List<Set<V>> result = new ArrayList<Set<V>>();
 		for (int i = 0; i < k; i++){
-			result.set(i, trees.get(i).vertices());
+			result.add(i, trees.get(i).vertices());
 		}
 		return result;
 	}
