@@ -5,7 +5,6 @@ package partioning;
 import graph.Graph;
 import graph.Graph.Edge;
 
-import java.rmi.server.Operation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,14 +18,18 @@ import partioning.graphutils.PartitionSpanningTree;
 import partioning.graphutils.Vertex;
 
 /**
- * @author ayoub
+ * @author ayoub 
  *
  */
 
 public class Partition {
+	/**
+	 * Initialises the indexes of the graph's vertices
+	 * @param graph
+	 */
 	private static void initGraph(Graph<Vertex, Edge<Vertex>> graph){
 		Vertex root = graph.vertices().iterator().next();
-		DepthFirstTreatment.traversal(new DepthFirstTreatment.Operation() {
+		new DepthFirstTreatment().traversal(new DepthFirstTreatment.Operation() {
 			int currentIndex = 0;
 			@Override
 			public void visit(Vertex v) {
@@ -155,25 +158,25 @@ public class Partition {
 						if(Tree_Node.get(v.rankInGraph).contains(aj))
 							OLD3.add(aj);
 					}
-					final PartitionSpanningTree Tj = listTrees.get(j);
+					final PartitionSpanningTree jthPartitionTree = listTrees.get(j);
 					Vertex w = minVertex(OLD3, new Comparator<Vertex>() {
 						@Override
 						public int compare(Vertex arg0, Vertex arg1) {
-							return Tj.degree(arg0) - Tj.degree(arg1);
+							return jthPartitionTree.degree(arg0) - jthPartitionTree.degree(arg1);
 						}
 					});
-					if(Tj.degree(w) == 1){
-						Tj.removeVertex(w);
+					if(jthPartitionTree.degree(w) == 1){
+						jthPartitionTree.removeVertex(w);
 						ithPartitionTree.addVertex(w);
 						Tree_Node.get(w.rankInGraph).add(rootOfithPartition);
 					}else{
-						Tj.cutOff(w, ithPartitionTree);
+						jthPartitionTree.cutOff(w);
 						Tree_Node.get(w.rankInGraph).add(rootOfithPartition);
-						for(Vertex v : Tj.vertices()){
+						for(Vertex v : jthPartitionTree.vertices()){
 							weightFactors[v.rankInGraph] = sizeOfithPartition/ithPartitionTree.size();
 						}
 						for(Vertex v : ithPartitionTree.vertices()){
-							weightFactors[v.rankInGraph] = sizes[j]/Tj.size();
+							weightFactors[v.rankInGraph] = sizes[j]/jthPartitionTree.size();
 						}
 					}
 
@@ -185,10 +188,6 @@ public class Partition {
 
 
 	}	
-	private static Collection<? extends Vertex> cutOff(Set<Vertex> tj, Vertex w) {
-		// FIXME Use tree method
-		return null;
-	}
 
 
 	protected static int degreeInTree(Set<Vertex> tj, Vertex arg0) {
