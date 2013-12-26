@@ -20,5 +20,14 @@ class Tree<V> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void addChild(V father,V child){
+		//TODO unimplemented
+	}
+	
+	public int internalDegree(V v){
+		//TODO unimplemented
+		return -1;
+	}
 
 }

@@ -115,13 +115,13 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 					addNeededVertices(unknownVertices, rootIndex);
 				}
 				else{
-					//...
+					tryVerticesSwap(knownVertices, rootIndex);
 				}
 			}
 			rootIndex = (rootIndex + 1) % k;
 		}
 	}
-	
+
 	private int nbVerticesUsed(){
 		int total = 0;
 		for (Tree<V> t : trees){
@@ -186,10 +186,66 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		int finalSize = actualSize + toAdd.size();
 		for (V v : toAdd){
 			int vertexId = indexMapping.get(v);
+			addVertexToTree(v, rootIndex);
 			treeNode.get(vertexId).add(rootVertices.get(rootIndex));
 			p[vertexId] = wishedSize / (double) finalSize;
 		}
 		
+	}
+	
+	private void addVertexToTree(V v, int rootIndex) {
+		//Father must be connected to v
+		V father = null;
+		for (V treeVertex : trees.get(rootIndex).vertices()){
+			if (g.areNeighbors(v, treeVertex)){
+				father = treeVertex;
+				break;
+			}
+		}
+		trees.get(rootIndex).addChild(father, v);
+	}
+
+	private void tryVerticesSwap(Set<V> knownVertices, int rootIndex) {
+		Set<V> knownVertices1 = new HashSet<V>();//OLD1 in paper
+		// Removing vertices that have already been once in T[rootIndex]
+		V currentRoot = rootVertices.get(rootIndex);//a_i in the paper
+		for (V v : knownVertices){
+			int vertexId = indexMapping.get(v);
+			if (!treeNode.get(vertexId).contains(currentRoot))
+				knownVertices1.add(v);
+		}
+		// If all vertices have already been in T[rootIndex], swap is impossible
+		if (knownVertices1.isEmpty()) return;
+		Set<V> knownVertices2 = filterMinPVertices(knownVertices1);//OLD2
+		//TODO: here, is it a_j in Tree_node[v] or v in T_j??? 
+		int j = 0;
+		Set<V> knownVertices3 = new HashSet<V>();
+		for (int t = 1; t < k; t++){
+			j = (rootIndex + t) % k;
+			for (V v : knownVertices2){
+				if (trees.get(j).vertices().contains(v)){
+					knownVertices3.add(v);
+				}
+			}
+			if (!knownVertices3.isEmpty()) break;
+		}
+	}
+	
+	private Set<V> filterMinPVertices(Set<V> knownVertices){
+		Set<V> result = new HashSet<V>();
+		double minP = Double.MAX_VALUE;
+		for (V v: knownVertices){
+			int vertexId = indexMapping.get(v);
+			if (p[vertexId] == minP){
+				result.add(v);
+			}
+			if (p[vertexId] < minP){
+				result.clear();
+				minP = p[vertexId];
+				result.add(v);
+			}
+		}
+		return result;
 	}
 
 }
