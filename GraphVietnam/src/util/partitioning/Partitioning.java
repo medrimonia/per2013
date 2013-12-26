@@ -1,9 +1,11 @@
 package util.partitioning;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import graph.Graph;
 
@@ -45,7 +47,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	/**
 	 * The trees associated to the rootVertices
 	 */
-	private ArrayList<Tree> trees;
+	private ArrayList<Tree<V>> trees;
 	
 	/**
 	 * This class should only be used by static method, that's the reason of
@@ -65,7 +67,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		indexMapping = new HashMap<V, Integer>();
 		treeNode = new ArrayList<HashSet<V>>(n);
 		p = new double[n];
-		trees = new ArrayList<Tree>(k);
+		trees = new ArrayList<Tree<V>>(k);
 		// Importing content
 		for (int i = 0; i < k; i ++){
 			rootVertices.set(i, roots.get(i));
@@ -101,4 +103,41 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		}
 	}
 
+	private void compute(){
+		int rootIndex = 0;
+		while(nbVerticesUsed() < g.vertices().size()){
+			Set<V> auxiliaryVertices = getAuxiliaryVertices(rootIndex);
+		}
+	}
+	
+	private int nbVerticesUsed(){
+		int total = 0;
+		for (Tree<V> t : trees){
+			total += t.vertices().size();
+		}
+		return total;
+	}
+	
+	private Set<V> getAuxiliaryVertices(int rootIndex){
+		// Union of V(T[rootIndex) and rootVertices is forbidden
+		HashSet<V> forbidden = new HashSet<V>();
+		for (V v : trees.get(rootIndex).vertices()){
+			forbidden.add(v);
+		}
+		for (V v : rootVertices){
+			forbidden.add(v);
+		}
+		// Computing neighborhood
+		HashSet<V> neighborhood = new HashSet<V>();
+		for (V v : trees.get(rootIndex).vertices()){
+			for (V neighbor : g.neighbors(v)){
+				neighborhood.add(neighbor);
+			}
+		}
+		// Removing forbidden from neighborhood
+		for (V v : forbidden){
+			neighborhood.remove(v);
+		}
+		return neighborhood;
+	}
 }
