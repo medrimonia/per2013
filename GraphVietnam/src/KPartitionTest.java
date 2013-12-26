@@ -63,8 +63,8 @@ public class KPartitionTest {
 	}
 
 	public static void randomTest(){
-		int k = 4;
-		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(10, 3, k);
+		int k = 12;
+		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(80, 10, k);
 		List<Integer> vertices = new ArrayList<Integer>(g.vertices());
 		Collections.shuffle(vertices);
 		List<Integer> roots = new ArrayList<Integer>();
@@ -80,7 +80,6 @@ public class KPartitionTest {
 		}
 		List<Set<Integer>> p;
 		p = Partitioning.calculateKPartition(g, k, roots, partitionSizes);
-		System.out.println(p);
 		boolean testPassed = Partitioning.isValidPartition(p, g, k, roots, partitionSizes);
 		System.out.println("Test passed : " + testPassed);
 	}

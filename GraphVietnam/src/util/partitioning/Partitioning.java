@@ -278,8 +278,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		for (int t = 1; t < k; t++){
 			j = (rootIndex + t) % k;
 			for (V v : knownVertices2){
-				int vertexId = indexMapping.get(v);
-				if (treeNode.get(vertexId).contains(rootVertices.get(j))){
+				if (trees.get(j).vertices().contains(v)){
 					knownVertices3.add(v);
 				}
 			}

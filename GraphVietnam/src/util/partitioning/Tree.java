@@ -42,25 +42,12 @@ class Tree<V> {
 		fathers.put(child, father);
 	}
 	
-	/** Insert the given subTree as a child of root */
-	private void insertSubTree(V root, Tree<V> subTree){
-		//TODO assert no vertices in common
-		for (Entry<V,Set<V>> e : subTree.childs.entrySet()){
-			childs.put(e.getKey(), e.getValue());
-		}
-		for (Entry<V,V> e : subTree.fathers.entrySet()){
-			fathers.put(e.getKey(), e.getValue());
-		}
-		fathers.remove(subTree.root);
-		fathers.put(subTree.root, root);
-		childs.get(root).add(subTree.root);
-	}
-	
 	/** Return all the descendants of root in the tree, root not included */
 	private Collection<V> descendants(V root){
 		Collection<V> result = new HashSet<V>();
 		for (V child : childs.get(root)){
 			result.addAll(descendants(child));
+			result.add(child);
 		}
 		return result;
 	}
