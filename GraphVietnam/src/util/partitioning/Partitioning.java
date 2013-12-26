@@ -50,7 +50,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	 * The trees associated to the rootVertices
 	 */
 	private ArrayList<Tree<V>> trees;
-	
+		
 	/**
 	 * This class should only be used by static method, that's the reason of
 	 * the private
@@ -72,7 +72,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		trees = new ArrayList<Tree<V>>(k);
 		// Importing content
 		for (int i = 0; i < k; i ++){
-			rootVertices.set(i, roots.get(i));
+			rootVertices.add(i, roots.get(i));
 			this.partitionSizes[i] = partitionSizes.get(i);
 		}
 		initMapping();
@@ -89,26 +89,33 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	}
 
 	private void initialize(){
+		trees.clear();
 		for (int i = 0; i < k; i++){
-			trees.set(i, new Tree(rootVertices.get(i)));
+			trees.add(i, new Tree<V>(rootVertices.get(i)));
 		}
+		treeNode.clear();
 		// default values
 		for (int i = 0; i < g.vertices().size(); i++){
 			p[i] = 0;
-			treeNode.set(i, new HashSet<V>());
+			treeNode.add(i, new HashSet<V>());
 		}
 		// roots values
-		for (V root : rootVertices){
+		for (int i = 0; i < k; i++ ){
+			V root = rootVertices.get(i);
 			int rootIndex = indexMapping.get(root);
-			p[rootIndex] = partitionSizes[rootIndex];
+			p[rootIndex] = partitionSizes[i];
 			treeNode.get(rootIndex).add(root);
 		}
 	}
 
+	/** Class must have been initialized @see initialize */
 	private void compute(){
 		int rootIndex = 0;
 		while(nbVerticesUsed() < g.vertices().size()){
-			if (p[rootIndex] > 1){
+			Integer rootId = indexMapping.get(rootVertices.get(rootIndex));
+			System.out.println("Root Index : " + rootIndex);
+			System.out.println("Nb vertices : " + nbVerticesUsed());
+			if (p[rootId] > 1){
 				Set<V> auxiliaryVertices = getAuxiliaryVertices(rootIndex);
 				Set<V> unknownVertices = filterUnknownVertices(auxiliaryVertices);//NEW in paper
 				Set<V> knownVertices = filterKnownVertices(auxiliaryVertices);//OLD in paper
@@ -121,6 +128,26 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			}
 			rootIndex = (rootIndex + 1) % k;
 		}
+	}
+	
+	/** Algorithm must have been computed @see compute */
+	private List<Set<V>> getResult(){
+		List<Set<V>> result = new ArrayList<Set<V>>();
+		for (int i = 0; i < k; i++){
+			result.add(i, trees.get(i).vertices());
+		}
+		return result;
+	}
+
+	public static <V, E extends Graph.Edge<V>> List<Set<V>> calculateKPartition(
+			Graph<V,E> g,
+			int k,
+			List<V> roots,
+			List<Integer> partitionSizes){
+		Partitioning<V,E> p = new Partitioning<V,E>(g, k, roots, partitionSizes);
+		p.initialize();
+		p.compute();
+		return p.getResult();
 	}
 
 	private int nbVerticesUsed(){
