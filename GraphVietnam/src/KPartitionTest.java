@@ -16,6 +16,9 @@ public class KPartitionTest {
 		figure2Test();
 	}
 	
+	/** Warning, since execution is not determinist, getting once the
+	 *  right result is not enough to conclude.
+	 */
 	public static void figure2Test(){
 		Graph<Integer, Graph.Edge<Integer>> g = figure2Graph();
 		int k = 3;
