@@ -4,8 +4,11 @@ import graph.MultiGraph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
+
 import util.connectivity.KConnectivity;
 import util.partitioning.Partitioning;
 
@@ -14,6 +17,7 @@ public class KPartitionTest {
 	
 	public static void main(String[] args){
 		figure2Test();
+		randomTest();
 	}
 	
 	/** Warning, since execution is not determinist, getting once the
@@ -56,5 +60,26 @@ public class KPartitionTest {
 		for (int i = 0; i < 6; i++)
 			g.addEdge(new DirectedEdge<Integer>(i,6));
 		return g;
+	}
+
+	public static void randomTest(){
+		int k = 4;
+		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(10, 3, k);
+		List<Integer> vertices = new ArrayList<Integer>(g.vertices());
+		Collections.shuffle(vertices);
+		List<Integer> roots = new ArrayList<Integer>();
+		List<Integer> partitionSizes = new ArrayList<Integer>();
+		int nbVerticesRemaining = vertices.size();
+		for (int i = 0; i < k; i++){
+			roots.add(vertices.get(i));
+			int availableVertices = nbVerticesRemaining + i - k - 1;
+			int pSize = new Random().nextInt(availableVertices) +  1;
+			if (i == k -1) pSize = nbVerticesRemaining;
+			partitionSizes.add(pSize);
+			nbVerticesRemaining -= pSize;
+		}
+		List<Set<Integer>> p;
+		p = Partitioning.calculateKPartition(g, k, roots, partitionSizes);
+		System.out.println(p);
 	}
 }
