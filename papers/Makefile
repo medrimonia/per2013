@@ -11,7 +11,7 @@ TIKZ_SOURCES=$(wildcard graphTikZ/*.tex)
 
 all: report.pdf presentation.pdf
 
-report.pdf: report.tex bibliography.bib ${REPORT_SOURCES}
+report.pdf: report.tex bibliography.bib ${REPORT_SOURCES} ${TIKZ_SOURCES}
 	pdflatex $< && bibtex report.aux && pdflatex $< && pdflatex $<
 
 presentation.pdf: presentation.tex bibliography.bib ${PRESENTATION_SOURCES} ${TIKZ_SOURCES}

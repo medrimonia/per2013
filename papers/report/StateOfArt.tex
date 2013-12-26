@@ -14,17 +14,24 @@ represent anything, a vertices is usually noted $v$.
 Edges are an unordered pair of vertices noted $e = (u,v)$. Edges might
 contain twice the same vertex, in this case, the edge is called a {\em loop}.
 
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/undirected-graph.tex}
+  \end{center}
+  \caption{An undirected simple graph with 5 vertices and 4 edges}
+\end{figure}
+
 \subsubsection{Fundamentals notations}
 
-\paragraph{}
+\paragraph{Graph Size :}
 The size of a graph is the number of edges it contains and is noted
 $m = |E|$.
 
-\paragraph{}
+\paragraph{Graph order :}
 The order of a graph is the number of vertices it contains and is noted
 $n = |V|$.
 
-\paragraph{}
+\paragraph{Vertex degree :}
 The degree of a vertex is equal to the number of edges incident to it, loops
 are counted twice.
 
@@ -34,23 +41,58 @@ $P = \{v_0, e_1, v_1, e_2, ..., e_n, v_n\}$ such as :
 $\forall i \in \{1,2, ..., n\}, e_i = \{v_i, v_{i-1}\}$. If $v_0 = v_n$, $P$ is
 a cycle.
 
-\paragraph{}
-A graph  is {\em connected} if $\forall u,v \in V$ a path exists from $u$
-to $v$. Otherwise, the graph is {\em unconnected}
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/pathDef.tex}
+  \end{center}
+  \caption{A path of length 4}
+\end{figure}
+
 
 \subsubsection{Types of graphs}
 
-\paragraph{}
+\paragraph{Tree}
 A tree is an undirected graph without cycles,
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/treeExample.tex}
+  \end{center}
+  \caption{A tree}
+\end{figure}
+
+\paragraph{Spanning Tree}
+A tree is a spanning tree of a graph G if it includes every vertex of G and is a subgraph of G (every edge in the tree belongs to G).
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/spanningTreeExample.tex}
+  \end{center}
+  \caption{A spanning tree}
+\end{figure}
+
 
 \subsubsection{Subgraphs}
 
 \subsubsection{Cuts}
 
-\subsubsection{$k$-connectivity}
-\paragraph{}
+
+
+\subsubsection{Connectivity}
+\paragraph{Connectivity}
+A graph  is {\em connected} if $\forall u,v \in V$ a path exists from $u$
+to $v$. Otherwise, the graph is {\em unconnected}
+
+\paragraph{k-connectivity}
 A graph with a least two vertices is k-connected if, for every pair of vertices, there is at least k vertex disjoint paths between these vertices.
 
-\paragraph{}
 A graph is k-connected if the smallest subset which disconnect the graph if you delete it is of size k.
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/k-connected.tex}
+  \end{center}
+  \caption{A 2-connected graphe}
+\end{figure}
+
 
