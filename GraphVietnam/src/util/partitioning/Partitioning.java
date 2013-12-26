@@ -2,6 +2,7 @@ package util.partitioning;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -106,7 +107,18 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	private void compute(){
 		int rootIndex = 0;
 		while(nbVerticesUsed() < g.vertices().size()){
-			Set<V> auxiliaryVertices = getAuxiliaryVertices(rootIndex);
+			if (p[rootIndex] > 1){
+				Set<V> auxiliaryVertices = getAuxiliaryVertices(rootIndex);
+				Set<V> unknownVertices = filterUnknownVertices(auxiliaryVertices);//NEW in paper
+				Set<V> knownVertices = filterKnownVertices(auxiliaryVertices);//OLD in paper
+				if (!unknownVertices.isEmpty()){
+					addNeededVertices(unknownVertices, rootIndex);
+				}
+				else{
+					//...
+				}
+			}
+			rootIndex = (rootIndex + 1) % k;
 		}
 	}
 	
@@ -140,4 +152,44 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		}
 		return neighborhood;
 	}
+	
+	private Set<V> filterUnknownVertices(Collection<V> vertices){
+		Set<V> filtered = new HashSet<V>();
+		for (V v : vertices){
+			int vIndex = indexMapping.get(v);
+			if (treeNode.get(vIndex).isEmpty())
+				filtered.add(v);
+		}
+		return filtered;
+	}
+	
+	private Set<V> filterKnownVertices(Collection<V> vertices){
+		Set<V> filtered = new HashSet<V>();
+		for (V v : vertices){
+			int vIndex = indexMapping.get(v);
+			if (!treeNode.get(vIndex).isEmpty())
+				filtered.add(v);
+		}
+		return filtered;
+	}
+
+	private void addNeededVertices(Set<V> unknownVertices, int rootIndex){
+		int wishedSize = partitionSizes[rootIndex];
+		int actualSize = trees.get(rootIndex).vertices().size();
+		// Need to got through a list to shuffle
+		List<V> toAdd = new ArrayList<V>(unknownVertices);
+		Collections.shuffle(toAdd);
+		// Removing elements if there's too much
+		while(toAdd.size() > wishedSize - actualSize){
+			toAdd.remove(0);
+		}
+		int finalSize = actualSize + toAdd.size();
+		for (V v : toAdd){
+			int vertexId = indexMapping.get(v);
+			treeNode.get(vertexId).add(rootVertices.get(rootIndex));
+			p[vertexId] = wishedSize / (double) finalSize;
+		}
+		
+	}
+
 }
