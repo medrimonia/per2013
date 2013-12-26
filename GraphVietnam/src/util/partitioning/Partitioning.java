@@ -27,9 +27,10 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	 */
 	private ArrayList<V> rootVertices;
 	/**
+	 * Using double because partitionSize is generally divided by int
 	 * @see rootVertices
 	 */
-	private int[] partitionSizes;
+	private double[] partitionSizes;
 	/**
 	 * Allows to retrieve the index of a Vertex easily
 	 */
@@ -37,7 +38,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	/**
 	 * array of size k
 	 * a_j is in treeNode[i] if and only if vertex with index i is or has been
-	 * in T[j]
+	 * in T[j]. Warning, treeNode[i] can be reseted through the execution
 	 */
 	private ArrayList<HashSet<V>> treeNode;
 	/**
@@ -64,7 +65,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		this.g = g;
 		this.k = k;
 		rootVertices = new ArrayList<V>(k);
-		this.partitionSizes = new int[k];
+		this.partitionSizes = new double[k];
 		indexMapping = new HashMap<V, Integer>();
 		treeNode = new ArrayList<HashSet<V>>(n);
 		p = new double[n];
@@ -174,7 +175,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	}
 
 	private void addNeededVertices(Set<V> unknownVertices, int rootIndex){
-		int wishedSize = partitionSizes[rootIndex];
+		double wishedSize = partitionSizes[rootIndex];
 		int actualSize = trees.get(rootIndex).vertices().size();
 		// Need to got through a list to shuffle
 		List<V> toAdd = new ArrayList<V>(unknownVertices);
@@ -223,11 +224,39 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		for (int t = 1; t < k; t++){
 			j = (rootIndex + t) % k;
 			for (V v : knownVertices2){
-				if (trees.get(j).vertices().contains(v)){
+				int vertexId = indexMapping.get(v);
+				if (treeNode.get(vertexId).contains(rootVertices.get(j))){
 					knownVertices3.add(v);
 				}
 			}
 			if (!knownVertices3.isEmpty()) break;
+		}
+		V w = trees.get(j).lowestDegreeVertex(knownVertices3);
+		int wId = indexMapping.get(w);
+		//TODO If and else seems redundant: to check
+		Tree<V> Tj = trees.get(j);
+		Tree<V> Ti = trees.get(rootIndex);
+		if (Tj.internalDegree(w) == 1){
+			Tj.remove(w);
+			addVertexToTree(w, rootIndex);
+			treeNode.get(wId).add(rootVertices.get(rootIndex));
+			//TODO : part not in the algo!!!
+			// Update T_i and T_j p values
+			updatePValues(rootIndex);
+			updatePValues(j);
+		}
+		else{
+			Tree<V> tPrim = Tj.cutoff(w);
+			treeNode.get(wId).add(rootVertices.get(rootIndex));
+			addVertexToTree(w, rootIndex);
+			for (V v : tPrim.vertices()){
+				if (v.equals(w)) continue;
+				int vertexId = indexMapping.get(v);
+				treeNode.get(vertexId).clear();
+				p[vertexId] = 0;
+			}
+			updatePValues(rootIndex);
+			updatePValues(j);			
 		}
 	}
 	
@@ -246,6 +275,16 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			}
 		}
 		return result;
+	}
+	
+	private void updatePValues(int rootIndex){
+		Tree<V> T = trees.get(rootIndex);
+		double P = partitionSizes[rootIndex] / T.vertices().size();
+		for (V v : T.vertices()){
+			int vertexId = indexMapping.get(v);
+			p[vertexId] = P;
+		}
+		
 	}
 
 }

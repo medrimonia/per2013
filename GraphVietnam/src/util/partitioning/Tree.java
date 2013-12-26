@@ -25,9 +25,25 @@ class Tree<V> {
 		//TODO unimplemented
 	}
 	
+	/** Remove and return the subtree rooted at the given V */
+	public Tree<V> cutoff(V root){
+		//TODO unimplemented
+		return null;
+	}
+	
+	/** Remove a vertex and all it's childrens from the tree */
+	public void remove(V v){
+		
+	}
+	
 	public int internalDegree(V v){
 		//TODO unimplemented
 		return -1;
+	}
+	
+	public V lowestDegreeVertex(Set<V> vertices){
+		//TODO unimplemented
+		return null;
 	}
 
 }
