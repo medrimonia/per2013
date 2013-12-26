@@ -14,12 +14,14 @@ public class ForestTest {
 		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(20, 3, k);
 		Forest<Integer, Graph.Edge<Integer>> f = new Forest<Integer, Graph.Edge<Integer>>(g);
 		System.out.println("Analysis done");
+		System.out.println("Initial edges" + g.edges().size());
 		//TODO: test induced graphs
 		f.printE(g, k+ 4);
 		for (int i = 1; i < k; i++){
 			PartialGraph<Integer, Graph.Edge<Integer>> sg = g.partialGraph(f.filteredEdges(i));
 			int connectivity = KConnectivity.connectivityLevel(sg);
 			System.out.println("Connectivity : " + connectivity + "(expected : " + i + ")");
+			System.out.println("\t Edges number : " + sg.edges().size());
 		}
 		int nbVertices = 5; 
 		Graph<Integer, Graph.Edge<Integer>> g2 = new MultiGraph<Integer, Graph.Edge<Integer>>();
