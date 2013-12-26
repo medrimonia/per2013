@@ -89,5 +89,17 @@ class Tree<V> {
 		}
 		return bestVertex;
 	}
+	
+	//TODO not nicest method but helps for debug
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append('[');
+		for (V v : vertices()){
+			sb.append(v);
+			sb.append(',');
+		}
+		sb.setCharAt(sb.length() - 1, ']');
+		return sb.toString();
+	}
 
 }

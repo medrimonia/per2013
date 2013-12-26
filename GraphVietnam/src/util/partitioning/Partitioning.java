@@ -112,7 +112,10 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	private void compute(){
 		int rootIndex = 0;
 		while(nbVerticesUsed() < g.vertices().size()){
-			if (p[rootIndex] > 1){
+			Integer rootId = indexMapping.get(rootVertices.get(rootIndex));
+			System.out.println("Root Index : " + rootIndex);
+			System.out.println("Nb vertices : " + nbVerticesUsed());
+			if (p[rootId] > 1){
 				Set<V> auxiliaryVertices = getAuxiliaryVertices(rootIndex);
 				Set<V> unknownVertices = filterUnknownVertices(auxiliaryVertices);//NEW in paper
 				Set<V> knownVertices = filterKnownVertices(auxiliaryVertices);//OLD in paper
