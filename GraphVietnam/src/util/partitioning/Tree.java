@@ -64,6 +64,7 @@ class Tree<V> {
 		V father = fathers.get(root);
 		childs.get(father).remove(root);
 		fathers.remove(root);
+		childs.remove(root);
 		return finalSubTree;
 	}
 	
