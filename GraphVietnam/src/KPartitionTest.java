@@ -17,7 +17,7 @@ public class KPartitionTest {
 	
 	public static void main(String[] args){
 		figure2Test();
-		int nbTests = 100;
+		int nbTests = 1000;
 		for (int i = 1; i <= nbTests; i++){
 			if (!randomTest()){
 				System.err.println("A test failed!!!");
@@ -61,17 +61,22 @@ public class KPartitionTest {
 		Graph<Integer, Graph.Edge<Integer>> g = new MultiGraph<Integer, Graph.Edge<Integer>>();
 		for (int i = 0; i < 7; i++)
 			g.addVertex(i);
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++){
 			g.addEdge(new DirectedEdge<Integer>(i,i+1));
+			g.addEdge(new DirectedEdge<Integer>(i+1,i));
+		}
 		g.addEdge(new DirectedEdge<Integer>(0,5));
-		for (int i = 0; i < 6; i++)
+		g.addEdge(new DirectedEdge<Integer>(5,0));
+		for (int i = 0; i < 6; i++){
 			g.addEdge(new DirectedEdge<Integer>(i,6));
+			g.addEdge(new DirectedEdge<Integer>(6,i));
+		}
 		return g;
 	}
 
 	public static boolean randomTest(){
-		int k = 12;
-		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(80, 10, k);
+		int k = 2;
+		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(4, 3, k);
 		List<Integer> vertices = new ArrayList<Integer>(g.vertices());
 		Collections.shuffle(vertices);
 		List<Integer> roots = new ArrayList<Integer>();

@@ -8,6 +8,8 @@ public class KconnectivityTest {
 	static int minkConnexity = 2;
 	static Random rand = new Random();
 	
+	//TODO: Test for simple and undirected, issues found!
+	
 	public static void main(String[] args)
 	{
 		testGenTwoComponent();
@@ -71,7 +73,5 @@ public class KconnectivityTest {
 		System.out.println("Is the graph " + (k+1) + "-connected : " + KConnectivity.isKConnected(g, k+1));
 		
 	}
-	
-
 
 }

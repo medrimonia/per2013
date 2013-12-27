@@ -65,7 +65,10 @@ public class KConnectivity {
 			{
 				for(int z = 0; z < n; z++)
 				{
-					g.addEdge(new DirectedEdge<Integer>(i+sizeComponent*z,j+sizeComponent*z));
+					int u = i+sizeComponent*z;
+					int v = j+sizeComponent*z;
+					g.addEdge(new DirectedEdge<Integer>(u,v));
+					g.addEdge(new DirectedEdge<Integer>(v,u));
 				}
 			}
 		
@@ -74,7 +77,10 @@ public class KConnectivity {
 		{
 			for (int i=0; i<k; i++)
 			{
-				g.addEdge(new DirectedEdge<Integer>(i+sizeComponent*z,i+(sizeComponent+1)));
+				int u = i+sizeComponent*z;
+				int v = i+(sizeComponent+1);
+				g.addEdge(new DirectedEdge<Integer>(u,v));
+				g.addEdge(new DirectedEdge<Integer>(v,u));
 			}
 		}
 		
