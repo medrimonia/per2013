@@ -1,5 +1,8 @@
 package util.partitioning;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -50,6 +53,8 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	 * The trees associated to the rootVertices
 	 */
 	private ArrayList<Tree<V>> trees;
+	
+	private PrintWriter debugFile;
 		
 	/**
 	 * This class should only be used by static method, that's the reason of
@@ -76,7 +81,11 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			this.partitionSizes[i] = partitionSizes.get(i);
 		}
 		initMapping();
-		
+		try {
+			debugFile = new PrintWriter("debug.txt", "UTF-8");
+		} catch (Exception e) {
+			System.err.println("Failed to open file");
+		}
 	}
 	
 	private void initMapping(){
@@ -112,9 +121,11 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	private void compute(){
 		int rootIndex = 0;
 		while(nbVerticesUsed() < g.vertices().size()){
+			debugFile.println("rootIndex : " + rootIndex);
 			Integer rootId = indexMapping.get(rootVertices.get(rootIndex));
 			if (p[rootId] > 1){
 				Set<V> auxiliaryVertices = getAuxiliaryVertices(rootIndex);
+				debugFile.println("\t" + auxiliaryVertices);
 				Set<V> unknownVertices = filterUnknownVertices(auxiliaryVertices);//NEW in paper
 				Set<V> knownVertices = filterKnownVertices(auxiliaryVertices);//OLD in paper
 				if (!unknownVertices.isEmpty()){
@@ -124,6 +135,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 					tryVerticesSwap(knownVertices, rootIndex);
 				}
 			}
+			debugFile.println("\t" + trees);
 			rootIndex = (rootIndex + 1) % k;
 		}
 	}
