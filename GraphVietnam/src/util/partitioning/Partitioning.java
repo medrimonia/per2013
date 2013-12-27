@@ -270,6 +270,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 				knownVertices1.add(v);
 		}
 		// If all vertices have already been in T[rootIndex], swap is impossible
+		//TODO: when entering in an infinite loop, algorithm jumps out at this condition
 		if (knownVertices1.isEmpty()) return;
 		Set<V> knownVertices2 = filterMinPVertices(knownVertices1);//OLD2
 		//TODO: here, is it a_j in Tree_node[v] or v in T_j??? 
