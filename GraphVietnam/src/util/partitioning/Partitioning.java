@@ -297,7 +297,8 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			}
 			if (!knownVertices3.isEmpty()) break;
 		}
-		V w = trees.get(j).lowestDegreeVertex(knownVertices3);
+		//V w = trees.get(j).lowestDegreeVertex(knownVertices3);
+		V w = trees.get(j).lowestDescendanceVertex(knownVertices3);
 		int wId = indexMapping.get(w);
 		//TODO If and else seems redundant: to check
 		Tree<V> Tj = trees.get(j);

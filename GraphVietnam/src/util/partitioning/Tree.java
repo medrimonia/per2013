@@ -98,6 +98,19 @@ class Tree<V> {
 		return bestVertex;
 	}
 	
+	public V lowestDescendanceVertex(Set<V> vertices){
+		V bestVertex = null;
+		int minDescendanceSize = Integer.MAX_VALUE;
+		for (V v : vertices){
+			int descendanceSize = descendants(v).size();
+			if (descendanceSize < minDescendanceSize){
+				minDescendanceSize = descendanceSize;
+				bestVertex = v;
+			}
+		}
+		return bestVertex;
+	}
+	
 	//TODO not nicest method but helps for debug
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
