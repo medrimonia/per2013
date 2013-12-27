@@ -1,0 +1,37 @@
+% Vertices
+\Vertex[x=7,y=5]{a} 
+\Vertex[x=5,y=7]{b}
+\Vertex[x=7,y=9]{c}
+\Vertex[x=9,y=7]{d} 
+\Vertex[x=0,y=2]{e}
+\Vertex[x=2,y=4]{f}
+\Vertex[x=4,y=2]{g}
+\Vertex[x=2,y=0]{h}
+\Vertex[x=10,y=2]{i}
+\Vertex[x=12,y=4]{j}
+\Vertex[x=14,y=2]{k}
+\Vertex[x=12,y=0]{l}
+%Cliques
+\Edge[lw=0.03in](a)(b)
+\Edge[lw=0.03in](a)(c)
+\Edge[lw=0.03in](a)(d)
+\Edge[lw=0.01in](b)(c)
+\Edge[lw=0.01in](b)(d)
+\Edge[lw=0.01in](c)(d)
+\Edge[lw=0.01in](e)(f)
+\Edge[lw=0.03in](e)(g)
+\Edge[lw=0.01in](e)(h)
+\Edge[lw=0.01in](f)(g)
+\Edge[lw=0.03in](f)(h)
+\Edge[lw=0.01in](g)(h)
+\Edge[lw=0.03in](i)(j)
+\Edge[lw=0.01in](i)(k)
+\Edge[lw=0.01in](i)(l)
+\Edge[lw=0.01in](j)(k)
+\Edge[lw=0.01in](j)(l)
+\Edge[lw=0.01in](k)(l)
+%Cliques Connection
+\Edge[lw=0.03in](a)(f)
+\Edge[lw=0.01in](b)(g)
+\Edge[lw=0.01in](f)(i)
+\Edge[lw=0.03in](g)(j)
