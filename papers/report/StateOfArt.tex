@@ -21,6 +21,17 @@ contain twice the same vertex, in this case, the edge is called a {\em loop}.
   \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
+\subsection{Subgraphs}
+Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, $G'$ is a subgraph of $G$ if and only if $V \subseteq V'$ and $E \subseteq E'$.
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/subgraphExample.tex}
+  \end{center}
+  \caption{A graph and one of his subgraph}
+\end{figure}
+
+
 \subsubsection{Fundamentals notations}
 
 \paragraph{Graph Size :}
@@ -35,6 +46,7 @@ $n = |V|$.
 The degree of a vertex is equal to the number of edges incident to it, loops
 are counted twice.
 
+\subsection{Path}
 \paragraph{}
 A path of length $n$ is a sequence of alternated vertices and edged, noted
 $P = \{v_0, e_1, v_1, e_2, ..., e_n, v_n\}$ such as :
@@ -47,6 +59,8 @@ a cycle.
   \end{center}
   \caption{A path of length 4}
 \end{figure}
+
+
 
 
 \subsubsection{Types of graphs}
@@ -72,10 +86,15 @@ A tree is a spanning tree of a graph G if it includes every vertex of G and is a
 \end{figure}
 
 
-\subsubsection{Subgraphs}
+\subsection{Cuts}
+\paragraph{Cut}A cut $C=(S,T)$ is a partition of V of a graph $G=(V,E)$.
 
-\subsubsection{Cuts}
-
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/cutExample.tex}
+  \end{center}
+  \caption{A spanning tree}
+\end{figure}
 
 
 \subsubsection{Connectivity}
