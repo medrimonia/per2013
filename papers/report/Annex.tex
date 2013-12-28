@@ -1,8 +1,24 @@
 \section*{Annex}
 
-\subsection{Visual proof of the graph issues}
+\subsection{Detailed example of a failed execution}
+
+\paragraph{}
+We're presenting here an example of an execution that fails with the algorithm
+described by the paper. The input of the algorithm is as follows~:
+\begin{itemize}
+\item $G$ is described by the initial situation in figure~\ref{FE_K2_init}
+\item $k = 2$
+\item $\mathrm{roots} = \{ e, a \}$
+\item $\mathrm{partitionSize} = \{ 5, 7\}$
+\end{itemize}
+
+\paragraph{}
+In order to see easily from where the trees are starting and what vertices are
+included in the built partition. Vertex and edges which are included in a tree
+have a stronger thickness.
+
 \begin{figure}[H]
-  \caption{Failed Execution : Initial graph}
+  \caption{\label{FE_K2_init}Failed Execution : Initial graph}
   \begin{center}
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/initial.tex}
