@@ -1,6 +1,7 @@
 \section{State of Art}
 
-\subsection{Undirected graphs}
+\subsection{Definitions}
+\subsubsection{Undirected graphs}
 
 \paragraph{}
 Undirected graphs are mathematical objects composed of a set of vertices $V$
@@ -11,7 +12,7 @@ Also called nodes, vertices are mathematical objects which might virtually
 represent anything, a vertices is usually noted $v$.
 
 \paragraph{}
-Edges are an unordered pair of vertices noted $e = (u,v)$. Edges might
+Edges are an unordered pair of vertices noted $e = \{u,v\}$. Edges might
 contain twice the same vertex, in this case, the edge is called a {\em loop}.
 
 \begin{figure}[!h]
@@ -21,7 +22,19 @@ contain twice the same vertex, in this case, the edge is called a {\em loop}.
   \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
-\subsection{Subgraphs}
+\subsubsection{Directed graphs}
+\paragraph{} 
+A directed graph is a graph with edge define as and ordered pairs $e = (u,v)$ rather than a two-element set $e = \{u,v\}$.
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/directed-graph.tex}
+  \end{center}
+  \caption{A directed simple graph with 5 vertices and 4 edges}
+\end{figure}
+
+
+
+\subsubsection{Subgraphs}
 Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, $G'$ is a subgraph of $G$ if and only if $V \subseteq V'$ and $E \subseteq E'$.
 
 \begin{figure}[!h]
@@ -46,7 +59,7 @@ $n = |V|$.
 The degree of a vertex is equal to the number of edges incident to it, loops
 are counted twice.
 
-\subsection{Path}
+\subsubsection{Path}
 \paragraph{}
 A path of length $n$ is a sequence of alternated vertices and edged, noted
 $P = \{v_0, e_1, v_1, e_2, ..., e_n, v_n\}$ such as :
@@ -86,14 +99,14 @@ A tree is a spanning tree of a graph G if it includes every vertex of G and is a
 \end{figure}
 
 
-\subsection{Cuts}
+\subsubsection{Cuts}
 \paragraph{Cut}A cut $C=(S,T)$ is a partition of V of a graph $G=(V,E)$.
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/cutExample.tex}
   \end{center}
-  \caption{A spanning tree}
+  \caption{A cut}
 \end{figure}
 
 
@@ -112,6 +125,21 @@ A graph is k-connected if the smallest subset which disconnect the graph if you 
     \input{graphTikZ/k-connected.tex}
   \end{center}
   \caption{A 2-connected graphe}
+\end{figure}
+
+\subsubsection{Partition}
+\paragraph{k-partition} A set $\{V_1,...,V_k\}$ is a k-partition:
+\begin{itemize}
+    \item $\forall i, \lceil V_i \rceil$ is connected
+    \item $\sum\limits_{i=0}^k|V_i| = |V|$
+    \item $\forall i,j \in \{1, \dots, k\}^2, i \neq j, V_i \cap V_j = \emptyset$
+\end{itemize}
+
+\begin{figure}
+    \begin{center}
+        \input{graphTikZ/k-partition.tex}
+    \end{center}
+    \caption{A 3-partition graph}
 \end{figure}
 
 
