@@ -95,7 +95,7 @@ A cut $C=(S,T)$ is a partition of $V$ into two disjoint subsets that are joined 
 \paragraph{Cut-set :}
 The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{(u,v)\in E | u\in S, v \in T\}$.
 
-\paragraph{Cut size :}
+\paragraph{Cut Size :}
 The size of a cut is the number of edges in the cut-set.
 
 
@@ -106,15 +106,49 @@ The size of a cut is the number of edges in the cut-set.
   \caption{A cut-set in green}
 \end{figure}
 
-\paragraph{Minimun cut :} 
+\paragraph{Minimun Cut :} 
 The minimun cut is the cut with the lowest size. 
 
+\paragraph{Vertex Cut :}
+A vertex cut $C=V'$ is a subset $V'$ of $V$ such that $G-V'$ becomes disconected.
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/vertexCutExample.tex}
+  \end{center}
+  \caption{A vertex cut in green}
+\end{figure}
+
+
+\paragraph{Vextex Cut Size :}
+The size of the  vertex cut is the size of the subset $V'$
+
+\paragraph{Minimun Vertex Cut :}
+The minimun vertex cut is the vertex cut with the lowest size.
+
 \subsubsection{Flow}
+\paragraph{Flow Network}
+A flow network is a directed graph $G=(V,E)$ wich every edge $(u,v) \in E$ has a non-negative capacity $c(u,v)$.
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/flowNetwork.tex}
+  \end{center}
+  \caption{A flow network}
+\end{figure}
+
 \paragraph{Flow :}
-%TODO
+Let We distinguish two vertices: a source s and a sink t.
+A flow is a fonction which associate to each edge $(u,v) \in E$ a real: $f: V \times V \rightarrow \mathbb{R}$ such as:
+\begin{itemize}
+    \item Capacity constraints : $\forall (u,v) \in E, f(u,v) \leq c(u,v)$
+    \item Symmetry : $\forall (u,v) \in E, f(u,v) = - f(v,u) $
+    \item Flow conservation: $\forall u \in V - \{s,t\}, \sum_{v \in V}f(u,v) = 0$ 
+\end{itemize}
+
 
 \paragraph{Maximun-flow Minimun-cut Theorem :}
-%TODO
+The max-flow min-cut theorem states that in a flow network, the maximun amount of flow passing from the source node to the sink node is equal to the capacity of the minimun cut.
 
 
 \subsubsection{Connectivity}
@@ -161,7 +195,7 @@ A set $\{V_1,...,V_k\}$ is a k-partition:
 \subsection{Algorithme}
 \subsubsection{k-connectivity}
 \paragraph{}
-As we have seen in the previuos section, the connectivty of a graph is equal to the size of the smallest subset wich disconnect the graph.
+As we have seen in the previous section, the connectivty of a graph is equal to the size of the smallest subset wich disconnect the graph.
 To do so the max-flow min-cut theorem states that the maximun flow between to vertices is equal to the minimun cut to disconect this to vertices.
 But if we use directly a flow algorithm, we will compute the edge-connectivity and not the vertex-connectivity.
 
@@ -186,12 +220,17 @@ Then to find the connectivity, we compute the maximun flow between each pair of 
     \caption{Compute the connecitvity}
 \end{algorithm}
 
-%TODO write pseudo-algorithm
-% min = inf
-% For each pair of nodes
-%   f = Compute the maximun flow
-%   If f < min
-%       min = f
-% return min 
-%
+\subsubsection{k-partitioning}
+In this section, we are going to focus on the differents existing k-partitioning algorithms.
+First of all, for a general graph G, finding a k-partition is a NP-hard problem\cite{Dyer1985139}.
+So for now no general polynomial algorithms has been found.
+So we are going to focus on paricular graph.
+
+It has been proven that for a k-connected graph G a k-partition exists\cite{GE78,LL77}.
+Arcoding to the article, there are polynomial solutions for $k=2$\cite{GE78,LL77} and $k=3$.
+
+If G is a planar graph, there is a linear-time algorithm for $k = 4$ \cite{Nakano1997315}.
+
+
+
 
