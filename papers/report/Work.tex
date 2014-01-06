@@ -42,6 +42,32 @@ multiple graphs and this showed us that the problem wasn't coming from the
 implementation, but really from the algorithm.
 
 \subsection{Implementing the algorithm}
+% Separation in function + misplaced lines
+\paragraph{}
+In order to facilitate the comprehension of the algorithm implementation and the
+debugging, we chose to separate the different parts of the algorithm. While
+we were implementing, we also noticed that some lines where misplaced, breaking
+the coherency of the notation.
+
+% Choosing the appropriated data structures
+\paragraph{}
+In order to have the same complexity as the one prooved in the paper, we sticked
+to the same data structures. In order to accept graphs where vertices are not
+only integers, we added an HashMap, allowing an access in constant time to the
+index of a vertex.
+
+% Tree Manipulation
+\paragraph{}
+In the library we were using, spanning graphs weren't designed to be modified. We
+created our own basic class which was handling Tree with the needed methods like
+cutting the tree on a specific vertex.
 
 \subsection{Finding a counter-example}
 % Not failing on some entries but on some executions
+\paragraph{}
+Once the main issues of our implementation of the algorithm were solved, we
+had still sometimes issues with the algorithm falling in endless loops. Our
+investigations on this specific problem ended with the fact that the problem was
+coming from the algorithm and not from the implementation. This was ensured by
+verifying the validity of the execution of our algorithm step by step.
+\footnote{A complete example is available in annex, p~\pageref{counter-example}.}
