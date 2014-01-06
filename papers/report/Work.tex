@@ -1,1 +1,39 @@
 \section{Work}
+
+\subsection{Generating random graphs}
+
+\subsection{Calculating a sparse spanning subgraph}
+% Necessity of implementing FOREST
+\paragraph{}
+In order to reduce the execution time of the main algorithm, we had to
+implement another algorithm described in~\cite{NaIb92}.
+
+% Algo description
+\paragraph{}
+This algorithm is called \verb!FOREST! and take a graph $G$ as a parameter. The
+output is slightly more complicated since it doesn't simply return the
+sparse spanning subgraph. Instead, the algorithm returns an array $E$ of size
+$m = |E(G)|$. The graph induced by the set of edges $\bigcup \limits_{i=1}^k E_i$
+is $k$-connected, if $k$-connectivity of $G$ is greater or equal to $k$.
+
+% Specific data structure
+\paragraph{}
+The main difficulty about the implementation of this algorithm was the use of a
+specific data structure that allowed an access to the maximum, an insertion and
+a deletion with a constant amortized cost. Even if such a structure doesn't
+exist, it is possible to create one that has all of the required properties for
+this algorithm, since the utilisation is very specific and since an element has
+always an integer associated value that can grow only from 1 at each step.
+
+% More details ?
+
+%Tests
+\paragraph{}
+Tests have been created and runned in order to prove that the result of our
+implementation of the \verb!FOREST! algorithm was really returning $k$-connected
+graphs.
+
+\subsection{Implementing the algorithm}
+
+\subsection{Finding a counter-example}
+% Not failing on some entries but on some executions
