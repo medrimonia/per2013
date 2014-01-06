@@ -17,10 +17,10 @@ public class Forest<V, E extends Graph.Edge<V>>  {
 	
 	private HashMap<E, Boolean> edgeIsScanned;
 	
-	private HashMap<V, ForestItem<V>> items;
-	
 	private Set<E> edges[];
 	
+	private HashMap<V, ForestItem<V>> items;
+
 	private ForestBucketCollection<V> unscannedNodes;
 	
 	public Forest(Graph<V,E> g){
@@ -33,7 +33,7 @@ public class Forest<V, E extends Graph.Edge<V>>  {
 		for (E e : g.edges()){
 			edgeIsScanned.put(e, false);
 		}
-		unscannedNodes = new ForestBucketCollection<V>(g.vertices());
+		unscannedNodes = new ForestBucketCollection<V>(g.vertices(), g.edges().size());
 		items = new HashMap<V, ForestItem<V>>();
 		for (V vertex : g.vertices()){
 			ForestItem<V> item = new ForestItem<V>(vertex, 0);

@@ -13,14 +13,14 @@ public class ForestBucketCollection<V> {
 	private int maxVal;
 	
 	
-	public ForestBucketCollection(Set<V> vertices){
+	public ForestBucketCollection(Set<V> vertices, int nbEdges){
 		maxVal = 0;
 		// Temporary variable in order to avoid warning
 		@SuppressWarnings("unchecked")
-		ForestCell<V>[] newBucket =(ForestCell<V>[])new ForestCell[vertices.size()];
+		ForestCell<V>[] newBucket =(ForestCell<V>[])new ForestCell[nbEdges];
 		buckets = newBucket;
 		items = new HashMap<V,ForestCell<V>>();
-		for (int i = 0; i < vertices.size(); i++){
+		for (int i = 0; i < nbEdges; i++){
 			buckets[i] = new ForestCell<V>();// Using watchers
 		}
 	}

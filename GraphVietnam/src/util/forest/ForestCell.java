@@ -41,5 +41,9 @@ public class ForestCell<V> {
 	public ForestCell<V> getNext(){
 		return next;
 	}
+	
+	public String toString(){
+		return val.toString();
+	}
 
 }

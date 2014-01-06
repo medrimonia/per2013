@@ -8,5 +8,9 @@ public class ForestItem <V> {
 	}
 	public V vertex;
 	public int rValue;
+	
+	public String toString(){
+		return "[" + vertex + "," + rValue + "]";
+	}
 
 }
