@@ -68,19 +68,19 @@ public class KConnectivity {
 					int u = i+sizeComponent*z;
 					int v = j+sizeComponent*z;
 					g.addEdge(new DirectedEdge<Integer>(u,v));
-					g.addEdge(new DirectedEdge<Integer>(v,u));
+					//g.addEdge(new DirectedEdge<Integer>(v,u));
 				}
 			}
 		
-		/*Linking the two components*/
-		for(int z = 0; z < n; z++)
+		/*Linking the n components*/
+		for(int z = 0; z < n - 1; z++)
 		{
 			for (int i=0; i<k; i++)
 			{
 				int u = i+sizeComponent*z;
-				int v = i+(sizeComponent+1);
+				int v = i+(sizeComponent) * (z+1);
 				g.addEdge(new DirectedEdge<Integer>(u,v));
-				g.addEdge(new DirectedEdge<Integer>(v,u));
+				//g.addEdge(new DirectedEdge<Integer>(v,u));
 			}
 		}
 		
