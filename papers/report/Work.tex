@@ -30,8 +30,16 @@ always an integer associated value that can grow only from 1 at each step.
 %Tests
 \paragraph{}
 Tests have been created and runned in order to prove that the result of our
-implementation of the \verb!FOREST! algorithm was really returning $k$-connected
-graphs.
+implementation of the \verb!FOREST! algorithm was corresponding to the main
+objective:
+$$\forall k, k \leq K(G),K(V,\bigcup \limits_{i=1}^k E_i) = k$$
+
+\paragraph{}
+This test has been validated on simple graphs, but it has also been seened that
+our implementation did not produce the expected result if the input was a
+multiple graph. We checked this property by following the algorithm on small
+multiple graphs and this showed us that the problem wasn't coming from the
+implementation, but really from the algorithm.
 
 \subsection{Implementing the algorithm}
 
