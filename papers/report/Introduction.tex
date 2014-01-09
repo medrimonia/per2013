@@ -1,18 +1,39 @@
 \section{Introduction}
 \paragraph{}
-This report presents the work of three master students. The goal of the
-project was to study in depth an article named ``An $O(k^2n^2)$ Algorithm to
-Find a $k$-partition in a $k$-connected Graph''\cite{JS94}.
+The goal of the project was to study in depth the article~\cite{JS94}, which,
+although pretends to answer positively to a well-known difficult problem,
+surprisingly did not attract a lot of attention in the litterature.
 
 % Implementing the algorithm
 \paragraph{}
-Our supervisors wanted us to test the algorithm by implementing it, and
-benchmarking it on randomly generated graphs. We had to implement the
-algorithm and a graph generator in \verb!Java!. Our supervisors had given us
-a framework including algorithms.
+More precisely, in~\cite{JS94} is proposed a polynomial-time algorithm for
+constructing a special kind of vertex-partition of any k-connected graph. Our
+very first task was to understand this algorith. For this purpose, we have had
+to implement it in Java, using a framework which contains the implementation
+of several classical graph algorithms.
+
+% Testing the algorithm
+\paragraph{}
+We also have had to implement a graph generator in order to test both the
+validity and the complexity of the proposed algorith. This approach allowed
+us to test our implementation.
+
 
 % Reading other articles
 \paragraph{}
 In order to have an entire comprehension of this article, we had to search,
 read and understand several related articles.
 
+% Counter example
+\paragraph{}
+Our implementation has illustrated the fact that specific executions of the
+algorithm were leading to an endless loop. With this counter-example, we
+prooved that the algorithm proposed in~\cite{JS94} has not the expected
+complexity.
+
+% Improvement : no endless loop
+\paragraph{}
+We propose a slight modification to this algorithm, ensuring that instead of
+falling in an endless loop, the algorithm will end with a fail state. This
+change make this algorithm easier to use as a base for a new Las-Vegas
+algorithm.
