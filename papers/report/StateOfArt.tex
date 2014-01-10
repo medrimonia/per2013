@@ -65,7 +65,7 @@ and is a subgraph of $G$.
   \begin{center}
     \input{graphTikZ/spanningTreeExample.tex}
   \end{center}
-  \caption{A spanning tree}
+  \caption{A spanning tree (in green)}
 \end{figure}
 
 \subsubsection{Fundamentals notation}
@@ -113,37 +113,38 @@ The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{(u,v)\in E | u\i
 \paragraph{Cut Size :}
 The size of a cut is the number of edges in the cut-set.
 
-
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/cutExample.tex}
   \end{center}
-  \caption{A cut-set in green}
+  \caption{A cut-set (in green)}
 \end{figure}
 
-\paragraph{Minimun Cut :} 
-The minimun cut is the cut with the lowest size. 
+\paragraph{Minimum Cut :} 
+The minimum cut is the cut with the lowest size. 
 
 \paragraph{Vertex Cut :}
-A vertex cut $C=V'$ is a subset $V'$ of $V$ such that $G-V'$ becomes disconected.
+A vertex cut $C=V'$ is a subset $V'$ of $V$ such that $G-V'$ becomes
+disconnected.
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/vertexCutExample.tex}
   \end{center}
-  \caption{A vertex cut in green}
+  \caption{A vertex cut (in green)}
 \end{figure}
 
 
-\paragraph{Vextex Cut Size :}
+\paragraph{Vertex Cut Size :}
 The size of the  vertex cut is the size of the subset $V'$
 
-\paragraph{Minimun Vertex Cut :}
-The minimun vertex cut is the vertex cut with the lowest size.
+\paragraph{Minimum Vertex Cut :}
+The minimum vertex cut is the vertex cut with the lowest size.
 
 \subsubsection{Flow}
 \paragraph{Flow Network}
-A flow network is a directed graph $G=(V,E)$ wich every edge $(u,v) \in E$ has a non-negative capacity $c(u,v)$.
+A flow network is a directed graph $G=(V,E)$ whose edges have a non-negative
+capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -153,34 +154,42 @@ A flow network is a directed graph $G=(V,E)$ wich every edge $(u,v) \in E$ has a
 \end{figure}
 
 \paragraph{Flow :}
-Let We distinguish two vertices: a source s and a sink t.
-A flow is a fonction which associate to each edge $(u,v) \in E$ a real: $f: V \times V \rightarrow \mathbb{R}$ such as:
+Let we distinguish two vertices: a source $s$ and a sink $t$.
+A flow is a fonction which associate to each edge $(u,v) \in E$ a real:
+$f: V \times V \rightarrow \mathbb{R}$ such as:
 \begin{itemize}
     \item Capacity constraints : $\forall (u,v) \in E, f(u,v) \leq c(u,v)$
-    \item Symmetry : $\forall (u,v) \in E, f(u,v) = - f(v,u) $
+    \item Symetry : $\forall (u,v) \in E, f(u,v) = - f(v,u) $
     \item Flow conservation: $\forall u \in V - \{s,t\}, \sum_{v \in V}f(u,v) = 0$ 
 \end{itemize}
 
 
-\paragraph{Maximun-flow Minimun-cut Theorem :}
-The max-flow min-cut theorem states that in a flow network, the maximun amount of flow passing from the source node to the sink node is equal to the capacity of the minimun cut.
+\paragraph{Maximum-flow Minimum-cut Theorem :}
+The max-flow min-cut theorem states that in a flow network, the maximum amount
+of flow passing from the source node to the sink node is equal to the capacity
+of the minimum cut.
 
 
 \subsubsection{Connectivity}
 \paragraph{Connectivity :}\label{defConnectivity}
-A graph  is {\em connected} if $\forall u,v \in V$ a path exists from $u$
-to $v$. Otherwise, the graph is {\em unconnected}
+A graph is {\em connected} if for every pair $(u,v)$ of vertices from the
+graph, a path exists from $u$ to $v$. Otherwise, the graph is {\em unconnected}.
+
+\paragraph{k-connexity :}
+A graph with at least $k+1$ vertices is $k$ connex, if for every pair of
+vertices, there is at least $k$ vertex disjoint paths between these vertices.
+%TODO define vertex disjoint paths before
+Another definition could be: a graph is $k$-connex if it's minimal vertex cut
+is of a size less or equal to $k$.
 
 \paragraph{k-connectivity :}
-A graph with a least two vertices is k-connected if, for every pair of vertices, there is at least k vertex disjoint paths between these vertices.
-
-Another definitions could be, a graph is k-connected if the smallest subset which disconnect the graph if you delete it is of size k.
+A graph is $k$-connected if it is $k$-connex and not $k+1$-connex. 
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/k-connected.tex}
   \end{center}
-  \caption{A 2-connected graphe}
+  \caption{A 2-connected graph}
 \end{figure}
 
 \paragraph{Menger's theorem :}
