@@ -1,18 +1,20 @@
 \section{State of Art}
 \subsection{Definitions}
-In this subsection, definitions about the graph theory will be presented. Most of the following definitions are taken from or inspired by wikipedia and wikibook.
+In this subsection, definitions about the graph theory will be presented. Most
+of the following definitions are taken from or inspired by wikipedia and
+wikibook.
+
 \subsubsection{Type of graphs}
-\paragraph{Undirected graphs :}
-Undirected graphs are mathematical objects composed of a set of vertices $V$
-and a set of edges $E$ and are noted $G = (V,E)$.
+\paragraph{Undirected simple graphs :}
+An undirected simple graph is a mathematical objects composed of a set of
+vertices $V$ and a set of edges $E$ and is noted $G = (V,E)$.
+
+%TODO eventually ref for other names in Diestel
+\paragraph{}
+A vertex is a mathematical objects which might virtually represent anything.
 
 \paragraph{}
-Also called nodes, vertices are mathematical objects which might virtually
-represent anything, a vertices is usually noted $v$.
-
-\paragraph{}
-Edges are an unordered pair of vertices noted $e = \{u,v\}$. Edges might
-contain twice the same vertex, in this case, the edge is called a {\em loop}.
+An edge is an unordered pair of different vertices and is noted $\{u,v\}$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -21,8 +23,10 @@ contain twice the same vertex, in this case, the edge is called a {\em loop}.
   \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
+%TODO source + dst
 \paragraph{Directed graphs :} 
-A directed graph is a graph with edge define as and ordered pairs $e = (u,v)$ rather than a two-element set $e = \{u,v\}$.
+A directed simple graph is a graph with edges defined as ordered pairs
+$e = (u,v)$ rather than a two-element set $e = \{u,v\}$.
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/directed-graph.tex}
@@ -31,7 +35,8 @@ A directed graph is a graph with edge define as and ordered pairs $e = (u,v)$ ra
 \end{figure}
 
 \paragraph{Subgraphs :}
-Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, $G'$ is a subgraph of $G$ if and only if $V \subseteq V'$ and $E \subseteq E'$.
+Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, $G'$ is a subgraph of $G$ 
+if and only if $V \subseteq V'$ and $E \subseteq E'$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -41,7 +46,8 @@ Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, $G'$ is a subgraph of $G$ 
 \end{figure}
 
 \paragraph{Tree :}
-A tree is an undirected graph without cycles,
+A tree is an undirected simple connected\footnote{See \ref{defConnectivity}}
+graph.
 
 \begin{figure}[!h]
   \begin{center}
@@ -51,7 +57,8 @@ A tree is an undirected graph without cycles,
 \end{figure}
 
 \paragraph{Spanning Tree :}
-A tree is a spanning tree of a graph G if it includes every vertex of G and is a subgraph of G (every edge in the tree belongs to G).
+A tree $T$ is a spanning tree of a graph $G$ if it includes every vertex of $G$ 
+and is a subgraph of $G$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -60,18 +67,20 @@ A tree is a spanning tree of a graph G if it includes every vertex of G and is a
   \caption{A spanning tree}
 \end{figure}
 
-\subsubsection{Fundamentals notations}
+\subsubsection{Fundamentals notation}
 \paragraph{Graph Size :}
-The size of a graph is the number of edges it contains and is noted
-$m = |E|$.
+The size of a graph $G$ is its number of edges, i.e. $|E(G)|$.
 
 \paragraph{Graph order :}
-The order of a graph is the number of vertices it contains and is noted
-$n = |V|$.
+The order of a graph $G$ is its number of vertices, i.e. $|V(G)|$.
+
+\paragraph{Adjacent :}
+Two vertices, $u$ and $v$, are adjacent in a simple graph $G$, if and only if
+there's an edge of $G$ which contains $u$ and $v$, i.e. $\{u,v\} \in E(G)$.
 
 \paragraph{Vertex degree :}
-The degree of a vertex is equal to the number of edges incident to it, loops
-are counted twice.
+The degree of a vertex in a simple undirected graph is equal to the number of
+vertices adjacent to it.
 
 \subsubsection{Path}
 \paragraph{Path :}
@@ -152,7 +161,7 @@ The max-flow min-cut theorem states that in a flow network, the maximun amount o
 
 
 \subsubsection{Connectivity}
-\paragraph{Connectivity :}
+\paragraph{Connectivity :}\label{defConnectivity}
 A graph  is {\em connected} if $\forall u,v \in V$ a path exists from $u$
 to $v$. Otherwise, the graph is {\em unconnected}
 
