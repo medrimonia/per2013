@@ -14,7 +14,8 @@ vertices $V$ and a set of edges $E$ and is noted $G = (V,E)$.
 A vertex is a mathematical objects which might virtually represent anything.
 
 \paragraph{}
-An edge is an unordered pair of different vertices and is noted $\{u,v\}$.
+An edge is an unordered pair of different vertices and is noted $\{u,v\}$,
+sometimes it can also be contracted to the following notation $uv$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -42,7 +43,7 @@ if and only if $V \subseteq V'$ and $E \subseteq E'$.
   \begin{center}
     \input{graphTikZ/subgraphExample.tex}
   \end{center}
-  \caption{A graph and one of his subgraph}
+  \caption{A graph and one of his subgraph (in green)}
 \end{figure}
 
 \paragraph{Tree :}
@@ -84,16 +85,21 @@ vertices adjacent to it.
 
 \subsubsection{Path}
 \paragraph{Path :}
-A path of length $n$ is a sequence of alternated vertices and edged, noted
-$P = \{v_0, e_1, v_1, e_2, ..., e_n, v_n\}$ such as :
-$\forall i \in \{1,2, ..., n\}, e_i = \{v_i, v_{i-1}\}$. If $v_0 = v_n$, $P$ is
-a cycle.
+From~\cite{Diestel} :\\
+A path is a non-empty graph $P = (V, E)$ of the form
+$$ V = \{x_0,x_1, \dots, x_k \} \;\;\; E=\{x_0x_1, x_1x_2, \dots, x_{k-1}x_k \}$$
+where the $x_i$ are all distinct. The vertices $x_0$ and $x_k$ are {\em linked}
+by $P$ and are called its {\em ends}; the vertices $x_1, \dots, x_{k-1}$ are the
+{\em inner} vertices of $P$. The number of {\em edges} of path is its
+{\em length}, and the path of length $k$ is denoted by $P^k$. Note that $k$ is
+allowed to be zero; thus, $P^0 = K^1$.
+%TODO : explains K before
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/pathDef.tex}
   \end{center}
-  \caption{A path of length 4}
+  \caption{A path of length 4 (in green)}
 \end{figure}
 
 \subsubsection{Cuts}
