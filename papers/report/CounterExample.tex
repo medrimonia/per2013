@@ -4,19 +4,19 @@
 %TODO try to define a macro for figures
 
 \paragraph{}
-We're presenting here an example of an execution that fails with the algorithm
-described by the paper. The input of the algorithm is as follows~:
+We will present here an example of an execution that fails with the algorithm
+described in~\cite{JS94}. The input of the algorithm is as follows~:
 \begin{itemize}
-\item $G$ is described by the initial situation in figure~\ref{FE_K2_init}
+\item $G$ is the graph drawn in Figure~\ref{FE_K2_init}
 \item $k = 2$
 \item $\mathrm{roots} = \{ e, a \}$
 \item $\mathrm{partitionSize} = \{ 5, 7\}$
 \end{itemize}
 
+% an array of execution should be given and different colors for components
 \paragraph{}
-In order to see easily from where the trees are starting and what vertices are
-included in the built partition. Vertex and edges which are included in a tree
-have a stronger thickness.
+In order to illustrate the status of the algorithm. Vertex and edges which are
+included in a tree have a stronger thickness.
 
 \begin{figure}[H]
   \caption{\label{FE_K2_init}Failed Execution : Initial graph}
@@ -28,7 +28,7 @@ have a stronger thickness.
 \end{figure}
 
 \paragraph{}
-During the first two steps, each partition needs to acquire many vertices,
+During the first two steps, each partition needs to acquire more vertices, so
 each one will grow by adding all the available neighborhood.
 
 \begin{figure}[H]
@@ -51,8 +51,8 @@ each one will grow by adding all the available neighborhood.
 
 \paragraph{}
 At step 3, two vertices will be available to increase the size of the current
-working tree: $i$ and $j$. Since it needs only one vertex more, it will be
-one of these two randomly, in this case, the vertex $j$ is choosen.
+working tree: $i$ and $j$. Since it needs only one of the two vertices, say
+$j$,  is chosen.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 3}
@@ -65,10 +65,10 @@ one of these two randomly, in this case, the vertex $j$ is choosen.
 
 \paragraph{}
 At step 4, the tree rooted at $a$ can't be simply extended, since every
-adjacent vertex belong to the other tree. The adjacent vertices are $f$ and
-$g$. Both respects the condition necessary to allows the swaping. According to
+adjacent vertex belongs to the other tree. The adjacent vertices are $f$ and
+$g$. Both respect the condition necessary to allow the swaping. According to
 the algorithm, the vertex to swap must have the lowest degree in the concerned
-tree among the swapping candidates. It can't be $g$ since it has a higher
+tree among the swappable candidates. It can't be $g$ since it has a higher
 internal degree than $f$ in the concerned tree. The swapped vertex will then be
 $f$.
 
@@ -82,9 +82,9 @@ $f$.
 \end{figure}
 
 \paragraph{}
-At step 5, the tree rooted at $e$ must get back a vertex, since the other tree
-has taken one of it's vertices. The two candidates are $i$ and $k$. Since only
-one is missing, only one must be added. In our case, $i$ will be added.
+At step 5, the tree rooted at $e$ must get one vertex back, since the other
+tree has taken one of it's vertices. The two candidates are $i$ and $k$. Since
+only one is missing, only one must be added. In our case, $i$ will be added.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 5}
@@ -96,11 +96,11 @@ one is missing, only one must be added. In our case, $i$ will be added.
 \end{figure}
 
 \paragraph{}
-At step 6, the tree rooted at $a$ has no adjacent available vertex, it has
-then to swap a vertex among the neighborhood: $e$,$g$,$h$,$i$. $e$ is not an
+At step 6, the tree rooted at $a$ has no available adjacent vertex, it then
+has to swap a vertex among the neighborhood: $e$,$g$,$h$,$i$. $e$ is not an
 option since it's the root of a partition. $g$ has an internal degree of 2, it
 can't be choosen since $h$ and $i$ have an internal degree of 1. The swapped
-vertex must be $h$ or $i$, since nothing in the algorithm determines which one
+vertex must be $h$ or $i$. Since nothing in the algorithm determines which one
 must be choosen, $h$ might be swapped at that step.
 
 \begin{figure}[H]
@@ -114,7 +114,7 @@ must be choosen, $h$ might be swapped at that step.
 
 \paragraph{}
 At step 7, the tree rooted at $e$ must add a vertex among $k$ and $l$, the
-vertex $k$ can be freely added with the edge $(i,k)$.
+vertex $k$ can be freely added with the edge $\{i,k\}$.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 7}
@@ -126,9 +126,9 @@ vertex $k$ can be freely added with the edge $(i,k)$.
 \end{figure}
 
 \paragraph{}
-At step 8, the tree rooted at $a$ must take a last vertex, it has no free
+At step 8, the tree rooted at $a$ must take a last vertex, it has no available
 adjacent vertex, it must then take a vertex from the tree rooted at $e$. The
-allowede vertices for a swapping are $g$ and $i$. Since they have both the
+swappable vertices are $g$ and $i$. Since they both have the
 same internal degree in the concerned tree, $g$ can be choosen as a valid
 choice for the extension.
 
