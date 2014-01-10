@@ -196,13 +196,14 @@ A graph is $k$-connected if it is $k$-connex and not $k+1$-connex.
 The menger's theorem is an important theorem concerning connectivity.
 It states the following fact:
 
-Let G be a undirected graph and a and b two distinct vertices.
-Then the size of the minimun edge cut for a and b is equal to the maximun number of pairwise node-independent paths from a to b.
+Let $G$ be a undirected graph and $u$ and $v$ two distinct vertices.
+Then the size of the minimum edge cut for $u$ and $v$ is equal to the maximum
+number of pairwise node-independent paths from a to b.
 
 
 \subsubsection{Partition}
 \paragraph{k-partition :}
-A set $\{V_1,...,V_k\}$ is a k-partition:
+A set $\{V_1,...,V_k\}$ is a $k$-partition:
 \begin{itemize}
     \item $\forall i, \lceil V_i \rceil$ is connected
     \item $\sum\limits_{i=0}^k|V_i| = |V|$
@@ -216,17 +217,25 @@ A set $\{V_1,...,V_k\}$ is a k-partition:
     \caption{A 3-partition graph}
 \end{figure}
 
-\subsection{Algorithme}
-\subsubsection{k-connectivity}
+\subsection{Algorithm}
+\subsubsection{Computing $k$-connectivity}
 \paragraph{}
-As we have seen in the previous section, the connectivty of a graph is equal to the size of the smallest subset wich disconnect the graph.
-To do so the max-flow min-cut theorem states that the maximun flow between to vertices is equal to the minimun cut to disconect this to vertices.
-But if we use directly a flow algorithm, we will compute the edge-connectivity and not the vertex-connectivity.
+As we have seen in the previous section, the connectivity of a graph is equal to
+the size of its minimal vertex cut.
+To do so the max-flow min-cut theorem states that the maximun flow between to
+vertices is equal to the minimun cut to disconect this to vertices.
+But if we use directly a flow algorithm, we will compute the edge-connectivity
+and not the vertex-connectivity.
+%TODO introduce edge-connectivity before
 
-So first the graph need to be transform. We need capacity on the nodes. To do so each nodes will be divided into two new nodes. Each incomming edge will be attach to the first node and each leaving edge to the second node. Another edge will be add between the two new node.
-The capacity of all edge of the graph will be set to 1.
+So first the graph need to be transform. We need capacity on the nodes. To do so
+each nodes will be divided into two new nodes. Each incoming edge will be
+attached to the first node and each leaving edge to the second node. Another
+edge will be added between the two new nodes.
+The capacity of all edges of the graph will be set to 1.
 
-Then to find the connectivity, we compute the maximun flow between each pair of nodes and we keep only the lowest value. This value is the connecivity.
+Then to find the connectivity, we compute the maximum flow between each pair of
+nodes and we keep only the lowest value. This value is the connectivity.
 
 
 \begin{algorithm}[!h]
@@ -235,25 +244,33 @@ Then to find the connectivity, we compute the maximun flow between each pair of 
     $min = \infty$\;
     $G^{'} = TransformNode(G)$\;
     \ForAll{$u,v \in V, u \neq v, (u,v) \notin E$}{
-        $f = maximunFlow(G^{'},u,v)$\;
+        $f = maximumFlow(G^{'},u,v)$\;
         \If{$f < min$}{
             $min = f$\;
     }
 }
     \Return{$min$}\;
-    \caption{Compute the connecitvity}
+    \caption{Compute the connectivity}
 \end{algorithm}
 
 \subsubsection{k-partitioning}
-In this section, we are going to focus on the differents existing k-partitioning algorithms.
-First of all, for a general graph G, finding a k-partition is a NP-hard problem\cite{Dyer1985139}.
-So for now no general polynomial algorithms has been found.
-So we are going to focus on paricular graph.
+\paragraph{}
+In this section, we are going to focus on the differents existing
+$k$-partitioning algorithms.
 
-It has been proven that for a k-connected graph G a k-partition exists\cite{GE78,LL77}.
-Arcoding to the article, there are polynomial solutions for $k=2$\cite{GE78,LL77} and $k=3$.
+\paragraph{}
+First of all, for a general graph $G$, finding a $k$-partition is a $NP$-hard
+problem~\cite{Dyer1985139}. No general polynomial algorithms has yet been found.
+So we are going to focus on particular graphs.
 
-If G is a planar graph, there is a linear-time algorithm for $k = 4$ \cite{Nakano1997315}.
+\paragraph{}
+It has been proven that for a $k$-connex graph G a $k$-partition
+exists~\cite{GE78,LL77}.
+According to~\cite{JS94}, there are polynomial solutions for
+$k=2$~\cite{GE78,LL77} and $k=3$.
+
+\paragraph{}
+More recently, it has been proven in~\cite{Nakano1997315} that if $G$ is a planar graph, there is a linear-time algorithm for $k = 4$.
 
 
 
