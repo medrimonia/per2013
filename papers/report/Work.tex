@@ -72,3 +72,36 @@ coming from the algorithm and not from the implementation. This was ensured by
 verifying the validity of the execution of our algorithm step by step.
 
 \input{report/CounterExample}
+
+% Bad presentation ...
+\subsection{Counter-example in general case}
+\paragraph{}
+In order to ensure that $k=2$ is not a specific case where the algorithm
+presented in~\cite{JS94} is not determinist, we will present a proof that an
+execution can loop endlessly for any $k$.
+
+\paragraph{}
+The proof we will present is a proof by induction. Since we already exhibited
+a counter-example for $k=2$, we only need to proove the recurrence.
+
+\paragraph{}
+Let $G$ be a $k$-connex graph for which the execution of the algorithm has a
+probability of looping endlessly strictly greater than $0$ for the entry
+$\{r_1,r_2, \dots, r_k\}$ and $\{n_1,n_2, \dots, n_k\}$. Then a graph $G'$ can
+be found such as it is $k+1$-connex and it exists an entry for which the
+execution of the algorithm has a probability of looping endlessly strictly
+greater than $0$.
+
+\paragraph{Proof:}
+If we create $G'$ by adding a new vertex $v$ connected to every vertex of $G$,
+i.e. $V(G') = V(G) \cup v$ and
+$E(G') = E(G) \cup \bigcup \limits_{u \in V(G)} \{u,v\}$, it is obvious that
+$G'$ will be $k+1$-connex, since every minimal vertex cut of $G$ needs to have
+ one vertex more in order to be a cut of $G'$.
+
+\paragraph{}
+An execution of the algorithm with $G'$, $\{r_1,r_2, \dots, r_k, v\}$,
+$\{n_1,n_2, \dots, n_k, 1$ as input will have a probability of looping
+endlessly strictly greater than $0$, because the $v$ introduced has no influence
+since the associated tree will be full since the beginning and the new edges
+won't be useable either.
