@@ -1,40 +1,40 @@
 % Vertices
-\SetVertexNormal[LineWidth=3pt]%V2
+\SetVertexNormal[MinSize=25pt,LineColor=violet,LineWidth=3pt]%V2
 \Vertex[x=4.8,y=5  ]{a} 
 \Vertex[x=3.2,y=8.2]{b}
 \Vertex[x=4.8,y=7  ]{c}
 \Vertex[x=6.4,y=8.2]{d} 
 \Vertex[x=3.2,y=0  ]{f}
-\SetVertexNormal[LineWidth=3pt]%V1
+\SetVertexNormal[MinSize=25pt,LineColor=orange,LineWidth=3pt]%V1
 \Vertex[x=0  ,y=0  ]{e}
 \Vertex[x=1.6,y=3.2]{g}
 \Vertex[x=1.6,y=1.2]{h}
 \Vertex[x=6.4,y=0  ]{i}
 \Vertex[x=8  ,y=3.2]{j}
-\SetVertexNormal[LineWidth=1pt]%Vfree
+\SetVertexNormal[MinSize=25pt,LineColor=black,LineWidth=1pt]%Vfree
 \Vertex[x=9.6,y=0  ]{k}
 \Vertex[x=8  ,y=1.2]{l}
 %Cliques
-\Edge[lw=3pt](a)(b)%E2
-\Edge[lw=3pt](a)(c)%E2
-\Edge[lw=3pt](a)(d)%E2
-\Edge[lw=1pt](b)(c)%Efree
-\Edge[lw=1pt](b)(d)%Efree
-\Edge[lw=1pt](c)(d)%Efree
-\Edge[lw=1pt](e)(f)%Efree
-\Edge[lw=3pt](e)(g)%E1
-\Edge[lw=3pt](e)(h)%E1
-\Edge[lw=1pt](f)(g)%Efree
-\Edge[lw=1pt](f)(h)%Efree
-\Edge[lw=1pt](g)(h)%Efree
-\Edge[lw=3pt](i)(j)%E1
-\Edge[lw=1pt](i)(k)%Efree
-\Edge[lw=1pt](i)(l)%Efree
-\Edge[lw=1pt](j)(k)%Efree
-\Edge[lw=1pt](j)(l)%Efree
-\Edge[lw=1pt](k)(l)%Efree
+\Edge[lw=3pt,color=violet](a)(b)%E2
+\Edge[lw=3pt,color=violet](a)(c)%E2
+\Edge[lw=3pt,color=violet](a)(d)%E2
+\Edge[lw=1pt,color=black](b)(c)%Efree
+\Edge[lw=1pt,color=black](b)(d)%Efree
+\Edge[lw=1pt,color=black](c)(d)%Efree
+\Edge[lw=1pt,color=black](e)(f)%Efree
+\Edge[lw=3pt,color=orange](e)(g)%E1
+\Edge[lw=3pt,color=orange](e)(h)%E1
+\Edge[lw=1pt,color=black](f)(g)%Efree
+\Edge[lw=1pt,color=black](f)(h)%Efree
+\Edge[lw=1pt,color=black](g)(h)%Efree
+\Edge[lw=3pt,color=orange](i)(j)%E1
+\Edge[lw=1pt,color=black](i)(k)%Efree
+\Edge[lw=1pt,color=black](i)(l)%Efree
+\Edge[lw=1pt,color=black](j)(k)%Efree
+\Edge[lw=1pt,color=black](j)(l)%Efree
+\Edge[lw=1pt,color=black](k)(l)%Efree
 %Cliques Connection
-\Edge[lw=3pt](a)(f)%E2
-\Edge[lw=1pt](b)(g)%Efree
-\Edge[lw=1pt](f)(i)%Efree
-\Edge[lw=3pt](g)(j)%E1
+\Edge[lw=3pt,color=violet](a)(f)%E2
+\Edge[lw=1pt,color=black](b)(g)%Efree
+\Edge[lw=1pt,color=black](f)(i)%Efree
+\Edge[lw=3pt,color=orange](g)(j)%E1
