@@ -32,10 +32,10 @@
        {Thibaud Lambert\\Mohammed Ayoub Gharsalli\\Ludovic Hofer}
 
 %TODO separate content and form supervisors
-\newcommand{\supervisors}{Olivier Baudon\\Julien Bensmail\\Pascal Desbarats}
+\newcommand{\supervisors}{Olivier Baudon\\Julien Bensmail}
 
 \newcommand{\presentationdate}{
-  December ... 2013
+  January 22 2013
 }
 
 \institute{University of Bordeaux I}
@@ -44,10 +44,6 @@
 
 \begin{frame}[plain]
   \maketitle
-\end{frame}
-
-\begin{frame}[plain]
-  \tableofcontents
 \end{frame}
 
 \section{About Graphs}
@@ -76,7 +72,7 @@
       \begin{itemize}
       \item $G = (V,E)$
       \item $V$ an unordered set of vertex
-      \item $E$ an unordered set of unorder pairs $(u,v), u \in V, v \in V$
+      \item $E$ an unordered set of unorder pairs $\{u,v\}, u \in V, v \in V$
       \end{itemize}
   \end{itemize}
   \begin{figure}
@@ -98,7 +94,7 @@
 	\end{itemize}
     \item $G$ is $k$-connected if 
       \begin{itemize}
-      \item $\forall (u,v) \in V^2$, $\exists$ $k$ vertex-disjoint paths from $u$ to $v$
+      \item $\forall \{u,v\} \in V^2$, $\exists$ $k$ vertex-disjoint paths from $u$ to $v$
       \end{itemize}
   \end{itemize}
   \begin{figure}
@@ -319,6 +315,12 @@
 \begin{frame}
   \frametitle{Comparing results and theory}
   \begin{itemize}
+  \item For a graph $G$
+    \begin{itemize}
+    \item $k$, the connectivity of $G$
+    \item $n$, the number of vertex of $G$, $n = V(G)$
+    \item $m$, the number of edges of $G$, $m = E(G)$
+    \end{itemize}
   \item Comparing the result of the implemented algorithm
     \begin{itemize}
     \item With different $k$ for the same $n$
