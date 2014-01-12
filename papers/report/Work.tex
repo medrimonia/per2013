@@ -1,6 +1,24 @@
 \section{Work}
 
 \subsection{Generating random graphs}
+\paragraph{}
+In order to test the implementation of the article algorithm, $k$-connected 
+graph have to be generated. However generate uniformly random $k$-connected
+graph is not a trivial problem. Two methods have been implemented, they are not
+uniformly randomised but they allow us to test the algorithm on different type
+of graph.
+
+\paragraph{}
+The first method is based on the vertex degree. To be $k$-connected, the graph
+vertices have to be of degree $k$. For each vertex, edge will be added while
+the vertex is not of degree $k$. After that, the graph is not necessarily 
+$k$-connected but is very likely to be that way.
+
+\paragraph{}
+The second method creates several complete components. Then it links each component
+together. To do so, $k$ edges are added between the first and the second component
+then $k$ edges are added between the second and the third and so on. At the end a
+$k$-connected graph is generated.
 
 \subsection{Calculating a sparse spanning subgraph}
 % Necessity of implementing FOREST
