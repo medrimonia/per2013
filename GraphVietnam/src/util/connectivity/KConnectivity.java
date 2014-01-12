@@ -116,7 +116,7 @@ public class KConnectivity {
 			}
 		}
 		
-		/*Generate the two complete components*/
+		/*Add edge in order that each vertex is of degree k*/
 		for (int i = 0; i < size; i++)
 		{
 			int j = g.degree(i);
