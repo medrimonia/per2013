@@ -118,8 +118,10 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 	}
 
 	/** Class must have been initialized @see initialize */
-	private void compute(){
+	private boolean compute(){
+		int lastswap = -1;
 		int rootIndex = 0;
+		boolean updated = false;
 		while(nbVerticesUsed() < g.vertices().size()){
 			debugFile.println("rootIndex : " + rootIndex);
 			Integer rootId = indexMapping.get(rootVertices.get(rootIndex));
@@ -129,15 +131,36 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 				Set<V> unknownVertices = filterUnknownVertices(auxiliaryVertices);//NEW in paper
 				Set<V> knownVertices = filterKnownVertices(auxiliaryVertices);//OLD in paper
 				if (!unknownVertices.isEmpty()){
-					addNeededVertices(unknownVertices, rootIndex);
+					if(addNeededVertices(unknownVertices, rootIndex))
+					{
+						lastswap = rootIndex;
+						updated = true;
+					}
+					else
+					{
+						updated = false;
+					}
 				}
 				else{
-					tryVerticesSwap(knownVertices, rootIndex);
+					if(tryVerticesSwap(knownVertices, rootIndex))
+					{
+						lastswap = rootIndex;
+						updated = true;
+					}
+					else
+					{
+						updated = false;
+					}
 				}
 			}
 			debugFile.println("\t" + trees);
 			rootIndex = (rootIndex + 1) % k;
+			if(lastswap == rootIndex && !updated)
+			{
+				return false;
+			}
 		}
+		return true;
 	}
 	
 	/** Algorithm must have been computed @see compute */
@@ -156,8 +179,14 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			List<Integer> partitionSizes){
 		Partitioning<V,E> p = new Partitioning<V,E>(g, k, roots, partitionSizes);
 		p.initialize();
-		p.compute();
-		return p.getResult();
+		if(p.compute())
+		{
+			return p.getResult();
+		}
+		else
+		{
+			return null;
+		}		
 	}
 	
 	/** Return true if the partition is valid according to given parameters */
@@ -240,7 +269,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		return filtered;
 	}
 
-	private void addNeededVertices(Set<V> unknownVertices, int rootIndex){
+	private boolean addNeededVertices(Set<V> unknownVertices, int rootIndex){
 		double wishedSize = partitionSizes[rootIndex];
 		int actualSize = trees.get(rootIndex).vertices().size();
 		// Need to got through a list to shuffle
@@ -250,14 +279,14 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		while(toAdd.size() > wishedSize - actualSize){
 			toAdd.remove(0);
 		}
-		int finalSize = actualSize + toAdd.size();
+		//int finalSize = actualSize + toAdd.size();
 		for (V v : toAdd){
 			int vertexId = indexMapping.get(v);
 			addVertexToTree(v, rootIndex);
 			treeNode.get(vertexId).add(rootVertices.get(rootIndex));
 		}
 		updatePValues(rootIndex);
-		
+		return toAdd.size() > 0;
 	}
 	
 	private void addVertexToTree(V v, int rootIndex) {
@@ -272,7 +301,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		trees.get(rootIndex).addChild(father, v);
 	}
 
-	private void tryVerticesSwap(Set<V> knownVertices, int rootIndex) {
+	private boolean tryVerticesSwap(Set<V> knownVertices, int rootIndex) {
 		Set<V> knownVertices1 = new HashSet<V>();//OLD1 in paper
 		// Removing vertices that have already been once in T[rootIndex]
 		V currentRoot = rootVertices.get(rootIndex);//a_i in the paper
@@ -283,7 +312,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 		}
 		// If all vertices have already been in T[rootIndex], swap is impossible
 		//TODO: when entering in an infinite loop, algorithm jumps out at this condition
-		if (knownVertices1.isEmpty()) return;
+		if (knownVertices1.isEmpty()) return false;
 		Set<V> knownVertices2 = filterMinPVertices(knownVertices1);//OLD2
 		//TODO: here, is it a_j in Tree_node[v] or v in T_j??? 
 		int j = 0;
@@ -325,6 +354,7 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 			updatePValues(rootIndex);
 			updatePValues(j);			
 		}
+		return true;
 	}
 	
 	private Set<V> filterMinPVertices(Set<V> knownVertices){
