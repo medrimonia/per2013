@@ -1,0 +1,55 @@
+
+\begin{frame}{Notations}
+  \begin{itemize}
+  \item We will note $p(G,k,R,S)$, the probability
+    of looping endlessly for the algorithm with the following input
+    \begin{itemize}
+      \item $G$ the graph
+      \item $k$ the connexity
+      \item $R$ the roots of the partitions
+      \item $S$ the size wished for the partitions
+    \end{itemize}
+  \item $T_{r_i}$ the tree associated to the root $r_i$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Theorem}
+  \begin{itemize}
+  \item Let :
+    \begin{itemize}
+    \item $G$ be a $k$-connex graph
+    \item $R = \{r_1,r_2, \dots, r_k\}$
+    \item $S = \{n_1,n_2, \dots, n_k\}$
+    \item $p(G,k,R,S) > 0$:
+    \end{itemize}
+  \item It implies that a $G'$ exists such as
+    \begin{itemize}
+    \item $G'$ is $k+1$-connex
+    \item $\exists R', \exists S', p(G',k + 1, R', S') > 0$
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proof}
+  \begin{itemize}
+    \only<1>{
+    \item Create $G'$:
+      \begin{itemize}
+      \item Adding a vertex $v$
+      \item $V(G') = V(G) \cup \{v\}$
+      \item Connecting it to all the vertices of $G$
+      \item $E(G') = E(G) \cup \bigcup \limits_{u \in V(G)}\big\{ \{u,v\} \big\}$
+      \end{itemize}
+    \item $R' = R \cup \{v\}$
+    \item $S' = S \cup \{1\}$
+    }
+    \only<2>{
+    \item $G'$ is $k+1$-connex%TODO details?
+    \item $p(G', k+1, R', S') = p(G, k, R, S)$
+      \begin{itemize}
+      \item $T_v$ will not take any vertices
+      \item $T_v$ will not give any vertices
+      \end{itemize}
+    }
+  \end{itemize}
+\end{frame}

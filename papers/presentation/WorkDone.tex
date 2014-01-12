@@ -36,7 +36,22 @@
 \end{frame}
 \input{presentation/counterExample}
 
-\subsection{Proof for any k}
-\begin{frame}{Invalid algorithm for any k}
-  TODO
+%TODO  Splitting in multiple frames with examples?
+\subsection{Proof in a generic case}
+\begin{frame}{Proof for any input}
+  \begin{itemize}
+  \item For some graphs $G$, execution will not loop endlessly
+  \item For a given $G$
+    \begin{itemize}
+    \item Probability of looping endlessly depends on other inputs
+    \end{itemize}
+  \item For a given $k$
+    \begin{itemize}
+    \item The counter example : $k = 2$
+    \item The algorithm might work for greater values of $k$
+    \item Need to know if for any $k$ the execution might loop endlessly
+    \end{itemize}
+  \end{itemize}
 \end{frame}
+
+\input{presentation/proof}
