@@ -9,7 +9,7 @@ wikibook.
 An undirected simple graph is a mathematical objects composed of a set of
 vertices $V$ and a set of edges $E$ and is noted $G = (V,E)$.
 
-%TODO eventually ref for other names in Diestel
+%TODO eventually ref for other names in Diestel (nodes/...)
 \paragraph{}
 A vertex is a mathematical objects which might virtually represent anything.
 
@@ -24,10 +24,10 @@ sometimes it can also be contracted to the following notation $uv$.
   \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
-%TODO source + dst
 \paragraph{Directed graphs :} 
 A directed simple graph is a graph with edges defined as ordered pairs
-$e = (u,v)$ rather than a two-element set $e = \{u,v\}$.
+$e = (u,v)$ rather than a two-element set $e = \{u,v\}$, $u$ is called the
+head of the edge and $v$ is the tail of the edge.
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/directed-graph.tex}
@@ -68,6 +68,12 @@ and is a subgraph of $G$.
   \caption{A spanning tree (in green)}
 \end{figure}
 
+\paragraph{Complete Graphs :}
+According to~\cite{Diestel}:\\
+If all the vertices of $G$ are pairwise adjacent, then $G$ is complete. A
+complete graph on $n$ vertices is a $K^n$.
+
+%TODO fundamentals notation before Types of graphs?
 \subsubsection{Fundamentals notation}
 \paragraph{Graph Size :}
 The size of a graph $G$ is its number of edges, i.e. $|E(G)|$.
