@@ -92,6 +92,13 @@ public class KPartitionTest {
 		}
 		List<Set<Integer>> p;
 		p = Partitioning.calculateKPartition(g, k, roots, partitionSizes);
-		return Partitioning.isValidPartition(p, g, k, roots, partitionSizes);
+		if(p != null)
+		{
+			return Partitioning.isValidPartition(p, g, k, roots, partitionSizes);
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
