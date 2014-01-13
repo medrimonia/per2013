@@ -16,7 +16,8 @@ being $k$-connected.
 
 \paragraph{}
 The second method creates several complete components. Then it links each component
-together. The following algorithm describe the main step to generate a $k$-connected graph.
+together. The following algorithm describe the main steps to generate a
+$k$-connected graph.
 
 \begin{algorithm}[!h]
     \KwData{$k$ the connectivity,\\ $N$ the number of components,\\ $n$ the size of components}
@@ -36,15 +37,17 @@ together. The following algorithm describe the main step to generate a $k$-conne
     \caption{$k$-connected graph generator}
 \end{algorithm}
 
+\paragraph{}
 First, the complete components are generated. Then $k$ edges are added between the 
 first and the second component then $k$ edges are added between the second and the 
 third and so on.
 
-The edge between each component is not randomly selected. Let say that the vertices
-of each component is numbered from 1 to the size of the component. The edge between 
-the first vertex of the first and second component is selected. The same process is 
-repeated for the second vertices to the k-th vertices and then for the other 
-components. At the end a $k$-connected graph is generated. 
+\paragraph{}
+The edges between each component are not randomly selected. Let say that the
+vertices of each component are numbered from 1 to the size of the component.
+The edges between the first vertex of the first and second component is selected.
+The same process is repeated for the second vertices to the $k$-th vertices and
+then  for the other components. At the end a $k$-connected graph is generated.
 
 
  
