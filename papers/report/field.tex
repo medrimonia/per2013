@@ -3,7 +3,7 @@ In this subsection, definitions about the graph theory will be presented. Most
 of the following definitions are taken from or inspired by wikipedia,
 wikibook and Diestel's Graph Theory book.
 
-\subsubsection{Type of graphs}
+\subsection{Type of graphs}
 \paragraph{Undirected simple graphs :}
 An undirected simple graph is a mathematical objects composed of a set of
 vertices $V$ and a set of edges $E$ and is noted $G = (V,E)$.
@@ -73,7 +73,7 @@ If all the vertices of $G$ are pairwise adjacent, then $G$ is complete. A
 complete graph on $n$ vertices is a $K^n$.
 
 %TODO fundamentals notation before Types of graphs?
-\subsubsection{Fundamentals notation}
+\subsection{Fundamentals notation}
 \paragraph{Graph Size :}
 The size of a graph $G$ is its number of edges, i.e. $|E(G)|$.
 
@@ -88,7 +88,7 @@ there's an edge of $G$ which contains $u$ and $v$, i.e. $\{u,v\} \in E(G)$.
 The degree of a vertex in a simple undirected graph is equal to the number of
 vertices adjacent to it.
 
-\subsubsection{Path}
+\subsection{Path}
 \paragraph{Path :}
 From~\cite{Diestel} :\\
 A path is a non-empty graph $P = (V, E)$ of the form
@@ -107,7 +107,7 @@ allowed to be zero; thus, $P^0 = K^1$.
   \caption{A path of length 4 (in green)}
 \end{figure}
 
-\subsubsection{Cuts}
+\subsection{Cuts}
 Let $G=(V,E)$ be a graph.
 \paragraph{Cut :}
 A cut $C=(S,T)$ is a partition of $V$ into two disjoint subsets that are joined by at least one edge.
@@ -146,7 +146,7 @@ The size of the  vertex cut is the size of the subset $V'$
 \paragraph{Minimum Vertex Cut :}
 The minimum vertex cut is the vertex cut with the lowest size.
 
-\subsubsection{Flow}
+\subsection{Flow}
 \paragraph{Flow Network}
 A flow network is a directed graph $G=(V,E)$ whose edges have a non-negative
 capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
@@ -175,7 +175,7 @@ of flow passing from the source node to the sink node is equal to the capacity
 of the minimum cut.
 
 
-\subsubsection{Connectivity}
+\subsection{Connectivity}
 \paragraph{Connectivity :}\label{defConnectivity}
 A graph is {\em connected} if for every pair $(u,v)$ of vertices from the
 graph, a path exists from $u$ to $v$. Otherwise, the graph is {\em unconnected}.
@@ -206,7 +206,7 @@ Then the size of the minimum edge cut for $u$ and $v$ is equal to the maximum
 number of pairwise node-independent paths from a to b.
 
 
-\subsubsection{Partition}
+\subsection{Partition}
 \paragraph{k-partition :}
 A set $\{V_1,...,V_k\}$ is a $k$-partition:
 \begin{itemize}
