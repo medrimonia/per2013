@@ -1,8 +1,6 @@
 package util.partitioning;
 
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -154,11 +152,11 @@ public class Partitioning<V, E extends Graph.Edge<V>>{
 				}
 			}
 			debugFile.println("\t" + trees);
-			rootIndex = (rootIndex + 1) % k;
 			if(lastswap == rootIndex && !updated)
 			{
 				return false;
 			}
+			rootIndex = (rootIndex + 1) % k;
 		}
 		return true;
 	}
