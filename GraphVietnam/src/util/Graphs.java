@@ -483,7 +483,7 @@ public class Graphs {
 					String t = internalEdge.get(v).source();
 					FlowResults<Graph.Edge<String>> fr = fordFulkersonV01(g2, s, t, null, capacities);
 					if (fr.value<min) {
-						System.out.println(u+"->" + v + " have f=" + fr.value+ " mc:" +fr.minimumCut);
+						//System.out.println(u+"->" + v + " have f=" + fr.value+ " mc:" +fr.minimumCut);
 						min = fr.value;	
 						result = new HashSet<V>();
 						for (Graph.Edge<String> e : fr.minimumCut){
