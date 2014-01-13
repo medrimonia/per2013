@@ -153,12 +153,22 @@ public class KConnectivity {
 	 * Is the graph given is parameter is k-connected
 	 * @param g The graph to test
 	 * @param k The k-connectivity to test
-	 * @return true if the graph connectivity is greater than k else false
+	 * @return true if the graph connectivity is k, else false
 	 */
 	static public <V, E extends Graph.Edge<V>> boolean isKConnected(Graph<V, E> g, int k)
 	{
-		Set<V> minCutSet = Graphs.minimumCutset(g);
-		return minCutSet.size() >= k;
+		return connectivityLevel(g) == k;
+	}
+	
+	/**
+	 * Is the graph given is parameter is k-connex
+	 * @param g The graph to test
+	 * @param k The k-connexity to test
+	 * @return false if the graph connectivity is smaller than k, else true
+	 */
+	static public <V, E extends Graph.Edge<V>> boolean isKConnex(Graph<V, E> g, int k)
+	{
+		return connectivityLevel(g) >= k;
 	}
 	
 	
