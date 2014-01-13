@@ -25,6 +25,26 @@ the first vertex of the first and second component is selected. The same process
 repeated for the second vertices to the k-th vertices. At the end a $k$-connected 
 graph is generated. 
 
+\begin{algorithm}[!h]
+    \KwData{$k$ the connectivity,\\ $N$ the number of components,\\ $n$ the size of components}
+    \KwResult{A $k$-connected graph}
+    $components = \emptyset$\;
+    $edges = \emptyset$\;
+    \For{i = 1 to N}{
+        $component = component \cup newCompleteComponent(n)$
+    }
+    \For{i = 1 to N-1}{
+        \For{j = 1 to k}{
+            $edges = edges \cup (components[i][j], componets[i+1][j])$
+        }
+    }
+    $g = newGraph(components, edges)$\;
+    \Return{$g$}\;
+    \caption{Generate a $k$-connected graph}
+\end{algorithm}
+
+
+ 
 \subsection{Calculating a sparse spanning subgraph}
 % Necessity of implementing FOREST
 \paragraph{}
