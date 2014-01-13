@@ -92,6 +92,19 @@ verifying the validity of the execution of our algorithm step by step.
 \input{report/CounterExample}
 
 % Bad presentation ...
+\subsection{Detecting dead loop}
+\paragraph{}
+A counter example that shows the algorithm can fall in infinite loop have been
+exhibited. This raise one question : is it possible to detect when there is a
+dead loop? An improvement has been added to the algorithm to exit the 
+execution when the algorithm enters a dead loop.
+
+\paragraph{}
+To do so, we save the last root index where we have added or swaped a vertex. If
+the saved index is equal to the current root index and no vertex have been
+added or swap then it means that the algorithm is enters in a dead loop. Then
+the execution is stopped.
+
 \subsection{Counter-example in general case}
 \paragraph{}
 In order to ensure that $k=2$ is not a specific case where the algorithm
