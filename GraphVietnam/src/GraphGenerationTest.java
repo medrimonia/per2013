@@ -1,6 +1,7 @@
 import graph.Graph;
 import util.connectivity.KConnectivity;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class GraphGenerationTest {
@@ -12,9 +13,48 @@ public class GraphGenerationTest {
 	
 	public static void main(String[] args)
 	{
+		boolean assertsEnabled = false;
+		assert assertsEnabled = true;
+		if (!assertsEnabled){
+			System.err.println("Assertions needs to be activated to run the tests (-ea)");
+			return;
+		}
 		testGenTwoComponent();
 		testGenNComponent();
 		testGenBaseOnDegree();
+	}
+
+	//TODO parametrized and place into graphs
+	public static boolean hasLoop(Graph<Integer, Graph.Edge<Integer>> g){
+		for (Graph.Edge<Integer> e : g.edges()){
+			if (e.source().equals(e.target()))
+				return true;
+		}
+		return false;
+	}
+
+	// Check if g has multiple edges or loops
+	public static boolean isSimple(Graph<Integer, Graph.Edge<Integer>> g){
+		int [][] nbEdges = new int [g.vertices().size()][g.vertices().size()];
+		for (int i = 0; i < nbEdges.length; i++)
+			for (int j = i; j < nbEdges.length; j++)
+				nbEdges[i][j] = 0;
+		for (Graph.Edge<Integer> e : g.edges()){
+			int src = e.source();
+			int dst = e.target();
+			nbEdges[src][dst]++;
+			nbEdges[dst][src]++;
+		}
+		for (int i = 0; i < nbEdges.length; i++)
+			for (int j = i; j < nbEdges.length; j++)
+				if (nbEdges[i][j] > 1)
+					return false;
+		return true;
+	}
+
+	public static void testGraph(Graph<Integer, Graph.Edge<Integer>> g, int expectedConnexity){
+		assert(isSimple(g));
+		assert(KConnectivity.connectivityLevel(g) == expectedConnexity);
 	}
 
 	static int maxComponentSize = 15;
@@ -28,12 +68,9 @@ public class GraphGenerationTest {
 		int componentSize = rand.nextInt(maxComponentSize - minComponentSize) + minComponentSize;
 		int k = rand.nextInt(maxkConnexity - minkConnexity) + minkConnexity;
 		
-		System.out.println("Generate a " + k + "-connected graph with a component size of " + componentSize);
 		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genTwoComponent(componentSize, k);
-		System.out.println("The graph is " + KConnectivity.connectivityLevel(g) + "-connected");
-		System.out.println("Is the graph " + k + "-connected : " + KConnectivity.isKConnected(g, k));
-		System.out.println("Is the graph " + (k-1) + "-connected : " + KConnectivity.isKConnected(g, k-1));
-		System.out.println("Is the graph " + (k+1) + "-connected : " + KConnectivity.isKConnected(g, k+1));
+		testGraph(g, k);
+		System.out.println("Gen 2 component : ok");
 	}
 	
 	static int maxComponentNb = 5;
@@ -45,12 +82,9 @@ public class GraphGenerationTest {
 		int k = rand.nextInt(maxkConnexity - minkConnexity) + minkConnexity;
 		int n = rand.nextInt(maxComponentNb - minComponentNb) + minComponentNb;
 		
-		System.out.println("Generate a " + k + "-connected graph with a component size of " + componentSize);
 		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genNComponent(componentSize, n, k);
-		System.out.println("The graph is " + KConnectivity.connectivityLevel(g) + "-connected");
-		System.out.println("Is the graph " + k + "-connected : " + KConnectivity.isKConnected(g, k));
-		System.out.println("Is the graph " + (k-1) + "-connected : " + KConnectivity.isKConnected(g, k-1));
-		System.out.println("Is the graph " + (k+1) + "-connected : " + KConnectivity.isKConnected(g, k+1));
+		testGraph(g, k);
+		System.out.println("Gen N component : ok");
 	}
 	
 	
@@ -65,13 +99,9 @@ public class GraphGenerationTest {
 		int size = rand.nextInt(maxSize - minSize) + minSize;
 		int k = rand.nextInt(maxkConnexity - minkConnexity) + minkConnexity;
 		
-		System.out.println("Generate a " + k + "-connected graph with a size of " + size);
 		Graph<Integer, Graph.Edge<Integer>> g = KConnectivity.genBaseOnDegree(size, k);
-		System.out.println("The graph is " + KConnectivity.connectivityLevel(g) + "-connected");
-		System.out.println("Is the graph " + k + "-connected : " + KConnectivity.isKConnected(g, k));
-		System.out.println("Is the graph " + (k-1) + "-connected : " + KConnectivity.isKConnected(g, k-1));
-		System.out.println("Is the graph " + (k+1) + "-connected : " + KConnectivity.isKConnected(g, k+1));
-		
+		testGraph(g, k);
+		System.out.println("Gen based on degree : ok");
 	}
 
 }
