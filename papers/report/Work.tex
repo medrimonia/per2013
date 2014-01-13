@@ -3,16 +3,16 @@
 \subsection{Generating random graphs}
 \paragraph{}
 In order to test the implementation of the article algorithm, $k$-connected 
-graph have to be generated. However generate uniformly random $k$-connected
+graph had to be generated. However generating uniformly random $k$-connected
 graph is not a trivial problem. Two methods have been implemented, they are not
-uniformly randomised but they allow us to test the algorithm on different type
+uniformly randomised but they allow us to test the algorithm on different types
 of graph.
 
 \paragraph{}
 The first method is based on the vertex degree. To be $k$-connected, the graph
 vertices have to be of degree $k$. For each vertex, edge will be added while
-the vertex is not of degree $k$. After that, the graph is not necessarily 
-$k$-connected but is very likely to be that way.
+the vertex is not of degree $k$. After that, the graph has a high probability of
+being $k$-connected.
 
 \paragraph{}
 The second method creates several complete components. Then it links each component

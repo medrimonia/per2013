@@ -3,7 +3,7 @@ import util.connectivity.KConnectivity;
 
 import java.util.Random;
 
-public class KconnectivityTest {
+public class GraphGenerationTest {
 	static int maxkConnexity = 7;
 	static int minkConnexity = 2;
 	static Random rand = new Random();
