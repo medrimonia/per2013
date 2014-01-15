@@ -1,0 +1,144 @@
+\section{Work needed}
+
+\begin{frame}
+  \frametitle{Validation of the algorithm}
+  \begin{itemize}
+  \item Major breakthrough but very few citations
+  \item Tested, but on what graphs?
+  \item Verifying the algorithm validity and complexity
+    \begin{itemize}
+    \item By understanding it
+    \item By implementing it
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}
+%  \frametitle{Generating $k$-connected graphs}
+%  \begin{itemize}
+%    \item Random $k$-connected graph uniform generation
+%      \begin{itemize}
+%      \item Difficult problem
+%      \end{itemize}
+%    \item Trails to explore
+%      \begin{itemize}
+%      \item Generate complete sub-graph and link them together
+%      \item Generate a graph with all vertices of degree $k$
+%      \end{itemize}
+%  \end{itemize}
+%
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Pre-processing algorithm}
+%  \begin{itemize}
+%  \item Original complexity in $O(k n m)$
+%  \item Existing algorithm to induce a spanning subgraph\cite{NaIb92}
+%    \begin{itemize}
+%    \item $G' = (V,E')$
+%    \item $|E'| = O(k n)$
+%    \item Complexity of the algorithm : $O(m)$
+%    \end{itemize}
+%  \item Implementation needed to get the $O(k^2 n^2)$ complexity
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%  \frametitle{Algorithm implementation}
+%  Different parts of the algorithm
+%  	\begin{enumerate}
+%    \item Graph Sparsing
+%	\item Graph Partitionning
+%    \end{enumerate}
+%	
+%	{\bfseries Graph partitioning}\\
+%    	 \begin{description}
+%		\item [INPUT:] \hfill \\
+%		        \begin{enumerate}
+%        			\item $G = (V, E)$ a $k$-connected graph 
+%            		\item $k$
+%            		\item $a_1, a_2 \ldots a_k$ : different vertices of $G$
+%            		\item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  V(G)$
+%        		       \end{enumerate}
+%	\end{description}
+%\end{frame}
+%\begin{frame}
+%    	 \begin{description}
+%		\item[OUTPUT:] \hfill \\
+%			A k-partition $Par$ of G such that $\forall i \ in 1..k$ 
+%			\begin{itemize} 
+%				\item $H_i$ is a connex subgraph of $G$
+%				\item $H_i \in Par, |V(H_i)| = n_i $
+%				\item $a_i \in H_i $
+%				\item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
+%			\end{itemize}
+%	\end{description}
+%\end{frame}
+%
+%\begin{frame}
+%	\begin{description}
+%    	\item[Definitions] \hfill \\
+%    	\begin{itemize}
+%    		\item [$T_i$] a spanning tree whose root is $a_i$.
+%			\item[P] \hfill \\
+%    		The proposed algorithm is similar to \emph{max flow} algorithms.
+%	 		$\forall i \in 1..k,$ \bfseries P $: T_i \rightarrow n_i/|V(T_i)|$
+%		\item [$n$] $= |V(G)|$
+%    	\end{itemize}
+%    \end{description}
+%\end{frame}
+%
+%\begin{frame}
+%	\begin{algorithm}[H]
+%    \SetAlgoLined
+%    Initialisation\;
+%		\While {$\sum_i |T_i| < n$}{
+%			\While {$|T_i| < n_i$}{
+%        		Add random adjacent vertices to $T_i$\;}
+%		$T_i$ := the tree with highest $P$\;
+%            	 $T_j$ := the tree with highest $P$ among adjacent trees to $T_i$\;
+%		$U^{ij}_{adjacent}$ := the part of $T_j$ adjacent  to $T_i$\;
+%		$w$	:= $max_{degree(v)} v \in T_j \bigcap  U^{ij}_{adjacent}$\;
+%		Remove the subtree whose root is $w$ from $T_j$\;
+%		Add $w$ to $T_i$\;}
+%	\end{algorithm}
+%\end{frame}
+
+
+\begin{frame}
+	\frametitle{Implementation}
+	\begin{description}
+		\item [Objectives :] \hfill \\
+			\begin{itemize}
+				\item Allow testing 
+				\item Observe and measure performance
+				\item verify consistency with complexity
+			\end{itemize}
+		\item [Implementation :] \hfill \\
+			\begin{itemize}
+				\item Generating random $k$-connected graphs
+				\item Pre-processing graphs
+				\item Algorithm implementation
+			\end{itemize}
+	\end{description}
+\end{frame}
+
+%\begin{frame}
+%  \frametitle{Comparing results and theory}
+%  \begin{itemize}
+%  \item For a graph $G$
+%    \begin{itemize}
+%    \item $k$, the connectivity of $G$
+%    \item $n$, the number of vertex of $G$, $n = V(G)$
+%    \item $m$, the number of edges of $G$, $m = E(G)$
+%    \end{itemize}
+%  \item Comparing the result of the implemented algorithm
+%    \begin{itemize}
+%    \item With different $k$ for the same $n$
+%    \item With different $n$ for the same $k$
+%    \item With different $m$ for the same $n$
+%    \end{itemize}
+%  \item Comparing the execution time for different graph generators
+%  \end{itemize}
+%\end{frame}
+
