@@ -1,0 +1,40 @@
+
+\definecolor{olive}{rgb}{0.3, 0.4, .1}
+\begin{frame}
+begin{algorithm}[H]
+            %\SetLine
+        \SetAlgoLined
+            Initialisation\;
+                \While {$\sum_i |T_i| < n$}{
+                        \While {$|T_i| < n_i$}{
+                        Add random adjacent vetices to $T_i$\;}
+                $T_i$ := the tree with highest $P$\;
+                     $T_j$ := the tree with highest $P$ among adjacent trees to $T_i$\;
+                $U^{ij}_{adjacent}$ := the part of $T_j$ adjacent  to $T_i$\;
+                $w$        := $max_{degree(v)} v \in T_j \bigcap  U^{ij}_{adjacent}$\;
+                Remove the subtree which root is $w$ from $T_j$\;
+                Add $w$ to $T_i$\;}
+\end{algorithm}
+\end{frame}
+\begin{frame}
+\begin{algorithm}[H]
+            %\SetLine
+        \SetAlgoLined
+            \alt<1>{\alert{Initialisation}}\;
+            \While(The graph is not covered by the partition){
+                auxiliaryVertices = getAuxiliaryVertices(rootIndex)\;
+                unknownVertices = auxiliary Vertices That Never Were In A Tree)\;
+                knownVertices = auxiliary Vertices $\backslash$ unknownVertices\;
+                \eIf {!unknownVertices$\neq \emptyset$}{
+                      \alt<2>{\alert{addNeededVertices(unknownVertices, rootIndex)}}\;
+                     }
+                     {
+                      \alt<3>{\alert{tryVerticesSwap(knownVertices, rootIndex))\;}}
+                     }
+                        rootIndex = (rootIndex + 1) % k\;
+                }
+\end{algorithm}
+%\visible <1>
+%\visible <2>
+%\visible <3>
+\end{frame}
