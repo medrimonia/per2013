@@ -8,14 +8,16 @@ surprisingly did not attract a lot of attention in the litterature.
 \paragraph{}
 More precisely, in~\cite{JS94} is proposed a polynomial-time algorithm for
 constructing a special kind of vertex-partition of any k-connected graph. Our
-very first task was to understand this algorith. For this purpose, we have had
+very first task was to understand this algorithm. For this purpose, we have had
 to implement it in Java, using a framework which contains the implementation
 of several classical graph algorithms.
+%TODO check classical vs classic
 
 % Testing the algorithm
 \paragraph{}
+% TODO préciser génération pour k-connexe
 We also have had to implement a graph generator in order to test both the
-validity and the complexity of the proposed algorith. This approach allowed
+validity and the complexity of the proposed algorithm. This approach allowed
 us to test our implementation.
 
 
@@ -28,12 +30,12 @@ read and understand several related articles.
 \paragraph{}
 Our implementation has illustrated the fact that specific executions of the
 algorithm were leading to an endless loop. With this counter-example, we
-prooved that the algorithm proposed in~\cite{JS94} has not the expected
+proved that the algorithm proposed in~\cite{JS94} has not the expected
 complexity.
 
 % Improvement : no endless loop
 \paragraph{}
 We propose a slight modification to this algorithm, ensuring that instead of
 falling in an endless loop, the algorithm will end with a fail state. This
-change make this algorithm easier to use as a base for a new Las-Vegas
+change makes this algorithm easier to use as a base for a new Las-Vegas
 algorithm.
