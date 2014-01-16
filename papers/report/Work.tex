@@ -1,20 +1,20 @@
 \section{Work}
 
-\subsection{Generating random graphs}
+\subsection{Generating $k$-connected random graphs}
 \paragraph{}
-In order to test the implementation of the article algorithm, $k$-connected 
-graph had to be generated. However generating uniformly random $k$-connected
-graph is not a trivial problem. Two methods have been implemented, they are not
-uniformly randomised but they allow us to test the algorithm on different types
-of graph.
+In order to test our implementation of the article algorithm, $k$-connected 
+graphs had to be generated. Two methods have been implemented, although they are not
+uniformly randomised, they allow us to test the algorithm on different types
+of graphs.
 
 \paragraph{}
-The first method is based on the vertex degree. To be $k$-connected, the graph
-vertices have to be of degree $k$. For each vertex, edge will be added while
-the vertex is not of degree $k$. After that, the graph has a high probability of
+The first method is based on the vertex degree. To be $k$-connected, a graph need
+its vertices have to be of degree $k$. For each vertex, edges will be added until
+the vertex has degree $k$. After that, the graph has a high probability of
 being $k$-connected.
 
 \paragraph{}
+%TODO explain why : complete component so that the graph is localy dense
 The second method creates several complete components. Then it links each component
 together. The following algorithm describe the main steps to generate a
 $k$-connected graph.
@@ -40,14 +40,16 @@ $k$-connected graph.
 \paragraph{}
 First, the complete components are generated. Then $k$ edges are added between the 
 first and the second component then $k$ edges are added between the second and the 
-third and so on.
+third ones and so on.
 
+%TODO explain clearly
 \paragraph{}
-The edges between each component are not randomly selected. Let say that the
+The edges between every two components are not randomly selected. Let say that the
 vertices of each component are numbered from 1 to the size of the component.
-The edges between the first vertex of the first and second component is selected.
-The same process is repeated for the second vertices to the $k$-th vertices and
-then  for the other components. At the end a $k$-connected graph is generated.
+The edges between the vertex 1 of the first and the vertex 1 of the second 
+component is selected. The same process is repeated for the second vertices to the
+$k$-th vertices and then  for the other components. At the end a $k$-connected 
+graph is generated.
 
 
  
@@ -59,9 +61,10 @@ implement another algorithm described in~\cite{NaIb92}.
 
 % Algo description
 \paragraph{}
-This algorithm is called \verb!FOREST! and take a graph $G$ as a parameter. The
-output is slightly more complicated since it doesn't simply return the
+This algorithm is called \verb!FOREST! and takes a graph $G=(V,E)$ as a parameter.
+The output is slightly more complicated since it does not simply return the
 sparse spanning subgraph. Instead, the algorithm returns an array $E$ of size
+%TODO Not clear
 $m = |E(G)|$. The graph induced by the set of edges $\bigcup \limits_{i=1}^k E_i$
 is $k$-connected, if $k$-connectivity of $G$ is greater or equal to $k$.
 
@@ -94,13 +97,13 @@ implementation, but really from the algorithm.
 % Separation in function + misplaced lines
 \paragraph{}
 In order to facilitate the comprehension of the algorithm implementation and the
-debugging, we chose to separate the different parts of the algorithm. While
+debugging, we choose to separate the different parts of the algorithm. While
 we were implementing, we also noticed that some lines where misplaced, breaking
 the coherency of the notation.
 
 % Choosing the appropriated data structures
 \paragraph{}
-In order to have the same complexity as the one prooved in the paper, we sticked
+In order to have the same complexity as the one proved in the paper, we sticked
 to the same data structures. In order to accept graphs where vertices are not
 only integers, we added an HashMap, allowing an access in constant time to the
 index of a vertex.

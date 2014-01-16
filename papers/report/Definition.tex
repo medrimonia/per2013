@@ -53,6 +53,7 @@ $u$ is called the head of the arc and $v$ is the tail of the arc.
 Thereafter if it's not stated otherwise, a graph design an undirected 
 simple graphs.
 
+%TODO Speak about induced subgraphs
 \paragraph{Subgraphs :}
 Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, then $G'$ is a subgraph of $G$ 
 if and only if $V \subseteq V'$ and $E \subseteq E'$.
@@ -88,7 +89,7 @@ and is a subgraph of $G$.
 
 \paragraph{Complete graphs :}
 If all the vertices of $G$ are pairwise adjacent, then $G$ is complete. A
-complete graph on $n$ vertices is a $K_n$.
+complete graph on $n$ vertices is denoted $K_n$.
 
 \subsection{Paths}
 \paragraph{Paths :}
@@ -97,8 +98,8 @@ $$ V = \{x_0,x_1, \dots, x_k \} \;\;\; E=\{x_0x_1, x_1x_2, \dots, x_{k-1}x_k \}$
 where the $x_i$ are all distinct. The vertices $x_0$ and $x_k$ are linked
 by $P$ and are called its ends; the vertices $x_1, \dots, x_{k-1}$ are the
 inner vertices of $P$. The number of edges of path is its
-length, and the path of length $k$ is denoted by $P^k$. Note that $k$ is
-allowed to be zero; thus, $P^0 = K^1$.
+length, and the path of length $k$ is denoted by $P_k$. Note that $k$ is
+allowed to be zero; thus, $P_0 = K_1$.
 %TODO : explains K before
 
 \begin{figure}[!h]
@@ -199,11 +200,11 @@ $f: V \times V \rightarrow \mathbb{R}$ such as:
 \end{itemize}
 
 
-%TODO find a ref
+%TODO find a ref + reformul the end
 \paragraph{Maximum-flow Minimum-cut Theorem :}
 The max-flow min-cut theorem states that in a flow network, the maximum amount
 of flow passing from the source node to the sink node is equal to the capacity
-of the minimum cut.
+of the cut which have the minimun capacity.
 
 \subsection{Partition}
 \paragraph{k-partition :}
