@@ -1,0 +1,59 @@
+\section{Problem Description}
+\begin{frame}
+	\frametitle{$k$-connected graphs}
+	\begin{itemize}
+		\item Connectivity
+			\begin{itemize}
+				\item The minimun number of vertices which need to be removed to disconnect the graph 
+			\end{itemize}
+		\item $G$ is $k$-connected if 
+			\begin{itemize}
+				\item $\forall \{u,v\} \in V^2$, $\exists$ $k$ vertex-disjoint paths from $u$ to $v$
+			\end{itemize}
+	\end{itemize}
+	\begin{figure}
+		\begin{center}
+			\input{graphTikZ/k-connected.tex}
+		\end{center}
+		\caption{A 2-connected graph}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$k$-partition}
+  \begin{itemize}
+  \item Obtain $\{V_1, \dots, V_k\}$ with
+    \begin{itemize}
+    \item $\forall i, \lceil V_i \rceil$ is connected
+    \item $\sum\limits_{i=0}^k|V_i| = |V|$
+    \item $\forall i,j \in \{1, \dots, k\}^2, i \neq j, V_i \cap V_j = \emptyset$
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}
+    \begin{center}
+      \input{graphTikZ/k-partition.tex}
+    \end{center}
+    \caption{A 3-partition graph}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Article Description}
+  \begin{itemize}
+  \item Finding a $k$-partition
+    \begin{itemize}
+    \item In a $k$-connected graph
+    \item Choosing $k$ vertices $\{a_1, \dots , a_k\}$
+    \item Choosing the size of each component $\{n_1, \dots ,n_k\}$,
+      $\sum\limits_{i}^k{n_i} = n$
+    \item Complexity : $O(k^2 n^2)$
+    \end{itemize}
+  \item Published in {\em ``Journal of computer science and technology''}
+    \begin{itemize}
+    \item National Journal
+    \item Bimonthly published
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
