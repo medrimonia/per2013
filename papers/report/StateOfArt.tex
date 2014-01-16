@@ -1,20 +1,18 @@
-\section{State of Art}
-In this section, we will present existing algorithms related to
-$k$-connectivity and $k$-partitioning.
+In this section, existing algorithms related to
+$k$-connectivity and $k$-partitioning are presented.
 
-\subsection{Computing $k$-connectivity}
+\subsubsection{Computing $k$-connectivity}
 \paragraph{}
-As we have seen in the previous section, the connectivity of a graph is equal to
-the size of its minimal vertex cut.
-To do so the max-flow min-cut theorem states that the maximun flow between to
-vertices is equal to the minimun cut to disconect this to vertices.
-But if we use directly a flow algorithm, we will compute the edge-connectivity
-and not the vertex-connectivity.
+As we have seen in section 2, the connectivity of a graph is equal to
+the size of its minimal vertex cut. The max-flow min-cut theorem states
+that the maximun flow between to vertices is equal to the minimum cut to 
+disconnect these two vertices. But if we use flow algorithm directly, 
+we will compute the edge-connectivity and not the vertex-connectivity.
 %TODO introduce edge-connectivity before
 
-So first the graph need to be transform. We need capacity on the nodes. To do so
-each nodes will be divided into two new nodes. Each incoming edge will be
-attached to the first node and each leaving edge to the second node. Another
+So first the graph needs to be transformed. We need a capacity on the nodes.
+To do so each nodes will be divided into two new nodes. Each incoming edge will
+be attached to the first node and each leaving edge to the second node. Another
 edge will be added between the two new nodes.
 The capacity of all edges of the graph will be set to 1.
 
@@ -24,7 +22,7 @@ nodes and we keep only the lowest value. This value is the connectivity.
 
 \begin{algorithm}[!h]
     \KwData{$G=(V,E)$ a graph}
-    \KwResult{$k$ the connecitvity}
+    \KwResult{$k$ the connectivity}
     $min = \infty$\;
     $G^{'} = TransformNode(G)$\;
     \ForAll{$u,v \in V, u \neq v, (u,v) \notin E$}{
@@ -34,12 +32,13 @@ nodes and we keep only the lowest value. This value is the connectivity.
     }
 }
     \Return{$min$}\;
-    \caption{Compute the connectivity}
+    \caption{Computing the connectivity of a graph}
 \end{algorithm}
 
-\subsection{k-partitioning}
+\subsubsection{k-partitioning}
+%TODO Check all ref and correct error
 \paragraph{}
-In this section, we are going to focus on the differents existing
+In this section, we focus on the different existing
 $k$-partitioning algorithms.
 
 \paragraph{}
@@ -48,7 +47,7 @@ problem~\cite{Dyer1985139}. No general polynomial algorithms has yet been found.
 So we are going to focus on particular graphs.
 
 \paragraph{}
-It has been proven that for a $k$-connex graph G a $k$-partition
+It has been proven that for a $k$-connected graph G a $k$-partition
 exists~\cite{GE78,LL77}.
 According to~\cite{JS94}, there are polynomial solutions for
 $k=2$~\cite{GE78,LL77} and $k=3$.
