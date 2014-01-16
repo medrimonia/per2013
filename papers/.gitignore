@@ -7,3 +7,6 @@
 *.snm
 *.bbl
 *.blg
+
+presentation-blx.bib
+presentation.run.xml
