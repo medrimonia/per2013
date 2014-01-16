@@ -1,20 +1,22 @@
-\section{Field}
-In this subsection, definitions about the graph theory will be presented. Most
-of the following definitions are taken from or inspired by wikipedia,
-wikibook and Diestel's Graph Theory book.
+\section{Definitions}
+In this section, definitions about graph theory are presented. Most
+of the following definitions are taken from or inspired by Wikipedia,
+Wikibook and Diestel's Graph Theory book \cite{Diestel}.
 
-\subsection{Type of graphs}
+\subsection{Types of graphs}
 \paragraph{Undirected simple graphs :}
-An undirected simple graph is a mathematical objects composed of a set of
-vertices $V$ and a set of edges $E$ and is noted $G = (V,E)$.
+An undirected simple graph G is a mathematical object composed of a set $V$ of
+vertices and a set $E$ of edges and is noted $G = (V,E)$.
 
 %TODO eventually ref for other names in Diestel (nodes/...)
 \paragraph{}
-A vertex is a mathematical objects which might virtually represent anything.
+An edge is an unordered pair $\{u,v\}$ of vertices and sometimes also denoted 
+$uv$ for short.
 
 \paragraph{}
-An edge is an unordered pair of different vertices and is noted $\{u,v\}$,
-sometimes it can also be contracted to the following notation $uv$.
+A graph is used to model relation between objects. The vertices represent the 
+objects and the edges represent the relation.
+
 
 \begin{figure}[!h]
   \begin{center}
@@ -23,10 +25,23 @@ sometimes it can also be contracted to the following notation $uv$.
   \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
-\paragraph{Directed graphs :} 
-A directed simple graph is a graph with edges defined as ordered pairs
-$e = (u,v)$ rather than a two-element set $e = \{u,v\}$, $u$ is called the
-head of the edge and $v$ is the tail of the edge.
+\paragraph{Graph Size :}
+The size of a graph $G=(V,E)$ is its number of edges, i.e. $|E|$.
+
+\paragraph{Graph order :}
+The order of a graph $G=(V,E)$ is its number of vertices, i.e. $|V|$.
+
+\paragraph{Adjacency :}
+In a graph $G=(V,E)$,Two vertices, $u$ and $v$, are adjacent if $uv \in E$.
+
+\paragraph{Vertex degree :}
+The degree of a vertex $v$ in a simple undirected graph is equal to the number of
+vertices adjacent to it and it's noted $d(v)$.
+
+\paragraph{Directed simple graphs :} 
+A directed simple graph is a graph whose edges are defined as ordered pairs.
+$e=(u,v)$. The edges of a directed simple graph are call arcs. 
+$u$ is called the head of the arc and $v$ is the tail of the arc.
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/directed-graph.tex}
@@ -34,20 +49,24 @@ head of the edge and $v$ is the tail of the edge.
   \caption{A directed simple graph with 5 vertices and 4 edges}
 \end{figure}
 
+\paragraph{}
+Thereafter if it's not stated otherwise, a graph design an undirected 
+simple graphs.
+
 \paragraph{Subgraphs :}
-Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, $G'$ is a subgraph of $G$ 
+Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, then $G'$ is a subgraph of $G$ 
 if and only if $V \subseteq V'$ and $E \subseteq E'$.
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/subgraphExample.tex}
   \end{center}
-  \caption{A graph and one of his subgraph (in green)}
+  \caption{A graph and one of its subgraph (in green)}
 \end{figure}
 
-\paragraph{Tree :}
+\paragraph{Trees :}
 A tree is an undirected simple connected\footnote{See \ref{defConnectivity}}
-graph wthout cycle.
+graph without cycle.
 
 \begin{figure}[!h]
   \begin{center}
@@ -56,7 +75,7 @@ graph wthout cycle.
   \caption{A tree}
 \end{figure}
 
-\paragraph{Spanning Tree :}
+\paragraph{Spanning trees :}
 A tree $T$ is a spanning tree of a graph $G$ if it includes every vertex of $G$ 
 and is a subgraph of $G$.
 
@@ -64,39 +83,21 @@ and is a subgraph of $G$.
   \begin{center}
     \input{graphTikZ/spanningTreeExample.tex}
   \end{center}
-  \caption{A spanning tree (in green)}
+  \caption{A graph and one of its spanning tree (in green)}
 \end{figure}
 
-\paragraph{Complete Graphs :}
-According to~\cite{Diestel}:\\
+\paragraph{Complete graphs :}
 If all the vertices of $G$ are pairwise adjacent, then $G$ is complete. A
-complete graph on $n$ vertices is a $K^n$.
+complete graph on $n$ vertices is a $K_n$.
 
-%TODO fundamentals notation before Types of graphs?
-\subsection{Fundamentals notation}
-\paragraph{Graph Size :}
-The size of a graph $G$ is its number of edges, i.e. $|E(G)|$.
-
-\paragraph{Graph order :}
-The order of a graph $G$ is its number of vertices, i.e. $|V(G)|$.
-
-\paragraph{Adjacent :}
-Two vertices, $u$ and $v$, are adjacent in a simple graph $G$, if and only if
-there's an edge of $G$ which contains $u$ and $v$, i.e. $\{u,v\} \in E(G)$.
-
-\paragraph{Vertex degree :}
-The degree of a vertex in a simple undirected graph is equal to the number of
-vertices adjacent to it.
-
-\subsection{Path}
-\paragraph{Path :}
-From~\cite{Diestel} :\\
+\subsection{Paths}
+\paragraph{Paths :}
 A path is a non-empty graph $P = (V, E)$ of the form
 $$ V = \{x_0,x_1, \dots, x_k \} \;\;\; E=\{x_0x_1, x_1x_2, \dots, x_{k-1}x_k \}$$
-where the $x_i$ are all distinct. The vertices $x_0$ and $x_k$ are {\em linked}
-by $P$ and are called its {\em ends}; the vertices $x_1, \dots, x_{k-1}$ are the
-{\em inner} vertices of $P$. The number of {\em edges} of path is its
-{\em length}, and the path of length $k$ is denoted by $P^k$. Note that $k$ is
+where the $x_i$ are all distinct. The vertices $x_0$ and $x_k$ are linked
+by $P$ and are called its ends; the vertices $x_1, \dots, x_{k-1}$ are the
+inner vertices of $P$. The number of edges of path is its
+length, and the path of length $k$ is denoted by $P^k$. Note that $k$ is
 allowed to be zero; thus, $P^0 = K^1$.
 %TODO : explains K before
 
@@ -104,91 +105,54 @@ allowed to be zero; thus, $P^0 = K^1$.
   \begin{center}
     \input{graphTikZ/pathDef.tex}
   \end{center}
-  \caption{A path of length 4 (in green)}
+  \caption{A graph and one of its path of length 4 (in green)}
 \end{figure}
 
 \subsection{Cuts}
 Let $G=(V,E)$ be a graph.
 \paragraph{Cut :}
-A cut $C=(S,T)$ is a partition of $V$ into two disjoint subsets that are joined by at least one edge.
+A cut $C=(S,T)$ is a partition of $V$ into two subsets $S$ and $T$ that are 
+joined by at least one edge.
 
 \paragraph{Cut-set :}
-The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{(u,v)\in E | u\in S, v \in T\}$.
+The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{uv \in E | u \in S ~and~ v \in T\}$.
 
-\paragraph{Cut Size :}
+\paragraph{Cut size :}
 The size of a cut is the number of edges in the cut-set.
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/cutExample.tex}
   \end{center}
-  \caption{A cut-set (in green)}
+  \caption{A graph and one of its cut-set (in green)}
 \end{figure}
 
-\paragraph{Minimum Cut :} 
-The minimum cut is the cut with the lowest size. 
+%\paragraph{Minimum cut :} 
+%The minimum cut of a graph G is a cut with the lowest size. 
 
-\paragraph{Vertex Cut :}
-A vertex cut $C=V'$ is a subset $V'$ of $V$ such that $G-V'$ becomes
+%TODO Explain or change the notation G-C + put ref to disconnected
+\paragraph{Articulation set :}
+A vertex cut $C$ of a graph $G=(V,E)$ is a subset of $V$ such that $G-C$ becomes
 disconnected.
 
 \begin{figure}[!h]
   \begin{center}
     \input{graphTikZ/vertexCutExample.tex}
   \end{center}
-  \caption{A vertex cut (in green)}
+  \caption{A graph and one of its vertex cut (in green)}
 \end{figure}
-
-
-\paragraph{Vertex Cut Size :}
-The size of the  vertex cut is the size of the subset $V'$
-
-\paragraph{Minimum Vertex Cut :}
-The minimum vertex cut is the vertex cut with the lowest size.
-
-\subsection{Flow}
-\paragraph{Flow Network}
-A flow network is a directed graph $G=(V,E)$ whose edges have a non-negative
-capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
-
-\begin{figure}[!h]
-  \begin{center}
-    \input{graphTikZ/flowNetwork.tex}
-  \end{center}
-  \caption{A flow network}
-\end{figure}
-
-\paragraph{Flow :}
-Let we distinguish two vertices: a source $s$ and a sink $t$.
-A flow is a fonction which associate to each edge $(u,v) \in E$ a real:
-$f: V \times V \rightarrow \mathbb{R}$ such as:
-\begin{itemize}
-    \item Capacity constraints : $\forall (u,v) \in E, f(u,v) \leq c(u,v)$
-    \item Symetry : $\forall (u,v) \in E, f(u,v) = - f(v,u) $
-    \item Flow conservation: $\forall u \in V - \{s,t\}, \sum_{v \in V}f(u,v) = 0$ 
-\end{itemize}
-
-
-\paragraph{Maximum-flow Minimum-cut Theorem :}
-The max-flow min-cut theorem states that in a flow network, the maximum amount
-of flow passing from the source node to the sink node is equal to the capacity
-of the minimum cut.
-
 
 \subsection{Connectivity}
-\paragraph{Connectivity :}\label{defConnectivity}
-A graph is {\em connected} if for every pair $(u,v)$ of vertices from the
-graph, a path exists from $u$ to $v$. Otherwise, the graph is {\em unconnected}.
+\paragraph{Connected :}\label{defConnectivity}
+A graph $G$ is connected if for every pair $\{u,v\}$ of vertices if there is a 
+path from $u$ to $v$. Otherwise, the graph is disconnected.
 
-\paragraph{k-connexity :}
-A graph with at least $k+1$ vertices is $k$ connex, if for every pair of
-vertices, there is at least $k$ vertex disjoint paths between these vertices.
-%TODO define vertex disjoint paths before
-Another definition could be: a graph is $k$-connex if it's minimal vertex cut
-is of a size less or equal to $k$.
+\paragraph{$k$-connected :}
+A graph is $k$-connected if deleting any set of fewer than $k$ vertices do not 
+disconnect the graph.
 
-\paragraph{k-connectivity :}
-A graph is $k$-connected if it is $k$-connex and not $k+1$-connex. 
+\paragraph{$k$-connectivity :}
+The connectivity of a graph is the largest $k$ as it is $k$-connected. 
 
 \begin{figure}[!h]
   \begin{center}
@@ -203,11 +167,47 @@ It states the following fact:
 
 Let $G$ be a undirected graph and $u$ and $v$ two distinct vertices.
 Then the size of the minimum edge cut for $u$ and $v$ is equal to the maximum
-number of pairwise node-independent paths from a to b.
+number of pairwise node-independent paths from $u$ to $v$.
 
+%A graph with at least $k+1$ vertices is $k$-connected, if for every pair {u,v} of
+%vertices, there is at least $k$ vertex disjoint paths between these vertices.
+%TODO define vertex disjoint paths before
+%Another definition could be: a graph is $k$-connex if it's minimal vertex cut
+%is of a size less or equal to $k$.
+
+
+\subsection{Flow}
+\paragraph{Flow network}
+A flow network is a directed graph $G=(V,E)$ whose edges have a non-negative
+capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
+
+\begin{figure}[!h]
+  \begin{center}
+    \input{graphTikZ/flowNetwork.tex}
+  \end{center}
+  \caption{A flow network}
+\end{figure}
+
+\paragraph{Flow :}
+Let G we distinguish two vertices: a source $s$ and a sink $t$.
+A flow is a function which associates to each edge $(u,v) \in E$ a real:
+$f: V \times V \rightarrow \mathbb{R}$ such as:
+\begin{itemize}
+    \item Capacity constraints : $\forall (u,v) \in E, f(u,v) \leq c(u,v)$
+    \item Symetry : $\forall (u,v) \in E, f(u,v) = - f(v,u) $
+    \item Flow conservation: $\forall u \in V - \{s,t\}, \sum_{v \in V}f(u,v) = 0$ 
+\end{itemize}
+
+
+%TODO find a ref
+\paragraph{Maximum-flow Minimum-cut Theorem :}
+The max-flow min-cut theorem states that in a flow network, the maximum amount
+of flow passing from the source node to the sink node is equal to the capacity
+of the minimum cut.
 
 \subsection{Partition}
 \paragraph{k-partition :}
+%TODO redo the def with less math symbol
 A set $\{V_1,...,V_k\}$ is a $k$-partition:
 \begin{itemize}
     \item $\forall i, \lceil V_i \rceil$ is connected
