@@ -1,0 +1,18 @@
+\section{Conclusion}
+
+%to summarize our thoughts
+Although the main task of this project was to verify the correctness of the proposed partitioning algorithm, our work required two preliminary steps. First, in order to ensure testing reliability, k-connected graphs had to be generated randomly. Then, for the sake of conformity to the original algorithm the \verb!FOREST! algorithm was implemented and tested. The third step was the main algorithm. After implementing the latter and testing it with the generated graphs endless loops appeared for certain graphs. An immediate concern after making this discovery was whether $k=2$ was a special occurrence. The answer came as an inductive proof consisting of adding a vertex to problematic graphs in order to obtain $(k+1)$-connected graphs which still caused the algorithm to loop indefinitely. 
+
+%to demonstrate the importance of our ideas, 
+\paragraph{}
+
+This proves that the proposed algorithm is not correct $\forall k \geq 2$ with respect to the specification of the article. This contradicts the purpose of the paper. Despite being a ten-year-old we believe that our results are the first attempt to study the correctness of this solution. Paradoxically, finding a counter example can be a step forward in finding a better solution to the partitioning problem. For instance identifying the class of graphs that cannot be partitioned will help change the current algorithm as to avoid such problems. Furthermore, the different tests and testing tools we created for this study can be reused in other similar endeavours especially in the study of graph partitioning.
+
+%and to propel our reader to a new view of the subject
+\paragraph{}
+
+According to the Györi and Lovász theorem ~\cite{GE78} a solution to the k-connected graph partitioning problem exists. On the one hand, according to ~\cite{JS94}, ~\cite{GE78,LL77} and ~\cite{Nakano1997315}for $k \in {2, 3, 4}$ polynomial solutions exist for planar graphs. On the other hand, as k value increases the graph becomes more connected and solutions should tend to be simpler. So a general polynomial solution is still likely to exist. 
+
+%final say on the issues you have raised in your paper, , 
+%Counter example we didn't prove it doesn't work at all
+%why are these graphs special

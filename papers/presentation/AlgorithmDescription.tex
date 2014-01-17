@@ -1,39 +1,49 @@
 \begin{frame}
-
-        {\bfseries Graph partitionning}\\
-             \begin{description}
-                \item [INPUT:] \hfill \\
-                        \begin{enumerate}
-                                \item $G = (V, E)$ a $k$-connex graph 
-                            \item $k$
-                            \item $a_1, a_2 \ldots a_k$ : different vertices of $G$
-                            \item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  V(G)$
-                               \end{enumerate}
-        \end{description}
+  
+  \frametitle {Graph partitionning}
+  \begin{description}
+  \item [INPUT:] \hfill \\
+    \begin{enumerate}
+    \item $G = (V, E)$ a $k$-connex graph 
+      \begin{figure}[H]
+	\begin{center}
+           \scalebox{.7}{
+	  \input{graphTikZ/AlgoSteps/initialGraph.tex}}
+	\end{center}
+	\caption{An example of an input 3-connected graph with 6 edges}
+      \end{figure}
+    \item $k$
+    \item $a_1, a_2 \ldots a_k$ : different vertices of $G$
+    \item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  |V|$
+    \end{enumerate}
+    
+  \end{description}
 \end{frame}
-
-%\begin{frame}
-%        \begin{description}
-%            \item[Definitions] \hfill \\
-%            \begin{itemize}
-%                    \item [$T_i$] a spanning tree which root is $a_i$.
-%                        \item[P] \hfill \\
-%                    The proposed algorithm is similar to \emph{max flow} algorithms.
-%                         $\forall i \in 1..k,$ \bfseries P $: T_i \rightarrow n_i/|V(T_i)|$
-%                \item [$n$] $= |V(G)|$
-%            \end{itemize}
-%    \end{description}
-%\end{frame}
-
-\begin{frame}{Used structures}
-\begin{itemize}
-  \item[Partition trees] they represent a tree spanning over a partition of the graph $T_i  a_i$ being 
-  the root of the partition.
-  \item [Tree-Node] array of set of root vertices $\{a_1 \ldots a_k\}$. If $a_j \in$ Tree-node[$v$],the vertex $v$ 
+\begin{frame}{Used structures and notations}
+\begin{description}
+\item[Partition trees] they represent a tree spanning over a partition of the graph $T_i  a_i$ being 
+  the root of the partition. In this part of the presentation a tree will refer to a partition tree.
+   \begin{figure}[H]
+	\begin{center}
+	   \scalebox{.7}{
+	  \input{graphTikZ/AlgoSteps/treePartitionExample.tex}
+	\end{center}
+	\caption{An example of a partition on the input graph}
+      \end{figure}
+\item [Tree-Nodes] array of set of root vertices $\{a_1 \ldots a_k\}$. If $a_j \in$ Tree-node[$v$],the vertex $v$ 
   is or has been a vertex of $T_j$.
-  \item [auxv] For a given root $a_i$ it represents vertices that do not belong to $T_i$ nor are roots 
-  $\{a_x,a_2, \ldots ,ak\}$ and are adjacent to $T_i$ 
-\end{itemize}
+\begin{center}
+  \begin{tabular}{ | l | c | r | }
+    \hline                       
+    Vertex & 1 & 2 & 3 & 4 & 5 \\
+    \hline
+    Set of roots & $\{a_1, a_2\}$ & $\{a_2\}$ & $\{a_3\}$ & \emptyset & \emptyset \\
+    \hline  
+  \end{tabular}
+\end{center}
+\item [p] The p-value of a vertex $v$ in a tree $T_i$ the ratio $\dfrac{n_i}{|T_i|}$. It ensures that the trees are properly filled during the execution of the algorithm
+
+\end{description}
 \end{frame}
 
 \begin{frame}
@@ -41,14 +51,17 @@
                 \item[OUTPUT:] \hfill \\
                         A k-partition $Par$ of G such that $\forall i \ in 1..k$ 
                         \begin{itemize} 
-                                \item $H_i$ is a connexe subgraph of $G$
+                                \item $H_i$ is a connected subgraph of $G$
                                 \item $H_i \in Par, |V(H_i)| = n_i $
                                 \item $a_i \in H_i $
                                 \item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
                         \end{itemize}
         \end{description}
-\end{frame}
-
-
-  \end{description}
+             \begin{figure}[H]
+	       \begin{center}
+	          \scalebox{.7}{
+	  \input{graphTikZ/AlgoSteps/OutputGraph.tex}
+	       \end{center}
+	       \caption{An example output of the 3-connected graph partition}
+             \end{figure}
 \end{frame}

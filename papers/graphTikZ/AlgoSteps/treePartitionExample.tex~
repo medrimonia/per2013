@@ -1,0 +1,32 @@
+\begin{tikzpicture}[scale=0.5]
+  \node[draw,circle, very thick, color=green] (A) at (1,0) {1};
+  \node[draw,circle, very thick, color=green] (B) at (3,0) {2};
+  \node[draw,circle, very thick, color=green] (C) at (4,2) {3};
+  \node[draw,circle, very thick, color=green] (D) at (2,2) {4};
+  \node[draw,circle, very thick] (E) at (0,2) {5};
+  \draw[very thick, color=green] (A) -- (B);
+  \draw[very thick] (B) -- (C);
+  \draw[very thick, color=green] (C) -- (D);
+  \draw[very thick] (D) -- (E);
+  \draw[very thick, color=green] (A) -- (C);
+  \draw[very thick] (B) -- (E);
+
+\end{tikzpicture}
+\begin{tikzpicture}[scale=0.5]
+  \node[draw,circle, very thick, color=green] (A) at (1,3) {1};
+  \node[draw,circle, very thick, color=green] (B) at (3,3) {2};
+  \node[draw,circle, very thick, color=green] (C) at (3,1) {3};
+  \node[draw,circle, very thick] (D) at (2,0) {4};
+  \node[draw,circle, very thick] (E) at (0,1) {5};
+  \node[draw,circle, very thick] (F) at (2,4) {6};
+  \draw[very thick, color=green] (A) -- (B);
+  \draw[very thick] (B) -- (C);
+  \draw[very thick, color=green] (C) -- (D);
+  \draw[very thick] (D) -- (E);
+  \draw[very thick, color=green] (A) -- (C);
+  \draw[very thick] (B) -- (E);
+  \draw[very thick] (A) -- (F);
+  \draw[very thick] (B) -- (F);
+
+\end{tikzpicture}
+

@@ -1,1 +1,129 @@
-\section{Problematic}
+\subsection{Algorithm description}
+ \subsubsection{Algorithm context}
+This algorithm aims to provide a partition to any k-connected graph, given any partition sizes and roots as defined in the following.
+
+\paragraph{Algorithm input}
+ \begin{description}
+  \item [INPUT:] \hfill \\
+    \begin{enumerate}
+    \item $G = (V, E)$ a $k$-connected graph 
+      \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/initialGraph.tex}
+	\end{center}
+	\caption{An example of an input 3-connected graph with 6 edges}
+      \end{figure}
+    \item $k$
+    \item $a_1, a_2 \ldots a_k$ : different vertices of $G$
+    \item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  |V|$
+    \end{enumerate}
+    
+  \end{description}
+
+\paragraph{Algorithm output}
+       \begin{description}
+                \item[OUTPUT:] \hfill \\
+                        A k-partition of G such that $\forall i \ in 1..k$ 
+                        \begin{itemize} 
+                                \item $H_i$ is a connected subgraph of $G$
+                                \item $H_i \in Par, |V(H_i)| = n_i $
+                                \item $a_i \in H_i $
+                                \item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
+                        \end{itemize}
+        \end{description}
+             \begin{figure}[H]
+	       \begin{center}
+	         \input{graphTikZ/AlgoSteps/OutputGraph.tex}
+	       \end{center}
+	       \caption{An example output of the 3-connected graph partition}
+             \end{figure}
+\paragraph{Algorithm used structures and notations}               
+\label{sec:structure}
+The algorithm uses its own structures and computes its own values. These are defined in this section.
+\begin{description}
+\item[Partition trees] represent a tree spanning over a partition of the graph $T_i  a_i$ being 
+  the root of the partition. In this part of the report  a tree will refer to a partition tree, unless otherwise specified.
+   \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/treePartitionExample.tex}
+	\end{center}
+	\caption{An example of a partition on the input graph}
+      \end{figure}
+\item [Tree-Nodes] are arrays of sets of root vertices $\{a_1 \ldots a_k\}$. If $a_j \in$ Tree-node[$v$],the vertex $v$ is or has been a vertex of $T_j$. This table is used to memorize the history of the vertices membership in the partition trees. This will be later used in the algorithm to avoid endless loops and allow vertex exchange.
+\begin{table}[H]
+\begin{center}
+  \begin{tabular}{ | l | c | c | c | c | r | }
+    \hline                       
+    Vertex & 1 & 2 & 3 & 4 & 5 \\
+    \hline
+    Set of roots & $\{a_1, a_2\}$ & $\{a_2\}$ & $\{a_3\}$ &$ \emptyset$ & $\emptyset$ \\
+    \hline  
+    %\caption{An example of a Tree-Node during the algorithm execution}
+  \end{tabular}
+\end{center}
+\end{table}
+
+\item [p] The p-value of a vertex $v$ in a tree $T_i$ the ratio $\dfrac{n_i}{|T_i|}$. The p-value is uniform in all the vertices of a tree, thus we can define the p-calue of a tree as the p-value of any of its vertices. p ensures that the trees are properly filled during the execution of the algorithm. This is due to the fact that a tree will only receive vertices from other trees which p values are lower
+
+\end{description}
+
+\subsubsection{Algorithm progression}
+
+\paragraph{Step 1 : tree expansion}
+The first step adds vertices that have never been in a tree before during the algorithm
+Whenever there is more vertices than $n_i$ the selection of vertices to add is random. 
+After applying this step to every tree we could obtain the following partition.
+
+ \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/step1.tex}
+	\end{center}
+	\caption{step 1 of the 3-connected graph partitioning: tree expansion}
+      \end{figure}
+
+\paragraph{Step 2 : potential swappable vertices}
+\paragraph{}
+The \textcolor{violet}{violet} partition needs an additional vertex that cannot be obtained through the first step. This step will let this tree expand by taking 
+a vertex from an other tree.
+\paragraph{}
+In order to do so, the algorithm compares $p$ values of the \textcolor{violet}{violet} neighbor vertices. As mentionned in ~\ref{sec:structure} $p = \dfrac{n_i}{|V(T_i)|}$ with $T_i$ designating the current partition of the vertex. This step allows us to obtain the set of vertices adjacent to the  \textcolor{violet}{violet} partition that did not belong to this tree and with minimal $p$ value
+
+ \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/step2.tex}
+	\end{center}
+	\caption{step 2 of the 3-connected graph partitioning: potential swappable vertices}
+ \end{figure}
+\paragraph{Step 3 : vertices selection}
+In this step  the list of vertices obtained in the previous step is recovered.
+The algorithm then choses a tree among those containing one of the latter vertices. Here the tree $T_1$ is chosen. Then among the vertices to be swapped that in addition are in this tree, the vertex with the highest degree is selected. 
+
+ \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/step3.tex}
+	\end{center}
+	\caption{step 3 of the 3-connected graph partitioning: vertices selection}
+      \end{figure}
+
+
+\paragraph{step 4 vertices swapping}
+\paragraph{}
+In the last step, before repeating the loop with another tree, the vertices are swapped. To achieve this, The previously selected vertices are cut-off from their previous tree. This means that the vertex and all its children in its previous tree are removed from this partition. Because the algorithm never adds a vertex to a partition where it had already been, these vertices will be swapped to the other trees.
+
+ \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/step4.tex}
+	\end{center}
+	\caption{step 4 of the 3-connected graph partitioning: vertices swapping}
+      \end{figure}
+
+
+\paragraph{Solution}
+After running the loop again through the first step for $T_1 and T_5$ we obtain the output partition. The tree $T_1$ obtains \emph{F} as B belonged to $T_1$ and B is then added to $T_5$.
+ \begin{figure}[H]
+	\begin{center}
+	  \input{graphTikZ/AlgoSteps/steps56.tex}
+	\end{center}
+	\caption{progression toward the solution of the 3-connected graph partitioning}
+      \end{figure}
+
