@@ -19,4 +19,4 @@ presentation.pdf: presentation.tex bibliography.bib ${PRESENTATION_SOURCES} ${TI
 	pdflatex $< && bibtex presentation.aux && pdflatex $< && pdflatex $<
 
 clean:
-	rm *.aux *.snm *.toc *.log *.pdf *.out *.blg *.bbl *.nav
+	rm -f *.aux *.snm *.toc *.log *.pdf *.out *.blg *.bbl *.nav
