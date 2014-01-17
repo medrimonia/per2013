@@ -1,6 +1,8 @@
 \section{Work}
 
-\subsection{Generating $k$-connected random graphs}
+%TODO find a better title
+\subsection{Tools}
+\subsubsection{Generating $k$-connected random graphs}
 \paragraph{}
 In order to test our implementation of the article algorithm, $k$-connected 
 graphs had to be generated. Two methods have been implemented, although they are not
@@ -53,7 +55,7 @@ graph is generated.
 
 
  
-\subsection{Calculating a sparse spanning subgraph}
+\subsubsection{Calculating a sparse spanning subgraph}
 % Necessity of implementing FOREST
 \paragraph{}
 In order to reduce the execution time of the main algorithm, we had to
@@ -114,7 +116,8 @@ In the library we were using, spanning graphs weren't designed to be modified. W
 created our own basic class which was handling Tree with the needed methods like
 cutting the tree on a specific vertex.
 
-\subsection{Finding a counter-example}
+\subsection{Criticism}
+\subsubsection{Finding a counter-example}
 % Not failing on some entries but on some executions
 \paragraph{}
 Once the main issues of our implementation of the algorithm were solved, we
@@ -125,21 +128,7 @@ verifying the validity of the execution of our algorithm step by step.
 
 \input{report/CounterExample}
 
-% Bad presentation ...
-\subsection{Detecting endless loops}
-\paragraph{}
-A counter example that shows the algorithm can fall in endless loops have been
-exhibited. This raise one question : is it possible to detect when there is an
-endless loop? An improvement has been added to the algorithm to exit the
-execution when the algorithm enters in an endless loop.
-
-\paragraph{}
-To do so, we save the last root index where we have added or swapped a vertex. If
-the saved index is equal to the current root index and no vertex have been
-added or swap then it means that the algorithm has entered in an endless loop. Then
-the execution is stopped.
-
-\subsection{Counter-example in general case}
+\subsubsection{Counter-example in general case}
 \paragraph{}
 In order to ensure that $k=2$ is not a specific case where the algorithm
 presented in~\cite{JS94} is not determinist, we will present a proof that an
@@ -170,3 +159,20 @@ $\{n_1,n_2, \dots, n_k, 1$ as input will have a probability of looping
 endlessly strictly greater than $0$, because the $v$ introduced has no influence
 since the associated tree will be full since the beginning and the new edges
 won't be useable either.
+% Bad presentation ...
+\subsection{Improvements}
+\subsubsection{Detecting endless loops}
+\paragraph{}
+A counter example that shows the algorithm can fall in endless loops have been
+exhibited. This raise one question : is it possible to detect when there is an
+endless loop? An improvement has been added to the algorithm to exit the
+execution when the algorithm enters in an endless loop.
+
+\paragraph{}
+To do so, we save the last root index where we have added or swapped a vertex. If
+the saved index is equal to the current root index and no vertex have been
+added or swap then it means that the algorithm has entered in an endless loop. Then
+the execution is stopped.
+
+\subsubsection{Vertex selection condition}
+%TODO 
