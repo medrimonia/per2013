@@ -5,7 +5,7 @@ Wikibook and Diestel's Graph Theory book \cite{Diestel}.
 
 \subsection{Types of graphs}
 \paragraph{Undirected simple graphs :}
-An undirected simple graph G is a mathematical object composed of a set $V$ of
+An undirected simple graph $G$ is a mathematical object composed of a set $V$ of
 vertices and a set $E$ of edges and is noted $G = (V,E)$.
 
 %TODO eventually ref for other names in Diestel (nodes/...)
@@ -32,15 +32,15 @@ The size of a graph $G=(V,E)$ is its number of edges, i.e. $|E|$.
 The order of a graph $G=(V,E)$ is its number of vertices, i.e. $|V|$.
 
 \paragraph{Adjacency :}
-In a graph $G=(V,E)$,Two vertices, $u$ and $v$, are adjacent if $uv \in E$.
+In a graph $G=(V,E)$, two vertices, $u$ and $v$, are adjacent if $uv \in E$.
 
 \paragraph{Vertex degree :}
 The degree of a vertex $v$ in a simple undirected graph is equal to the number of
-vertices adjacent to it and it's noted $d(v)$.
+vertices adjacent to it and it is noted $d(v)$.
 
 \paragraph{Directed simple graphs :} 
 A directed simple graph is a graph whose edges are defined as ordered pairs.
-$e=(u,v)$. The edges of a directed simple graph are call arcs. 
+$e=(u,v)$. The edges of a directed simple graph are called arcs. 
 $u$ is called the head of the arc and $v$ is the tail of the arc.
 \begin{figure}[!h]
   \begin{center}
@@ -50,7 +50,7 @@ $u$ is called the head of the arc and $v$ is the tail of the arc.
 \end{figure}
 
 \paragraph{}
-Thereafter if it's not stated otherwise, a graph design an undirected 
+Thereafter if it is not stated otherwise, a graph refers to an undirected 
 simple graphs.
 
 %TODO Speak about induced subgraphs
@@ -116,7 +116,7 @@ A cut $C=(S,T)$ is a partition of $V$ into two subsets $S$ and $T$ that are
 joined by at least one edge.
 
 \paragraph{Cut-set :}
-The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{uv \in E | u \in S ~and~ v \in T\}$.
+The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{uv \in E | u \in S \wedge v \in T\}$.
 
 \paragraph{Cut size :}
 The size of a cut is the number of edges in the cut-set.
@@ -133,8 +133,9 @@ The size of a cut is the number of edges in the cut-set.
 
 %TODO Explain or change the notation G-C + put ref to disconnected
 \paragraph{Articulation set :}
-A vertex cut $C$ of a graph $G=(V,E)$ is a subset of $V$ such that $G-C$ becomes
-disconnected.
+A vertex cut $C$ of a graph $G=(V,E)$ is a subset of $V$ such that
+$G' = (C,E')$ is disconnected, with
+$\forall uv \in E, uv \in E' \Leftrightarrow u \in C \wedge v \in C$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -145,14 +146,14 @@ disconnected.
 
 \subsection{Connectivity}
 \paragraph{Connected :}\label{defConnectivity}
-A graph $G$ is connected if for every pair $\{u,v\}$ of vertices if there is a 
+A graph $G$ is connected if for every pair $\{u,v\}$ of vertices, there is a 
 path from $u$ to $v$. Otherwise, the graph is disconnected.
 
 \paragraph{$k$-connected :}
 A graph is $k$-connected if deleting any set of fewer than $k$ vertices do not 
 disconnect the graph.
 
-\paragraph{$k$-connectivity :}
+\paragraph{Connectivity :}
 The connectivity of a graph is the largest $k$ as it is $k$-connected. 
 
 \begin{figure}[!h]
@@ -163,7 +164,7 @@ The connectivity of a graph is the largest $k$ as it is $k$-connected.
 \end{figure}
 
 \paragraph{Menger's theorem :}
-The menger's theorem is an important theorem concerning connectivity.
+The Menger's theorem is an important theorem concerning connectivity.
 It states the following fact:
 
 Let $G$ be a undirected graph and $u$ and $v$ two distinct vertices.
@@ -190,7 +191,8 @@ capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
 \end{figure}
 
 \paragraph{Flow :}
-Let G we distinguish two vertices: a source $s$ and a sink $t$.
+Let $G$ be an oriented graph, we distinguish two vertices: a source $s$ and a
+sink $t$.
 A flow is a function which associates to each edge $(u,v) \in E$ a real:
 $f: V \times V \rightarrow \mathbb{R}$ such as:
 \begin{itemize}
