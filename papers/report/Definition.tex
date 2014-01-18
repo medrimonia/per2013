@@ -4,7 +4,7 @@ of the following definitions are taken from or inspired by Wikipedia,
 Wikibook and Diestel's Graph Theory book~\cite{Diestel}.
 
 \subsection{Types of graphs}
-\paragraph{Undirected simple graphs :}
+\paragraph{Undirected simple graphs:}
 An undirected simple graph $G$ is a mathematical object composed of a set $V$ of
 vertices and a set $E$ of edges and is noted $G = (V,E)$.
 
@@ -17,6 +17,10 @@ $uv$ for short.
 A graph is used to model relation between objects. The vertices represent the 
 objects and the edges represent the relation.
 
+\paragraph{}
+Thereafter if it is not stated otherwise, a graph refers to an undirected 
+simple graphs.
+
 
 \begin{figure}[!h]
   \begin{center}
@@ -27,22 +31,22 @@ objects and the edges represent the relation.
   \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
-\paragraph{Graph Size :}
+\paragraph{Graph Size:}
 The size of a graph $G=(V,E)$ is its number of edges, i.e. $|E|$.
 
-\paragraph{Graph order :}
+\paragraph{Graph order:}
 The order of a graph $G=(V,E)$ is its number of vertices, i.e. $|V|$.
 
-\paragraph{Adjacency :}
+\paragraph{Adjacency:}
 In a graph $G=(V,E)$, two vertices, $u$ and $v$, are adjacent if $uv \in E$.
 
-\paragraph{Vertex degree :}
+\paragraph{Vertex degree:}
 The degree of a vertex $v$ in a simple undirected graph is equal to the number of
 vertices adjacent to it and it is noted $d(v)$.
 
-\paragraph{Directed simple graphs :} 
-A directed simple graph is a graph whose edges are defined as ordered pairs.
-$e=(u,v)$. The edges of a directed simple graph are called arcs. 
+\paragraph{Directed graphs:} 
+A directed graph is a graph whose edges are defined as ordered pairs
+$(u,v)$. The edges of a directed graph are called arcs. 
 $u$ is called the head of the arc and $v$ is the tail of the arc.
 \begin{figure}[!h]
   \begin{center}
@@ -53,14 +57,16 @@ $u$ is called the head of the arc and $v$ is the tail of the arc.
   \caption{A directed simple graph with 5 vertices and 4 edges}
 \end{figure}
 
-\paragraph{}
-Thereafter if it is not stated otherwise, a graph refers to an undirected 
-simple graphs.
-
-%TODO Speak about induced subgraphs
-\paragraph{Subgraphs :}
+\paragraph{Subgraphs:}
 Given a graph $G = (V,E)$ and a graph $G' = (V',E')$, then $G'$ is a subgraph of $G$ 
 if and only if $V \subseteq V'$ and $E \subseteq E'$.
+
+%TODO to be checked
+\paragraph{Induced subgraphs:}
+Given a graph $G = (V,E)$ and a set of vertices $V' \subseteq V$, then
+there is only one induced subgraph of $G$ by $V'$ and it is denoted
+$G' = (V',E')$, with for any pair of vertices $uv$ of $V'$, the edge $uv$ is
+in $E'$ if and only if $uv$ is in $E$.
 
 \begin{figure}[!h]
   \begin{center}
@@ -69,7 +75,7 @@ if and only if $V \subseteq V'$ and $E \subseteq E'$.
   \caption{A graph and one of its subgraph (in green)}
 \end{figure}
 
-\paragraph{Trees :}
+\paragraph{Trees:}
 A tree is an undirected simple connected\footnote{See \ref{defConnectivity}}
 graph without cycle.
 
@@ -80,7 +86,7 @@ graph without cycle.
   \caption{A tree}
 \end{figure}
 
-\paragraph{Spanning trees :}
+\paragraph{Spanning trees:}
 A tree $T$ is a spanning tree of a graph $G$ if it includes every vertex of $G$ 
 and is a subgraph of $G$.
 
@@ -91,12 +97,12 @@ and is a subgraph of $G$.
   \caption{A graph and one of its spanning tree (in green)}
 \end{figure}
 
-\paragraph{Complete graphs :}
+\paragraph{Complete graphs:}
 If all the vertices of $G$ are pairwise adjacent, then $G$ is complete. A
 complete graph on $n$ vertices is denoted $K_n$.
 
 \subsection{Paths}
-\paragraph{Paths :}
+\paragraph{Paths:}
 A path is a non-empty graph $P = (V, E)$ of the form
 $$ V = \{x_0,x_1, \dots, x_k \} \;\;\; E=\{x_0x_1, x_1x_2, \dots, x_{k-1}x_k \}$$
 where the $x_i$ are all distinct. The vertices $x_0$ and $x_k$ are linked
@@ -104,7 +110,6 @@ by $P$ and are called its ends; the vertices $x_1, \dots, x_{k-1}$ are the
 inner vertices of $P$. The number of edges of path is its
 length, and the path of length $k$ is denoted by $P_k$. Note that $k$ is
 allowed to be zero; thus, $P_0 = K_1$.
-%TODO : explains K before
 
 \begin{figure}[!h]
   \begin{center}
@@ -115,14 +120,13 @@ allowed to be zero; thus, $P_0 = K_1$.
 
 \subsection{Cuts}
 Let $G=(V,E)$ be a graph.
-\paragraph{Cut :}
-A cut $C=(S,T)$ is a partition of $V$ into two subsets $S$ and $T$ that are 
-joined by at least one edge.
+\paragraph{Cut:}
+A cut $C=(S,T)$ is a partition of $V$ into two subsets $S$ and $T$.
 
-\paragraph{Cut-set :}
+\paragraph{Cut-set:}
 The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{uv \in E | u \in S \wedge v \in T\}$.
 
-\paragraph{Cut size :}
+\paragraph{Cut size:}
 The size of a cut is the number of edges in the cut-set.
 
 \begin{figure}[!h]
@@ -132,14 +136,12 @@ The size of a cut is the number of edges in the cut-set.
   \caption{A graph and one of its cut-set (in green)}
 \end{figure}
 
-%\paragraph{Minimum cut :} 
+%\paragraph{Minimum cut:} 
 %The minimum cut of a graph G is a cut with the lowest size. 
 
-%TODO Explain or change the notation G-C + put ref to disconnected
-\paragraph{Articulation set :}
-A vertex cut $C$ of a graph $G=(V,E)$ is a subset of $V$ such that
-$G' = (C,E')$ is disconnected, with
-$\forall uv \in E, uv \in E' \Leftrightarrow u \in C \wedge v \in C$.
+\paragraph{Articulation set:}
+A vertex cut $C$ of a graph $G=(V,E)$ is a subset of $V$ such as the subgraph
+of $G$ induced by $V \setminus C$ is disconnected.
 
 \begin{figure}[!h]
   \begin{center}
@@ -149,15 +151,15 @@ $\forall uv \in E, uv \in E' \Leftrightarrow u \in C \wedge v \in C$.
 \end{figure}
 
 \subsection{Connectivity}
-\paragraph{Connected :}\label{defConnectivity}
+\paragraph{Connected:}\label{defConnectivity}
 A graph $G$ is connected if for every pair $\{u,v\}$ of vertices, there is a 
 path from $u$ to $v$. Otherwise, the graph is disconnected.
 
-\paragraph{$k$-connected :}
+\paragraph{$k$-connected:}
 A graph is $k$-connected if deleting any set of fewer than $k$ vertices do not 
 disconnect the graph.
 
-\paragraph{Connectivity :}
+\paragraph{Connectivity:}
 The connectivity of a graph is the largest $k$ as it is $k$-connected. 
 
 \begin{figure}[!h]
@@ -167,7 +169,7 @@ The connectivity of a graph is the largest $k$ as it is $k$-connected.
   \caption{A 2-connected graph}
 \end{figure}
 
-\paragraph{Menger's theorem :}
+\paragraph{Menger's theorem:}
 The Menger's theorem is an important theorem concerning connectivity.
 It states the following fact:
 
@@ -194,26 +196,26 @@ capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
   \caption{A flow network}
 \end{figure}
 
-\paragraph{Flow :}
+\paragraph{Flow:}
 Let $G$ be an oriented graph, we distinguish two vertices: a source $s$ and a
 sink $t$.
 A flow is a function which associates to each edge $(u,v) \in E$ a real:
 $f: V \times V \rightarrow \mathbb{R}$ such as:
 \begin{itemize}
-    \item Capacity constraints : $\forall (u,v) \in E, f(u,v) \leq c(u,v)$
-    \item Symetry : $\forall (u,v) \in E, f(u,v) = - f(v,u) $
+    \item Capacity constraints: $\forall (u,v) \in E, f(u,v) \leq c(u,v)$
+    \item Symetry: $\forall (u,v) \in E, f(u,v) = - f(v,u) $
     \item Flow conservation: $\forall u \in V - \{s,t\}, \sum_{v \in V}f(u,v) = 0$ 
 \end{itemize}
 
 
 %TODO find a ref + reformul the end
-\paragraph{Maximum-flow Minimum-cut Theorem :}
+\paragraph{Maximum-flow Minimum-cut Theorem:}
 The max-flow min-cut theorem states that in a flow network, the maximum amount
 of flow passing from the source node to the sink node is equal to the capacity
 of the cut which have the minimun capacity.
 
 \subsection{Partitions}
-\paragraph{k-partition :}
+\paragraph{k-partition:}
 %TODO redo the def with less math symbol
 A set $\{V_1,...,V_k\}$ is a $k$-partition:
 \begin{itemize}
