@@ -2,19 +2,19 @@
 % What we had to do
 \paragraph{}
 The goal of the project was to study in depth the article~\cite{JS94}, which,
-although pretends to answer positively to a well-known difficult problem,
+although pretends to answer positively to a difficult problem,
 surprisingly did not attract a lot of attention in the litterature.
 %% Implementing the algorithm
 More precisely, in~\cite{JS94} is proposed a polynomial-time algorithm for
-constructing a special kind of vertex-partition of any $k$-connected graph wich 
-necessarily exists according to~\cite{GE78,LL77}. %TODO check reference
+constructing a special kind of vertex-partition of any $k$-connected graph
+which necessarily exists according to~\cite{GE78,LL77}.
 %% Reading other articles
 In order to have an entire comprehension of this article, we had to search,
 read and understand several related articles.
 
 % What we have done
 \paragraph{}
-Our very first task was to understand this algorithm. For this purpose, we have 
+Our very first task was to understand the algorithm. For this purpose, we have 
 had to implement it in Java, using a framework which contains the implementation
 of several classic graph algorithms.
 %% Testing the algorithm
@@ -30,7 +30,7 @@ algorithm lead to an endless loop. With those counter-examples, we
 proved that the algorithm proposed in~\cite{JS94} has not the expected
 complexity and also is not correct.
 %% Improvement : no endless loop
-We propose a slight modification to this algorithm, ensuring that instead of
+We propose slight modification to this algorithm, ensuring that instead of
 falling in an endless loop, the algorithm will end with a fail state. This
 change makes this algorithm easier to use as a base for a new Las-Vegas
 algorithm.
