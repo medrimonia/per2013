@@ -166,26 +166,26 @@ won't be useable either.
 \subsubsection{Vertex selection condition}
 \paragraph{}
 To select the vertex to swap between two trees, the article algorithm base its 
-selection on vertex degrees. As we have seen before, the selection of the specific
-vertices can lead to an endless loop. Select the vertex with the lowest degree
+choice on vertex degrees. As we have seen before, the selection of the specific
+vertices can lead to an endless loop. Choosing the vertex with the lowest degree
 can cut a long branch of the tree, whereas select another vertex with a greater
 degree will remove less vertices to the tree.
 
-That's why, we have modified the vertex selection condition. Rather than base the 
-selection condition on the vertex degree, we based it on the number of 
-descandants. So, when a vertex is swapped the minimum of vertices is removed
+That's why, we have modified the vertex selection condition. Rather than basing the
+selection condition on the vertex degree, we base it on the number of 
+descendants. So, when a vertex is swapped the minimum of vertices is removed
 from the tree.
 
 \paragraph{}
 This modification allows to avoid the endless loop for the counter example
-presented before. However there is still some executions that lead to 
-endless loop. 
+presented before. However there is still some executions on other graphs which
+are falling into endless loops.
 
 \subsubsection{Detecting endless loops}
 \paragraph{}
 A counter example that shows the algorithm can fall in endless loops have been
 exhibited. This raise one question : is it possible to detect when there is an
-endless loop? An improvement has been added to the algorithm to exit the
+endless loop? An improvement has been added to the algorithm in order to exit the
 execution when the algorithm enters in an endless loop.
 
 \paragraph{}
@@ -193,7 +193,3 @@ To do so, we save the last root index where we have added or swapped a vertex. I
 the saved index is equal to the current root index and no vertex have been
 added or swap then it means that the algorithm has entered in an endless loop. Then
 the execution is stopped.
-
-
-\paragraph{}
-
