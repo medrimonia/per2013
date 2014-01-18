@@ -24,6 +24,14 @@ included in a tree have a stronger thickness.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/initial.tex}
     \end{tikzpicture}
+
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & & & & $T_e$ & & & & & & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -37,6 +45,13 @@ each one will grow by adding all the available neighborhood.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step1.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & & & & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -46,6 +61,13 @@ each one will grow by adding all the available neighborhood.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step2.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -60,6 +82,13 @@ $j$,  is chosen.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step3.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -78,6 +107,13 @@ $f$.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step4.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -92,6 +128,13 @@ only one is missing, only one must be added. In our case, $i$ will be added.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step5.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -109,6 +152,13 @@ must be choosen, $h$ might be swapped at that step.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step6.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -122,6 +172,13 @@ vertex $k$ can be freely added with the edge $\{i,k\}$.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step7.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & $T_e$ &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -143,6 +200,13 @@ unexplored, but not the swapped vertex, $g$.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step8.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e,T_a$ & $T_e, T_a$ & & &  &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
