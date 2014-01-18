@@ -15,8 +15,11 @@ described in~\cite{JS94}. The input of the algorithm is as follows~:
 
 % an array of execution should be given and different colors for components
 \paragraph{}
-In order to illustrate the status of the algorithm. Vertex and edges which are
-included in a tree have a stronger thickness.
+In order to illustrate the status of the algorithm. Edges which are
+included in a tree have a stronger thickness and both edges and vertices are
+colored according to the tree they belong to. Additionally, an array is
+presented under each graph, showing the content of the tree-node array which
+is used by the algorithm to choose which action will be taken.
 
 \begin{figure}[H]
   \caption{\label{FE_K2_init}Failed Execution : Initial graph}
@@ -24,6 +27,14 @@ included in a tree have a stronger thickness.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/initial.tex}
     \end{tikzpicture}
+
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & & & & $T_e$ & & & & & & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -37,6 +48,13 @@ each one will grow by adding all the available neighborhood.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step1.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & & & & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -46,6 +64,13 @@ each one will grow by adding all the available neighborhood.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step2.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -60,6 +85,13 @@ $j$,  is chosen.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step3.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -78,6 +110,13 @@ $f$.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step4.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -92,6 +131,13 @@ only one is missing, only one must be added. In our case, $i$ will be added.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step5.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -109,6 +155,13 @@ must be choosen, $h$ might be swapped at that step.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step6.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -122,6 +175,13 @@ vertex $k$ can be freely added with the edge $\{i,k\}$.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step7.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & $T_e$ &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
@@ -143,6 +203,13 @@ unexplored, but not the swapped vertex, $g$.
     \begin{tikzpicture}[scale=0.9,transform shape]
       \input{graphTikZ/failedK2/step8.tex}
     \end{tikzpicture}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+a & b & c & d & e & f & g & h & i & j & k & l\\
+\hline
+$T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e,T_a$ & $T_e, T_a$ & & &  &\\
+\hline
+    \end{tabular}
   \end{center}
 \end{figure}
 
