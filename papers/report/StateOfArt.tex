@@ -3,19 +3,21 @@ $k$-connectivity and $k$-partitioning are presented.
 
 \subsubsection{Computing $k$-connectivity}
 \paragraph{}
-As we have seen in section 2, the connectivity of a graph is equal to
+As we have seen in Section~\ref{defConnectivity}, the connectivity of a graph is equal to
 the size of its minimal vertex cut. The max-flow min-cut theorem states
 that the maximun flow between to vertices is equal to the minimum cut to 
 disconnect these two vertices. But if we use flow algorithm directly, 
-we will compute the edge-connectivity and not the vertex-connectivity.
-%TODO introduce edge-connectivity before
+we will not compute the connectivity.
+%TODO introduce edge-connectivity before if we want to use it
 
-So first the graph needs to be transformed. We need a capacity on the nodes.
+\paragraph{}
+So first the graph needs to be transformed. We need a capacity on the vertices.
 To do so each nodes will be divided into two new nodes. Each incoming edge will
 be attached to the first node and each leaving edge to the second node. Another
 edge will be added between the two new nodes.
 The capacity of all edges of the graph will be set to 1.
 
+\paragraph{}
 Then to find the connectivity, we compute the maximum flow between each pair of
 nodes and we keep only the lowest value. This value is the connectivity.
 
@@ -34,6 +36,7 @@ nodes and we keep only the lowest value. This value is the connectivity.
     \Return{$min$}\;
     \caption{Computing the connectivity of a graph}
 \end{algorithm}
+%TODO ideally, place an example here
 
 \subsubsection{k-partitioning}
 %TODO Check all ref and correct error
@@ -42,19 +45,16 @@ In this section, we focus on the different existing
 $k$-partitioning algorithms.
 
 \paragraph{}
-First of all, for a general graph $G$, finding a $k$-partition is a $NP$-hard
-problem~\cite{Dyer1985139}. No general polynomial algorithms has yet been found.
-So we are going to focus on particular graphs.
+First of all, since it has been proven that for some kinds of graphs, finding a
+$k$-partition is a $NP$-hard problem~\cite{BF06}, finding a partition for any
+graph is $NP$-hard too.
 
 \paragraph{}
-It has been proven that for a $k$-connected graph G a $k$-partition
-exists~\cite{GE78,LL77}.
-According to~\cite{JS94}, there are polynomial solutions for
-$k=2$~\cite{GE78,LL77} and $k=3$.
-
-\paragraph{}
-More recently, it has been proven in~\cite{Nakano1997315} that if $G$ is a planar graph, there is a linear-time algorithm for $k = 4$.
-
-
+As we mentionned previously, it has been proven that for a $k$-connected graph
+$G$ a $k$-partition will always exists~\cite{GE78,LL77}. Even if no polynomial
+algorithm has been found which works for any $k$, polynomial solutions have
+been found for $k=2$ and $k=3$, according to~\cite{JS94}. More recently, it has
+been proven in~\cite{Nakano1997315} that if $G$ is a planar graph, there is a
+linear-time algorithm for $k = 4$.
 
 
