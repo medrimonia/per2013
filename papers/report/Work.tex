@@ -163,6 +163,24 @@ since the associated tree will be full since the beginning and the new edges
 won't be useable either.
 % Bad presentation ...
 \subsection{Improvements}
+\subsubsection{Vertex selection condition}
+\paragraph{}
+To select the vertex to swap between two trees, the article algorithm base its 
+selection on vertex degrees. As we have seen before, the selection of the specific
+vertices can lead to an endless loop. Select the vertex with the lowest degree
+can cut a long branch of the tree, whereas select another vertex with a greater
+degree will remove less vertices to the tree.
+
+That's why, we have modified the vertex selection condition. Rather than base the 
+selection condition on the vertex degree, we based it on the number of 
+descandants. So, when a vertex is swapped the minimum of vertices is removed
+from the tree.
+
+\paragraph{}
+This modification allows to avoid the endless loop for the counter example
+presented before. However there is still some executions that lead to 
+endless loop. 
+
 \subsubsection{Detecting endless loops}
 \paragraph{}
 A counter example that shows the algorithm can fall in endless loops have been
@@ -176,5 +194,6 @@ the saved index is equal to the current root index and no vertex have been
 added or swap then it means that the algorithm has entered in an endless loop. Then
 the execution is stopped.
 
-\subsubsection{Vertex selection condition}
-%TODO 
+
+\paragraph{}
+

@@ -44,6 +44,7 @@ In a graph $G=(V,E)$, two vertices, $u$ and $v$, are adjacent if $uv \in E$.
 The degree of a vertex $v$ in a simple undirected graph is equal to the number of
 vertices adjacent to it and it is noted $d(v)$.
 
+
 \paragraph{Directed graphs:} 
 A directed graph is a graph whose edges are defined as ordered pairs
 $(u,v)$. The edges of a directed graph are called arcs. 
@@ -85,6 +86,15 @@ graph without cycle.
   \end{center}
   \caption{A tree}
 \end{figure}
+
+\paragraph{Root:}
+In a tree, one vertex can be distinguished from the other. It is call the root
+of the tree.
+
+\paragraph{Descendant:}
+Let be $r$ the root of a tree.
+Given two vertices $v$ and $w$, if $v$ lies on the unique path between $w$ and 
+$r$, then $w$ is a descendant of $v$.
 
 \paragraph{Spanning trees:}
 A tree $T$ is a spanning tree of a graph $G$ if it includes every vertex of $G$ 
