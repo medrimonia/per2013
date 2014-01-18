@@ -10,7 +10,7 @@ C_2="LineColor=violet"
 C_F="LineColor=black"
 
 USED_SIZE="LineWidth=3pt"
-FREE_SIZE="LineWidth=1pt"
+FREE_SIZE="LineWidth=3pt"
 
 sed -i "s/$REGEXP_1/Normal[$V_SIZE,$C_1,$USED_SIZE]%V1/"    *.tex
 sed -i "s/$REGEXP_2/Normal[$V_SIZE,$C_2,$USED_SIZE]%V2/"    *.tex
