@@ -23,12 +23,12 @@ simple graphs.
 
 
 \begin{figure}[!h]
+  \caption{An undirected simple graph with 5 vertices and 4 edges}
   \begin{center}
     \input{graphTikZ/undirected-graph.tex}
   \end{center}
   $$V = \{A,B,C,D,E\}$$
   $$E = \Big\{\{A,B\},\{A,C\},\{B,C\},\{B,D\}\Big\}$$
-  \caption{An undirected simple graph with 5 vertices and 4 edges}
 \end{figure}
 
 \paragraph{Graph Size:}
@@ -50,12 +50,12 @@ A directed graph is a graph whose edges are defined as ordered pairs
 $(u,v)$. The edges of a directed graph are called arcs. 
 $u$ is called the head of the arc and $v$ is the tail of the arc.
 \begin{figure}[!h]
+  \caption{A directed simple graph with 5 vertices and 4 edges}
   \begin{center}
     \input{graphTikZ/directed-graph.tex}
   \end{center}
   $$V = \{A,B,C,D,E\}$$
   $$E = \Big\{(A,B),(C,A),(C,B),(B,D)\Big\}$$
-  \caption{A directed simple graph with 5 vertices and 4 edges}
 \end{figure}
 
 \paragraph{Subgraphs:}
@@ -70,10 +70,10 @@ $G' = (V',E')$, with for any pair of vertices $uv$ of $V'$, the edge $uv$ is
 in $E'$ if and only if $uv$ is in $E$.
 
 \begin{figure}[!h]
+  \caption{A graph and one of its subgraph (in green)}
   \begin{center}
     \input{graphTikZ/subgraphExample.tex}
   \end{center}
-  \caption{A graph and one of its subgraph (in green)}
 \end{figure}
 
 \paragraph{Trees:}
@@ -81,10 +81,10 @@ A tree is an undirected simple connected\footnote{See \ref{defConnectivity}}
 graph without cycle.
 
 \begin{figure}[!h]
+  \caption{A tree}
   \begin{center}
     \input{graphTikZ/treeExample.tex}
   \end{center}
-  \caption{A tree}
 \end{figure}
 
 \paragraph{Root:}
@@ -101,10 +101,10 @@ A tree $T$ is a spanning tree of a graph $G$ if it includes every vertex of $G$
 and is a subgraph of $G$.
 
 \begin{figure}[!h]
+  \caption{A graph and one of its spanning tree (in green)}
   \begin{center}
     \input{graphTikZ/spanningTreeExample.tex}
   \end{center}
-  \caption{A graph and one of its spanning tree (in green)}
 \end{figure}
 
 \paragraph{Complete graphs:}
@@ -122,10 +122,10 @@ length, and the path of length $k$ is denoted by $P_k$. Note that $k$ is
 allowed to be zero; thus, $P_0 = K_1$.
 
 \begin{figure}[!h]
+  \caption{A graph and one of its path of length 4 (in green)}
   \begin{center}
     \input{graphTikZ/pathDef.tex}
   \end{center}
-  \caption{A graph and one of its path of length 4 (in green)}
 \end{figure}
 
 \paragraph{Vertex-disjoint paths:}
@@ -144,10 +144,10 @@ The cut-set of a cut $C=(S,T)$ is the set of edge defined as $\{uv \in E | u \in
 The size of a cut is the number of edges in the cut-set.
 
 \begin{figure}[!h]
+  \caption{A graph and one of its cut-set (in green)}
   \begin{center}
     \input{graphTikZ/cutExample.tex}
   \end{center}
-  \caption{A graph and one of its cut-set (in green)}
 \end{figure}
 
 %\paragraph{Minimum cut:} 
@@ -158,10 +158,10 @@ A vertex cut $C$ of a graph $G=(V,E)$ is a subset of $V$ such as the subgraph
 of $G$ induced by $V \setminus C$ is disconnected.
 
 \begin{figure}[!h]
+  \caption{A graph and one of its vertex cut (in green)}
   \begin{center}
     \input{graphTikZ/vertexCutExample.tex}
   \end{center}
-  \caption{A graph and one of its vertex cut (in green)}
 \end{figure}
 
 \subsection{Connectivity}
@@ -177,10 +177,10 @@ disconnect the graph.
 The connectivity of a graph is the largest $k$ as it is $k$-connected. 
 
 \begin{figure}[!h]
+  \caption{A 2-connected graph}
   \begin{center}
     \input{graphTikZ/k-connected.tex}
   \end{center}
-  \caption{A 2-connected graph}
 \end{figure}
 
 \paragraph{Menger's theorem:}
@@ -204,10 +204,10 @@ A flow network is a directed graph $G=(V,E)$ whose edges have a non-negative
 capacity, i.e. $\forall (u,v) \in E(G), c(u,v) \geq 0$.
 
 \begin{figure}[!h]
+  \caption{A flow network}
   \begin{center}
     \input{graphTikZ/flowNetwork.tex}
   \end{center}
-  \caption{A flow network}
 \end{figure}
 
 \paragraph{Flow:}
@@ -241,9 +241,9 @@ and only if:
 \end{itemize}
 
 \begin{figure}[!h]
+    \caption{A 3-partition graph}
     \begin{center}
         \input{graphTikZ/k-partition.tex}
     \end{center}
-    \caption{A 3-partition graph}
 \end{figure}
 
