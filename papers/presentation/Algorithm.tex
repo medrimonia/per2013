@@ -1,6 +1,9 @@
 \newcommand{\columntitle}[1]{{\begin{center} \Large #1 \end{center}}\vspace{-0.5cm}}
 
 \section{Algorithm}
+
+\subsection{Input / Output}
+
 \begin{frame}{Algorithm input}
   \begin{columns}[c]
     \begin{column}[T]{.5\textwidth}
@@ -52,6 +55,7 @@
   \end{columns}
 \end{frame}
 
+\subsection{Algorithm main lines}
 
 \begin{frame}{Algorithm main lines}
   \begin{itemize}
@@ -102,4 +106,22 @@
       }
     \end{tikzpicture}
   \end{center}
+\end{frame}
+
+\subsection{Stealing rules}
+
+\begin{frame}{Stealing rules}
+  \begin{itemize}
+  \item Components can not steal:
+    \begin{itemize}
+    \item Roots of other components
+    \item A vertex they owned previously
+    \item A vertex from another component with a higher $p$-value
+    \end{itemize}
+  \item Components must steal:
+    \begin{itemize}
+    \item From the adjacent component with the lowest $p$-value
+    \item A vertex with the lowest degree in the adjacent component
+    \end{itemize}
+  \end{itemize}
 \end{frame}
