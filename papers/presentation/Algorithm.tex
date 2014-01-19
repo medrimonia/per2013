@@ -1,3 +1,27 @@
+\newcommand{\columntitle}[1]{{\begin{center} \Large #1 \end{center}}}
+
 \section{Algorithm}
 \begin{frame}{Algorithm input}
+  \begin{columns}[c]
+    \begin{column}[T]{.5\textwidth}
+      \columntitle{Input}
+      \begin{itemize}
+      \item A graph $G = (V,E)$
+      \item The connectivity of $G$: $k$
+      \item $k$ roots for the partitions
+      \item $k$ sizes of the partitions
+      \end{itemize}
+    \end{column}
+    \begin{column}[T]{.5\textwidth}
+      \columntitle{Example}
+      \begin{itemize}
+      \item $k = 2$
+      \item roots: $\{a, e\}$
+      \item sizes: $\{2, 3\}$
+      \end{itemize}
+      \begin{tikzpicture}[scale=0.5]
+        \input{graphTikZ/algorithm/input}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
 \end{frame}
