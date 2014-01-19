@@ -1,4 +1,4 @@
-\newcommand{\columntitle}[1]{{\begin{center} \Large #1 \end{center}}}
+\newcommand{\columntitle}[1]{{\begin{center} \Large #1 \end{center}}\vspace{-0.5cm}}
 
 \section{Algorithm}
 \begin{frame}{Algorithm input}
@@ -8,20 +8,98 @@
       \begin{itemize}
       \item A graph $G = (V,E)$
       \item The connectivity of $G$: $k$
-      \item $k$ roots for the partitions
-      \item $k$ sizes of the partitions
+      \item Partition roots: $(a_1, a_2, \dots, a_k)$
+      \item Partition sizes: $(n_1, n_2, \dots, n_k)$
       \end{itemize}
     \end{column}
     \begin{column}[T]{.5\textwidth}
       \columntitle{Example}
       \begin{itemize}
       \item $k = 2$
-      \item roots: $\{a, e\}$
-      \item sizes: $\{2, 3\}$
+      \item roots: $(a, e)$
+      \item sizes: $(2, 3)$
       \end{itemize}
       \begin{tikzpicture}[scale=0.5]
         \input{graphTikZ/algorithm/input}
       \end{tikzpicture}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}{Algorithm output}
+  \begin{columns}[c]
+    \begin{column}[T]{.5\textwidth}
+      \columntitle{Output}
+      \begin{itemize}
+      \item A $k$-partition of $G$: $(V_1,V_2, \dots, V_k)$
+      \item For all $i$ in $\{1, \dots, k\}$
+        \begin{itemize}
+        \item $a_i \in V_i$
+        \item The graph induced by $V_i$ is connected
+        \item $|V_i| = n_i$
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}[T]{.5\textwidth}
+      \columntitle{Example}
+      \begin{itemize}
+      \item output: $(\{a,d\},\{b,c,e\})$
+      \end{itemize}
+      \begin{tikzpicture}[scale=0.5]
+        \input{graphTikZ/algorithm/output}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}{Algorithm main lines}
+  \begin{itemize}
+  \item Iterating over the different components until goal is reached
+  \item Expanding components
+    \begin{itemize}
+    \item Progressively
+      \begin{itemize}
+      \item A component can only add direct neighbors
+      \end{itemize}
+    \item Equally
+      \begin{itemize}
+      \item Each component $T_i$ has a $p$-value which is $\frac{n_i}{|T_i|}$
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \only<1>{
+        \input{graphTikZ/algorithm/input}
+      }
+      \only<2>{
+        \input{graphTikZ/algorithm/easyExpand}
+      }
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Algorithm main lines}
+  \begin{itemize}
+  \item Problem: no neighbors free
+    \begin{itemize}
+    \item Stealing vertices from another component
+    \item Avoiding endless loops
+      \begin{itemize}
+      \item Tracking the owner's of each vertex
+      \item A component is not allowed to take back a vertex it owned previously
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \only<1>{
+        \input{graphTikZ/algorithm/easyExpand}
+      }
+      \only<2>{
+        \input{graphTikZ/algorithm/stolenVertex}
+      }
+    \end{tikzpicture}
+  \end{center}
 \end{frame}

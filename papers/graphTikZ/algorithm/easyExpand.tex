@@ -1,0 +1,16 @@
+% Vertices
+\SetVertexNormal[MinSize=15pt,LineColor=orange,LineWidth=2pt]%V1
+\Vertex[x=4,y=0]{a}
+\Vertex[x=4,y=4]{c}
+\SetVertexNormal[MinSize=15pt,LineColor=violet,LineWidth=2pt]%V2
+\Vertex[x=8,y=2]{e}
+\SetVertexNormal[MinSize=15pt,LineColor=black,LineWidth=2pt]%Vfree
+\Vertex[x=0,y=4]{b}
+\Vertex[x=0,y=0]{d} 
+% Edges
+\Edge[lw=2pt,color=orange](a)(c)%E1
+\Edge[lw=1pt,color=black](a)(d)%Efree
+\Edge[lw=1pt,color=black](b)(c)%Efree
+\Edge[lw=1pt,color=black](b)(d)%Efree
+\Edge[lw=1pt,color=black](a)(e)%Efree
+\Edge[lw=1pt,color=black](c)(e)%Efree
