@@ -63,13 +63,7 @@
   \item Expanding components
     \begin{itemize}
     \item Progressively
-      \begin{itemize}
-      \item A component can only add direct neighbors
-      \end{itemize}
     \item Equally
-      \begin{itemize}
-      \item Each component $T_i$ has a $p$-value which is $\frac{n_i}{|T_i|}$
-      \end{itemize}
     \end{itemize}
   \end{itemize}
   \begin{center}
@@ -89,11 +83,6 @@
   \item Problem: no neighbors free
     \begin{itemize}
     \item Stealing vertices from another component
-    \item Avoiding endless loops
-      \begin{itemize}
-      \item Tracking the owner's of each vertex
-      \item A component is not allowed to take back a vertex it owned previously
-      \end{itemize}
     \end{itemize}
   \end{itemize}
   \begin{center}

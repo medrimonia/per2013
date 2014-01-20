@@ -10,21 +10,12 @@
 %	\end{itemize}
 %\end{frame}
 
-\subsection{Sparse spanning subgraph}
-\begin{frame}{Calculating a sparse spanning subgraph}
+\subsection{Implementation}
+\begin{frame}{Implementation}
 	\begin{itemize}
-		\item Generation with two connected components
-		\item Generation with $n$ cliques of size $s$
-	\end{itemize}
-
-	\begin{itemize}
-		\item Implementation of the algorithm
-		\item Specific data structure
-		\item Tested on :
-			\begin{itemize}
-				\item Chosen graph
-				\item Generated graphs
-			\end{itemize}
+  \item Various $k$-connected graph generation methods
+  \item Pre-processing (reduce edge number)
+  \item Algorithm implementation
 	\end{itemize}
 \end{frame}
 
@@ -37,21 +28,15 @@
 \end{frame}
 \input{presentation/counterExample}
 
-\subsection{Results for any entry}
-\begin{frame}{Properties depending of the input}
+\subsection{Improvements}
+\begin{frame}{Improvements}
   \begin{itemize}
-  \item For some graphs $G$, execution will not loop endlessly
-  \item For a given $G$
+  \item Modification of the vertex selection
     \begin{itemize}
-    \item Probability of looping endlessly depends on other inputs
+    \item Still looping endlessly sometimes
     \end{itemize}
-  \item For a given $k$
-    \begin{itemize}
-    \item The counter example : $k = 2$
-    \item The algorithm might work for greater values of $k$
-    \item Need to know if for any $k$ the execution might loop endlessly
-    \end{itemize}
+  \item Detecting endless loops
   \end{itemize}
 \end{frame}
 
-\input{presentation/proof}
+%\input{presentation/proof}
