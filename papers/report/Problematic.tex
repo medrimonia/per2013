@@ -1,41 +1,73 @@
- \subsubsection{Algorithm context}
-This algorithm aims to provide a partition to any k-connected graph, given any partition sizes and roots as defined in the following.
+\subsubsection{Algorithm Description}
+\paragraph{}
+The algorithm proposed in the article~\cite{JS94} claims to be able to find
+a $k$-partition in a $k$-connected graph in a polynomial time, more precisely,
+it claims that the complexity of the algorithm for a graph $G = (V,E)$ with
+$|V| = n$ is $O(k^2 n^2)$.
 
-\paragraph{Algorithm input}
- \begin{description}
-  \item [INPUT:] \hfill \\
-    \begin{enumerate}
-    \item $G = (V, E)$ a $k$-connected graph 
-      \begin{figure}[H]
-	\begin{center}
-	  \input{graphTikZ/AlgoSteps/initialGraph.tex}
-	\end{center}
-	\caption{An example of an input 3-connected graph with 6 edges}
-      \end{figure}
-    \item $k$
-    \item $a_1, a_2 \ldots a_k$ : different vertices of $G$
-    \item $n_1, n_2 \ldots n_k$ : strictly positive integers of $\sum_i n_i =  |V|$
-    \end{enumerate}
-    
-  \end{description}
+\paragraph{}
+The $k$-partition problem which the article pretends to resolve can be
+defined as following. Given a graph $G = (V,E)$, an integer $k$ a set
+of vertices $R$ and a set of integers $S$ such as $G$ is $k$-connected,
+$R = (r_1, r_2, \dots, r_k )$ is a subset of $V$ containing $k$ vertices and
+$S = (s_1, s_2, \dots, s_k )$ contains $k$ integers whose sum is the number of
+vertex in $G$. Find a partition $P = (p_1, p_2, \dots, p_k)$ of $V$ in $k$
+elements can be found such as for any $i$ from $1$ to $k$, $p_i$ contains
+$r_i$ and $|p_i| = s_i$. An illustrated example is presented in
+Figure~\ref{fig:inputOutput}.
 
-\paragraph{Algorithm output}
-       \begin{description}
-                \item[OUTPUT:] \hfill \\
-                        A k-partition of G such that $\forall i \ in 1..k$ 
-                        \begin{itemize} 
-                                \item $H_i$ is a connected subgraph of $G$
-                                \item $H_i \in Par, |V(H_i)| = n_i $
-                                \item $a_i \in H_i $
-                                \item $\forall j \in 1..k H_i \bigcap H_j = \emptyset$
-                        \end{itemize}
-        \end{description}
-             \begin{figure}[H]
-	       \begin{center}
-	         \input{graphTikZ/AlgoSteps/OutputGraph.tex}
-	       \end{center}
-	       \caption{An example output of the 3-connected graph partition}
-             \end{figure}
+\newcommand{\formalTitle}[1]{\textbf{\large #1}}
+
+\begin{figure}[H]
+  \caption{\label{fig:inputOutput}$k$-partition input}
+  \begin{minipage}{.5\textwidth}
+    \begin{center}
+      \formalTitle{Input}\\
+      \begin{tikzpicture}[x=.06\textwidth, y=.06\textwidth,transform shape]
+        \input{graphTikZ/inputOutput/input.tex}
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{.5\textwidth}
+    \begin{center}
+      \formalTitle{Output}\\
+      \begin{tikzpicture}[x=.06\textwidth, y=.06\textwidth,transform shape]
+        \input{graphTikZ/inputOutput/output.tex}
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+  \begin{minipage}{.5\textwidth}
+    $$k = 3$$
+    $$R = \{a,g,c\}$$
+    $$S = \{2,1,4\}$$
+  \end{minipage}
+  \begin{minipage}{.5\textwidth}
+    $$P = \big\{\{a, f\},\{g\},\{b, c, d, e\}\big\}$$
+  \end{minipage}
+\end{figure}
+
+% Is a formal description really necessary
+%\newcommand{\formalTitle}[1]{\textbf{\large #1}}
+%\begin{figure}[H]
+%  \caption{Formal description of the $k$-partition problem}
+%  \begin{minipage}{.5\textwidth}
+%    \formalTitle{Input}
+%    \small
+%    \begin{itemize}
+%    \item $G = (V,E)$, a $k$-connected graph
+%    \item $k$
+%    \item $R$, a list of roots wished for the components
+%    \item $S$, a list of the size wished for the components
+%    \end{itemize}
+%  \end{minipage}
+%  \begin{minipage}{.5\textwidth}
+%    \formalTitle{Output}
+%  \end{minipage}
+%\end{figure}
+\paragraph{}
+Here we are
+\\
+
 \paragraph{Algorithm used structures and notations}               
 \label{sec:structure}
 The algorithm uses its own structures and computes its own values. These are defined in this section.

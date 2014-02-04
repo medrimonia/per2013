@@ -1,0 +1,26 @@
+% Vertices
+\SetVertexNormal[MinSize=25pt,LineColor=violet,LineWidth=3pt]%V1
+\Vertex[x=  3,y=0]{a}
+\SetVertexNormal[MinSize=25pt,LineColor=orange,LineWidth=3pt]%V2
+\Vertex[x=5.5,y=4]{g}
+\SetVertexNormal[MinSize=25pt,LineColor=blue,LineWidth=3pt]%V3
+\Vertex[x= 11,y=4]{c}
+\SetVertexNormal[MinSize=25pt,LineColor=black,LineWidth=3pt]%Vfree
+\Vertex[x=  8,y=0]{b}
+\Vertex[x=  8,y=8]{d} 
+\Vertex[x=  3,y=8]{e}
+\Vertex[x=  0,y=4]{f}
+
+%Cliques
+\Edge[lw=1pt,color=black](a)(b)%Efree
+\Edge[lw=1pt,color=black](a)(g)%Efree
+\Edge[lw=1pt,color=black](b)(c)%Efree
+\Edge[lw=1pt,color=black](b)(g)%Efree
+\Edge[lw=1pt,color=black](c)(d)%Efree
+\Edge[lw=1pt,color=black](c)(g)%Efree
+\Edge[lw=1pt,color=black](d)(e)%Efree
+\Edge[lw=1pt,color=black](d)(g)%Efree
+\Edge[lw=1pt,color=black](e)(f)%Efree
+\Edge[lw=1pt,color=black](e)(g)%Efree
+\Edge[lw=1pt,color=black](f)(a)%Efree
+\Edge[lw=1pt,color=black](f)(g)%Efree
