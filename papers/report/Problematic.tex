@@ -67,14 +67,47 @@ Figure~\ref{fig:inputOutput}.
 
 \subsection{Algorithm description}
 \subsubsection{Principles}
-Main lines of the algorithm
+\paragraph{}
+The main idea of the algorithm is too expand differents trees from the roots
+given as input. The specificities of this expansion is that it is both,
+{\em progressive} and {\em balanced}.
+\paragraph{}
+It is {\em progressive} because the algorithm iterates over the different
+components. Each component will try to acquire free vertices (vertices which
+do not belong to a component) and if there is no free vertices among it's
+neighborhood, it will try to steal a vertex from another component.
+\paragraph{}
+The algorithm is {\em balanced} because a component can only steal a vertex
+from a component which has a lower ratio of the number of wished vertices by
+number of vertices currently owned by the component.
+\paragraph{}
+In order to avoid endless loops engendered by two components stealing the same
+vertex one after the other, a memory of the components to which a vertex has
+belonged is maintained.
+\paragraph{}
+A proof of the complexity of this algorithm is given in the
+article~\cite{JS94}, this proof can be summarized by the following properties.
+\begin{enumerate}
+\item The number of iterations of the expansion is in $O(kn)$.
+\item Every step of an iteration is in $O(m)$
+\item An algorithm exists which has a complexity of $O(m)$ and allows to
+  reduce the number of edges in a $k$-connected graph to a number of edge in
+  $O(kn)$.
+\end{enumerate}
+\paragraph{}
+From those three properties, we can affirm that the complexity of the
+algorithm is in $O(k^2n^2)$. But, even if the second possibility can be
+verified and if the validity of the third doesn't influence the fact that this
+algorithm is polynomial, the proof of the first property seems to be wrong
+since a counter-example has been exhibited where the algorithm loops endlessly
+at section~\ref{counter-example}.
 
-\subsubsection{Data structures}
+\subsubsection{Used data}
 Data structures
 
 \subsubsection{Acquiring vertices}
 
-\subsubsection{Swapping vertices}
+\subsubsection{Stealing vertices}
 
 \paragraph{}
 Here we are
