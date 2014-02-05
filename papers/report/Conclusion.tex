@@ -1,18 +1,34 @@
 \section{Conclusion}
 
-%to summarize our thoughts
-Although the main task of this project was to verify the correctness of the proposed partitioning algorithm, our work required two preliminary steps. First, in order to ensure testing reliability, k-connected graphs had to be generated randomly. Then, for the sake of conformity to the original algorithm the \verb!FOREST! algorithm was implemented and tested. The third step was the main algorithm. After implementing the latter and testing it with the generated graphs endless loops appeared for certain graphs. An immediate concern after making this discovery was whether $k=2$ was a special occurrence. The answer came as an inductive proof consisting of adding a vertex to problematic graphs in order to obtain $(k+1)$-connected graphs which still caused the algorithm to loop indefinitely. 
-
-%to demonstrate the importance of our ideas, 
+% First: the principal : proof that the algorithm doesn't work
 \paragraph{}
+Through this study, we have demonstrated that the algorithm proposed
+in~\cite{JS94} is not correct, for any $k$. The private communication from E.
+Gy{\H o}ri mentioned in~\cite{Nakano1997315} has been prooved with a
+counter-example, exhibiting the possibility of the algorithm to fall into
+endless loops. Then the property was extended to any $k$ with an inductive
+proof.
 
-This proves that the proposed algorithm is not correct $\forall k \geq 2$ which contradicts the purpose of the paper. Despite being a ten-year-old we believe that our results are the first attempt to study the correctness of this solution. Paradoxically, finding a counter example can be a step forward in finding a better solution to the partitioning problem. For instance identifying the class of graphs that cannot be partitioned will help change the current algorithm as to avoid such problems. Furthermore, the different tests and testing tools we created for this study can be reused in other similar endeavours especially in the study of graph partitioning.
-
-%and to propel our reader to a new view of the subject
+% How we found the counter example
 \paragraph{}
+The counter-example was found by implementing the algorithm and running it on
+randomly generated graphs. Therefore, the tools implemented can be used to
+test new approaches similars to the algorithm or needing the generation of
+$k$-connected graphs.
 
-According to the Györi and Lovász theorem ~\cite{GE78} a solution to the k-connected graph partitioning problem exists. On the one hand, according to ~\cite{JS94}, ~\cite{GE78,LL77} and ~\cite{Nakano1997315}for $k \in {2, 3, 4}$ polynomial solutions exist for planar graphs. On the other hand, as k value increases the graph becomes more connected and solutions should tend to be simpler. So a general polynomial solution is still likely to exist. 
+% Situation now, solved for some k but not for any k
+\paragraph{}
+Since we prooved that the algorithm proposed in~\cite{JS94} is not correct,
+there is still no polynomial solutions that solve the $k$-partition problem
+for any $k$. Even if algorithms have been proposed which find a solution to
+this problem for specific value of $k$ or for specific kinds of graph.
 
-%final say on the issues you have raised in your paper, , 
-%Counter example we didn't prove it doesn't work at all
-%why are these graphs special
+% Las-Vegas
+\paragraph{}
+We proposed a modification which allows to avoid endless loops, informing of
+a failure if the execution would have lead to an endless loops. This specific
+modification could allow to create a Las Vegas algorithm if the probability
+that the algorithm returns successfully the solution is equal or greater than 
+$\frac{1}{2}$. Prooving this would not bring a polynomial solution to the
+$k$-partition problem, but it would already proove that the $k$-partition
+problem is in $ZPP$.
