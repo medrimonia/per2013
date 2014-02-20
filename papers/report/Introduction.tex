@@ -9,11 +9,12 @@ More precisely, in~\cite{JS94} is proposed a polynomial-time algorithm for
 constructing a special kind of vertex-partition of any $k$-connected graph
 which necessarily exists according to~\cite{GE78,LL77}.
 %% Reading other articles
-In order to have an entire comprehension of this article, we had to search,
-read and understand several related articles.
-According to \cite{Nakano1997315}, a private communication from E. Gy{\H o}ri
-claim that the algorithm in \cite{JS94} is not correct. So our goal was to 
-verify if the algorithm was correct and if he had the claimed complexity.
+According to  a private communication from E. Gy{\H o}ri mentioned in
+\cite{Nakano1997315}, the algorithm from \cite{JS94} should not be correct.
+Our goal was hence to verify if the algorithm was correct and if he had the
+claimed complexity.
+In order to have an entire comprehension of this article, we had have to
+search, read and understand several related articles.
 
 
 % What we have done
@@ -23,7 +24,7 @@ had to implement it in Java, using a framework which contains the implementation
 of several classic graph algorithms.
 %% Testing the algorithm
 We also have had to implement a $k$-connected graph generator in order to test both
-the validity and the complexity of the proposed algorithm. This approach allowed
+the validity and the complexity of the proposed algorithm. This allowed
 us to test our implementation.
 
 % Result
@@ -31,10 +32,10 @@ us to test our implementation.
 \paragraph{}
 Our implementation has pointed out the fact that specific executions of the
 algorithm lead to an endless loop. With those counter-examples, we
-proved that the algorithm proposed in~\cite{JS94} has not the expected
+prove that the algorithm proposed in~\cite{JS94} has not the expected
 complexity and also is not correct.
 %% Improvement : no endless loop
-We propose slight modification to this algorithm, ensuring that instead of
+We propose slight modifications to this algorithm, ensuring that instead of
 falling in an endless loop, the algorithm will end with a fail state. This
 change makes this algorithm easier to use as a base for a new Las-Vegas
 algorithm.
