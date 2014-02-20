@@ -66,7 +66,7 @@ if and only if $V \subseteq V'$ and $E \subseteq E'$.
 \paragraph{Induced subgraphs:}
 Given a graph $G = (V,E)$ and a set of vertices $V' \subseteq V$, then
 there is only one induced subgraph of $G$ by $V'$ and it is denoted
-$G' = (V',E')$, with for any pair of vertices $uv$ of $V'$, the edge $uv$ is
+$G' = (V',E')$ or $G' = G[V']$, with for any pair of vertices $uv$ of $V'$, the edge $uv$ is
 in $E'$ if and only if $uv$ is in $E$.
 
 \begin{figure}[!h]
@@ -235,7 +235,7 @@ Let $G = (V,E)$ be a graph,  $\{V_1,...,V_k\}$ is a $k$-partition of $G$, if
 and only if:
 % With phrases
 \begin{itemize}
-    \item $\forall i, \lceil V_i \rceil$ is connected
+    \item $\forall i, G[V_i]$ is connected
     \item $\sum\limits_{i=0}^k|V_i| = |V|$
     \item $\forall i,j \in \{1, \dots, k\}^2, i \neq j, V_i \cap V_j = \emptyset$
 \end{itemize}

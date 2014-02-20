@@ -145,10 +145,12 @@ among the available ones.
 If there is not any free vertex in the neighborhood of the component, then the
 component will try to steal a vertex from another component. Several rules
 exist which define if a vertex can be stolen or not.
+
+%TODO : Explain!
 \begin{itemize}
 \item Roots of trees can not be stolen.
 \item A component $T_v$ can not steal a vertex $u$ if $T_v$ belongs to
-  $mathrm{treeNode}[u]$.
+  $\mathrm{treeNode}[u]$.
 \item A component can not steal a vertex from another component which has a
   lower $p$-value.
 \end{itemize}
