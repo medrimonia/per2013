@@ -1,19 +1,17 @@
-\subsection{Problem Description}
+\subsection{Problem description}
 \paragraph{}
 The algorithm proposed in the article~\cite{JS94} claims to be able to find
-a $k$-partition in a $k$-connected graph in a polynomial time, more precisely,
-it claims that the complexity of the algorithm for a graph $G = (V,E)$ with
-$|V| = n$ is $O(k^2 n^2)$.
+a $k$-partition in a $k$-connected graph in a polynomial time, and this no
+matter what is $k$. The complexity of the claimed algorithm for a graph
+$G = (V,E)$ with $|V| = n$ is $O(k^2 n^2)$.
 
 \paragraph{}
 The $k$-partition problem which the article pretends to resolve can be
-defined as following. Given a graph $G = (V,E)$, an integer $k$ a set
-of vertices $R$ and a set of integers $S$ such as $G$ is $k$-connected,
-$R = (r_1, r_2, \dots, r_k )$ is a subset of $V$ containing $k$ vertices and
-$S = (s_1, s_2, \dots, s_k )$ contains $k$ integers whose sum is the number of
-vertex in $G$. Find a partition $P = (p_1, p_2, \dots, p_k)$ of $V$ in $k$
-elements can be found such as for any $i$ from $1$ to $k$, $p_i$ contains
-$r_i$ and $|p_i| = s_i$. An illustrated example is presented in
+formally defined as follows. Given a $k$-connected graph $G = (V,E)$, a set of
+$k$ vertices $R = \{r_1, r_2, \dots, r_k \}$ and $k$ integers
+$S = \{s_1,s_2, \dots, s_i\}$ summing up to the order of $G$. Find a partition
+$P = \{p_1, p_2, \dots, p_k \}$ of $V$ such that for any $i$ from $1$ to $k$,
+$p_i$ contains $r_i$ and $|p_i| = s_i$. An illustrated example is presented in
 Figure~\ref{fig:inputOutput}.
 
 \newcommand{\formalTitle}[1]{\textbf{\large #1}\vspace{0.5cm}}
@@ -70,48 +68,48 @@ Figure~\ref{fig:inputOutput}.
 \subsection{Algorithm description}
 \subsubsection{Principles}
 \paragraph{}
-The main idea of the algorithm is too expand differents trees from the roots
-given as input. The specificities of this expansion is that it is both,
-{\em progressive} and {\em balanced}.
+The main idea of the algorithm proposed in~\cite{JS94} is to expand different
+trees from the roots given as input. The specificities of this expansion is
+that it is both {\em progressive} and {\em balanced}.
 \paragraph{}
 It is {\em progressive} because the algorithm iterates over the different
 components. Each component will try to acquire free vertices (vertices which
-do not belong to a component) and if there is no free vertices among it's
+do not belong to a component) and if there is no free vertices among its
 neighborhood, it will try to steal a vertex from another component.
 \paragraph{}
 The algorithm is {\em balanced} because a component can only steal a vertex
-from a component which has a lower ratio of the number of wished vertices by
-number of vertices currently owned by the component.
+from a component which has a lower ratio of the number of wished vertices over
+the number of vertices currently owned by the component.
 \paragraph{}
 In order to avoid endless loops engendered by two components stealing the same
 vertex one after the other, a memory of the components to which a vertex has
 belonged is maintained.
 \paragraph{}
 A proof of the complexity of this algorithm is given in the
-article~\cite{JS94}, this proof can be summarized by the following properties.
+article~\cite{JS94}. This proof can be summarized as follows.
 \begin{enumerate}
-\item The number of iterations of the expansion is in $O(kn)$.
-\item Every step of an iteration is in $O(m)$
-\item An algorithm exists which has a complexity of $O(m)$ and allows to
-  reduce the number of edges in a $k$-connected graph to a number of edge in
-  $O(kn)$.
+\item The number of iterations of the expansion is $O(kn)$.
+\item Every step of an iteration is $O(m)$.
+\item An existing algorithm with complexity $O(m)$  allows to
+  reduce the number of edges in a $k$-connected graph to a number of edge
+  $O(kn)$~\cite{NaIb92}.
 \end{enumerate}
 \paragraph{}
-From those three properties, we can affirm that the complexity of the
-algorithm is in $O(k^2n^2)$. But, even if the second possibility can be
-verified and if the validity of the third doesn't influence the fact that this
-algorithm is polynomial, the proof of the first property seems to be wrong
-since a counter-example has been exhibited where the algorithm loops endlessly
-at section~\ref{counter-example}.
+From those three properties, the authors affirm that the complexity of the
+algorithm is $O(k^2n^2)$. But, even if the second possibility can be
+verified and if the validity of the third one does nott influence the fact that
+this algorithm is polynomial, the proof of the first property seems to be wrong
+since we exhibit a counter-example in section~\ref{counter-example}, showing
+that the algorithm may loop endlessly.
 
 \subsubsection{Used data}
 \paragraph{}
-As it was mentioned previously, this algorithm uses multiples trees to cover
-the graph. Thoses trees needs to be stored, keeping both vertices and edges of
-each tree up to date through the execution. The tree rooted at $v = r_i$ is
-denoted $T_v$.
+As it was mentioned previously, the algorithm of~\cite{JS94} partition the graph
+into trees. Thoses trees needs to be stored, so both vertices and edges of
+each tree must be memorized and updated through the execution. The tree rooted
+at $v = r_i$ is denoted $T_v$.
 \paragraph{}
-The history of the components to which a vertex has belonged is stored in a
+The history of the trees to which a vertex has belonged is stored in a
 set of vertices. An {\em HashMap} with vertices as keys and a set of vertices
 as values can then be used to obtain the history of any vertex. The data are
 stored in a structure called $\mathrm{treeNode}$ and the set of roots whose
@@ -119,60 +117,59 @@ tree has owned the vertex $v$ is denoted $\mathrm{treeNode}[v]$. It is
 important to note that the history of some vertices can be reseted in some
 specific cases (see section~\ref{cutoff-subtrees}).
 \paragraph{}
-The feature ensuring that the expansion is balanced is called $p$-value. Each
-tree has it's own $p$-value which is defined as the number of vertices wished
-for the tree divided by the number of vertices currently in the tree. A
-component which has a $p$-value of 1 is a component which has the right amount
-of vertices. When iterating over this kind of component, nothing will be done,
-because the component does not need to acquire more vertices.
+The feature ensuring that the expansion is balanced is called the $p$-value.
+Each tree has its own $p$-value which is defined as the number of vertices
+wished for the tree divided by the number of vertices currently in the tree. A
+tree which has a $p$-value of 1 is a component which has the right amount
+of vertices. When iterating over such a tree, nothing will be done,
+because it does not need to acquire more vertices.
 
 \subsubsection{Acquiring vertices}
 \paragraph{}
-When iterating over a component which needs to gain vertices, the first step
-is to compute the neighborhood of the component, i.e. the vertices of the
-graph which are neighbors to one (or more) of the vertices of the component
-but are not in the component. If among this neighborhood, there is at least a
-free vertex, i.e. a vertex which does not belong to any component. The
-component will acquire all the free vertices of this neighborhood, except if
-there is more free vertices than the number of vertices missing for this
-component. In that case, the component will acquire enough vertices to be
-entirely filled, but no more. The vertices to acquire will be chosen randomly
-among the available ones.
+When iterating over a tree which needs to gain vertices, the first step
+is to compute the neighborhood of the tree, i.e. the vertices of the
+graph which are neighbors to one (or more) of the vertices of the tree
+but are not in it. If among this neighborhood, there is at least one
+free vertex, i.e. a vertex which does not belong to any tree. The
+tree will acquire all the free vertices of this neighborhood, except if
+there are more free vertices than required. In that case, the tree
+acquires enough vertices so that its order reached the desired size, but no
+more. The vertices to acquire are chosen randomly among the available ones.
 
 \subsubsection{Stealing vertices}
 % Stealable vertices
 \paragraph{}
-If there is not any free vertex in the neighborhood of the component, then the
-component will try to steal a vertex from another component. Several rules
-exist which define if a vertex can be stolen or not.
+If there is not any free vertex in the neighborhood of the tree, then it tries
+to steal a vertex from another tree. Several rules defines whether a vertex can
+be stolen or not.
 
 %TODO : Explain!
 \begin{itemize}
-\item Roots of trees can not be stolen.
-\item A component $T_v$ can not steal a vertex $u$ if $T_v$ belongs to
+\item The root of a tree (i.e. the $r_i$'s) cannot be stolen.
+\item A tree $T_v$ cannot steal a vertex $u$ if $T_v$ belongs to
   $\mathrm{treeNode}[u]$.
-\item A component can not steal a vertex from another component which has a
+\item A tree cannot steal a vertex from another tree which has a
   lower $p$-value.
 \end{itemize}
 
 % Choosing the component
 \paragraph{}
 Once those three rules have been applied to remove some vertices of the
-neighborhood, if there is no vertex left, then the component will not steal
-any vertices during this iteration. On the other side, if there is still
-multiple vertices remaining, then one vertex will be chosen as the vertex to
-steal. The following procedure will be applied :
+neighborhood, if there is no vertex left, then the tree doest not steal
+any other vertex during this iteration. On the other side, if there are still
+multiple vertices remaining, then one vertex is chosen as the vertex to
+steal. The following procedure is applied.
 \begin{enumerate}
 \item Keep only the vertices which have the smallest $p$-value of the set.
 \item Among this new set, keep only the vertices which have the smallest
-  degree inside of their tree.
-\item If there is still multiple vertices, pick one randomly.
+  degree inside the tree.
+\item If there are still multiple vertices, pick one randomly.
 \end{enumerate}
 
 \paragraph{\label{cutoff-subtrees}}
-If the vertex $v$ that needs to be stolen has a degree greater than 1 in
-it's own tree, removing it will disconnect the tree. To avoid this kind of
-situation, the subtree rooted at $v$ will be cutted and only $v$ will be
-stolen. All the other vertices $u$ of the subtree will have their history
-cleaned and will be considered again as free vertices, i.e.
+If the vertex $v$ which must be stolen has degree greater than 1 in
+its tree, removing it disconnects the tree. To avoid this kind of
+situation, the subtree rooted at $v$ is cut and only $v$ is
+stolen. All the other vertices $u$ of the subtree have their history
+cleaned and are considered again as free vertices, i.e.
 $\mathrm{treeNode}[u] = \emptyset$.
