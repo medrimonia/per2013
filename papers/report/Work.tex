@@ -4,22 +4,21 @@
 \subsection{Tools}
 \subsubsection{Generating $k$-connected random graphs}
 \paragraph{}
-In order to test our implementation of the article algorithm, $k$-connected 
-graphs had to be generated. Two methods have been implemented, although the
-graphs produced are not uniformly randomised, the generation allow us to test
-the algorithm on different types of graphs.
+In order to test our implementation of the algorithm proposed in~\cite{JS94},
+$k$-connected  graphs had to be generated. We have implemented two methods,
+although the graphs produced are not uniformly randomised.
 
 \paragraph{}
 The first method is based on the vertex degree. To be $k$-connected, a graph
-needs to have vertices of degree $k$. For each vertex, edges will be added
-until the vertex has a degree $k$. After that, there is a high probability
-that the produced graph is $k$-connected.
+needs to have vertices of degree at least $k$. For each vertex, edges are added
+until the vertex has degree at least $k$. Once this procedure achieved, then
+possibly the reduced graph is $k$-connected.
 
 \paragraph{}
 %TODO explain why : complete component so that the graph is localy dense
-Since this first method is not deterministic, we tried another method which was
-producing a $k$ connected graph by creating several complete components and
-linking them together. The algorithm is described in
+Since this first method is not deterministic, we have implemented another method
+which produces a $k$ connected graph by creating several complete
+components and linking them together. The algorithm is described in
 Algorithm~\ref{graphGenerator}.
 
 \begin{algorithm}[!h]
@@ -42,18 +41,19 @@ Algorithm~\ref{graphGenerator}.
 
 \paragraph{}
 First, the complete components are generated. Then $k$ edges are added between the 
-first and the second component then $k$ edges are added between the second and the 
+first and the second components, $k$ edges are added between the second and the 
 third ones and so on.
 
 %TODO explain clearly
 \paragraph{}
-The edges between every pair of components are not randomly selected. Let say
-that the
-vertices of each component are numbered from 1 to the size of the component.
-The edges between the vertex 1 of the first and the vertex 1 of the second 
-component is selected. The same process is repeated for the second vertices to the
-$k$-th vertices and then  for the other components. At the end a $k$-connected 
-graph is generated.
+The edges between every pair of components are not randomly selected, otherwise
+it would be easy to diconnect the graph by removing less than $k$ vertices. So
+we procede in the following way for adding the edges. Suppose that the
+vertices of each component are numbered from 1 to the order of the component.
+The edges between the vertex 1 of the first component and the vertex 1 of the
+second component are selected. The same process is repeated for the second
+vertices to the $k$-th vertices and then  for the other components. At the end,
+the resulting graph is $k$-connected.
 
 
  
@@ -70,39 +70,41 @@ The output is slightly more complicated since it does not simply return the
 sparse spanning subgraph. Instead, the algorithm returns an array $A$ of set of
 edges. The size of the array returned is $|E(G)|$. The graph induced by the
 set of edges $\bigcup \limits_{i=1}^k E_i$
-is $k$-connected, if $k$-connectivity of $G$ is greater or equal to $k$.
+is $k$-connected, if the connectivity of $G$ is greater or equal to $k$.
 
 % Specific data structure
 \paragraph{}
 The main difficulty about the implementation of this algorithm was the use of a
-specific data structure that allowed an access to the maximum, an insertion and
-a deletion with a constant amortized cost. Even if such a structure doesn't
-exist, it is possible to create one that has all of the required properties for
-this algorithm, since the utilisation is very specific and since an element has
-always an integer associated value that can grow only from 1 at each step.
+specific data structure that allows an access to the maximum, an insertion and
+a deletion of an element with a constant amortized cost. Even if such a
+structure does not exist for any kind of utilisation, it is possible to create
+one which has all the required properties for this algorithm, since the
+utilisation is very specific and since an element has always an integer
+associated value that can grow only from 1 at each step.
 
 % More details ?
 
 %Tests
 \paragraph{}
-Tests have been created and runned in order to prove that the result of our
+Tests have been created and run in order to prove that the result of our
 implementation of the \verb!FOREST! algorithm was corresponding to the main
 objective:
-$$\forall k, k \leq K(G),K(V,\bigcup \limits_{i=1}^k E_i) = k$$
+$$\forall k, k \leq K(G),K(V,\bigcup \limits_{i=1}^k E_i) = k.$$
 
 \paragraph{}
-This test has been validated on simple graphs, but it has also been seened that
-our implementation did not produce the expected result if the input was a
-multiple graph. We checked this property by following the algorithm on small
-multiple graphs and this showed us that the problem wasn't coming from the
-implementation, but really from the algorithm.
+This test has been validated on simple graphs, but it has also been seen that
+our implementation did not produce the expected result if the input is a
+multigraph. We checked this property by following the algorithm on small
+multigraphs and this showed us that the problem was not coming from the
+implementation, but rather from the algorithm. Since we are working on simple
+graphs, this was not really a problem for our tests.
 
 \subsection{Implementing the algorithm}
 % Separation in function + misplaced lines
 \paragraph{}
 In order to facilitate the comprehension of the algorithm implementation and
 the debugging, we choose to present the different parts of the algorithm. While
-we were implementing, we also noticed that some lines where misplaced, breaking
+we were implementing it, we also noted that some lines where misplaced, breaking
 the coherency of the algorithm.
 
 % Choosing the appropriated data structures
@@ -114,82 +116,80 @@ index of a vertex.
 
 % Tree Manipulation
 \paragraph{}
-In the library we were using, spanning graphs weren't designed to be modified. We
-created our own basic class which was handling trees with the needed methods
-like cutting the tree on a specific vertex.
+In the library we were using, spanning graphs were not designed to be modified.
+We created our own basic class which was handling trees with the needed methods
+like cutting a tree on a specific vertex.
 
 \subsection{Criticism}
 \subsubsection{Finding a counter-example}
 % Not failing on some entries but on some executions
 \paragraph{}
-Once the main issues of our implementation of the algorithm were solved, we
-had still sometimes issues with the algorithm falling in endless loops. Our
+Once the main issues of the implementation of the algorithm were solved, we
+had still some issues with the algorithm falling in endless loops. Our
 investigations on this specific problem ended with the fact that the problem was
 coming from the algorithm and not from the implementation. This was ensured by
-verifying the validity of the execution of our algorithm step by step.
+verifying the validity of the execution of our algorithm step by step on these
+specific problematic instances.
 
 \input{report/CounterExample}
 
 \subsubsection{Counter-example in general case}
 \paragraph{}
-In order to ensure that $k=2$ is not a specific case where the algorithm
-presented in~\cite{JS94} is not determinist, we will present a proof that an
+In order to ensure that $k=2$ is not a specific case for which the algorithm
+presented in~\cite{JS94} can loop endlessly, we present a proof that an
 execution can loop endlessly for any $k$.
 
 \paragraph{}
-The proof we will present is a proof by induction. Since we already exhibited
-a counter-example for $k=2$, we only need to proove the recurrence.
+The proof is by induction. Since we have already exhibited
+a counter-example for $k=2$, we only need to prove the induction step.
 
 \paragraph{}
-Let $G$ be a $k$-connex graph for which the execution of the algorithm has a
+Let $G$ be a $k$-connected graph for which the algorithm has a
 probability of looping endlessly strictly greater than $0$ for the entry
 $\{r_1,r_2, \dots, r_k\}$ and $\{n_1,n_2, \dots, n_k\}$. Then a graph $G'$ can
-be found such as it is $k+1$-connex and it exists an entry for which the
-execution of the algorithm has a probability of looping endlessly strictly
-greater than $0$.
+be found such that $G'$ is $k+1$-connected and there exists an entry for which
+the algorithm has a probability of looping endlessly strictly greater than $0$.
 
 \paragraph{Proof:}
 If we create $G'$ by adding a new vertex $v$ connected to every vertex of $G$,
 i.e. $V(G') = V(G) \cup v$ and
 $E(G') = E(G) \cup \bigcup \limits_{u \in V(G)} \{u,v\}$, it is obvious that
-$G'$ will be $k+1$-connex, since every minimal vertex cut of $G$ needs to have
- one vertex more in order to be a cut of $G'$.
+$G'$ is $k+1$-connected, since every minimal vertex cut of $G$ needs to have
+one additional vertex in order to be a cut of $G'$.
 
 \paragraph{}
 An execution of the algorithm with $G'$, $\{r_1,r_2, \dots, r_k, v\}$,
-$\{n_1,n_2, \dots, n_k, 1$ as input will have a probability of looping
-endlessly strictly greater than $0$, because the $v$ introduced has no influence
-since the associated tree will be full since the beginning and the new edges
-won't be useable either.
+$\{n_1,n_2, \dots, n_k, 1\}$ as input has a probability of looping
+endlessly strictly greater than $0$, as the introduced vertex $v$ has no
+influence
+since the associated tree is full since the beginning and the new edges
+are not useable.
 % Bad presentation ...
 \subsection{Improvements}
 \subsubsection{Vertex selection condition}
 \paragraph{}
-To select the vertex to swap between two trees, the article algorithm base its 
-choice on vertex degrees. As we have seen before, the selection of the specific
+To select the vertex to swap between two trees, the article algorithm bases its 
+choices on the vertex degree. As we have seen before, the selection of specific
 vertices can lead to an endless loop. Choosing the vertex with the lowest degree
 can cut a long branch of the tree, whereas select another vertex with a greater
-degree will remove less vertices to the tree.
+degree removes less vertices to the tree.
 
-That's why, we have modified the vertex selection condition. Rather than basing the
-selection condition on the vertex degree, we base it on the number of 
-descendants. So, when a vertex is swapped the minimum of vertices is removed
-from the tree.
+That is why, we have modified the vertex selection condition. Rather than basing
+the selection condition on the vertex degree, we base it on the number of 
+descendants. So, when a vertex is swapped the minimum number of vertices is
+removed from the tree.
 
 \paragraph{}
-This modification allows to avoid the endless loop for the counter example
-presented before. However there is still some executions on other graphs which
+This modification allows to avoid the endless loop for the counter-example
+presented above. However there are still some executions on other graphs which
 are falling into endless loops.
 
 \subsubsection{Detecting endless loops}
 \paragraph{}
-A counter example that shows the algorithm can fall in endless loops have been
-exhibited. This raise one question : is it possible to detect when there is an
-endless loop? An improvement has been added to the algorithm in order to exit the
-execution when the algorithm enters in an endless loop.
-
-\paragraph{}
-To do so, we save the last root index where we have added or swapped a vertex. If
-the saved index is equal to the current root index and no vertex have been
-added or swap then it means that the algorithm has entered in an endless loop. Then
-the execution is stopped.
+A counter-example which shows that the algorithm can fall in endless loops have
+been exhibited. This raises one question: is it possible to detect when there
+is an endless loop? An improvement has been added to the algorithm in order to
+detect such situations. To do so, we save the last root index where we have
+added or swapped a vertex. If the saved index is equal to the current root index
+and no vertex have been added or swap then it means that the algorithm has
+entered in an endless loop. Then the execution is stopped.

@@ -3,22 +3,22 @@
 %TODO try to define a macro for figures
 
 \paragraph{}
-We will present here an example of an execution that fails with the algorithm
+We here present an example of an execution which fails with the algorithm
 described in~\cite{JS94}. The input of the algorithm is as follows~:
 \begin{itemize}
-\item $G$ is the graph drawn in Figure~\ref{FE_K2_init}
-\item $k = 2$
-\item $\mathrm{roots} = \{ e, a \}$
-\item $\mathrm{partitionSize} = \{ 5, 7\}$
+\item $G$ is the graph drawn in Figure~\ref{FE_K2_init},
+\item $k = 2$,
+\item $\mathrm{roots} = \{ e, a \}$,
+\item $\mathrm{partitionSize} = \{ 5, 7\}$.
 \end{itemize}
 
 % an array of execution should be given and different colors for components
 \paragraph{}
-In order to illustrate the status of the algorithm. Edges which are
-included in a tree have a stronger thickness and both edges and vertices are
+In order to illustrate the status of the algorithm, edges which are
+included in a tree have a stronger thickness, while both edges and vertices are
 colored according to the tree they belong to. Additionally, an array is
 presented under each graph, showing the content of the tree-node array which
-is used by the algorithm to choose which action will be taken.
+is used by the algorithm to choose which action has to be executed.
 
 \begin{figure}[H]
   \caption{\label{FE_K2_init}Failed Execution : Initial graph}
@@ -39,7 +39,7 @@ $T_a$ & & & & $T_e$ & & & & & & &\\
 
 \paragraph{}
 During the first two steps, each partition needs to acquire more vertices, so
-each one will grow by adding all the available neighborhood.
+each one grows by adding all the available neighborhood.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 1}
@@ -74,7 +74,7 @@ $T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & & &\\
 \end{figure}
 
 \paragraph{}
-At step 3, two vertices will be available to increase the size of the current
+At step 3, two vertices are available to increase the size of the current
 working tree: $i$ and $j$. Since it needs only one of the two vertices, say
 $j$,  is chosen.
 
@@ -95,13 +95,12 @@ $T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_e$ & & $T_e$ & &\\
 \end{figure}
 
 \paragraph{}
-At step 4, the tree rooted at $a$ can't be simply extended, since every
-adjacent vertex belongs to the other tree. The adjacent vertices are $f$ and
-$g$. Both respect the condition necessary to allow the swaping. According to
+At step 4, the tree rooted at $a$ cannot be simply extended, since every
+adjacent vertex belongs to the other tree. The adjacent free vertices are $f$ and
+$g$. Both respect the conditions necessary to allow the swapping. According to
 the algorithm, the vertex to swap must have the lowest degree in the concerned
-tree among the swappable candidates. It can't be $g$ since it has a higher
-internal degree than $f$ in the concerned tree. The swapped vertex will then be
-$f$.
+tree among the swappable candidates. It cannot be $g$ since it has a higher
+internal degree than $f$ in the concerned tree. The swapped vertex is then $f$.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 4}
@@ -121,8 +120,8 @@ $T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & & $T_e$ & &
 
 \paragraph{}
 At step 5, the tree rooted at $e$ must get one vertex back, since the other
-tree has taken one of it's vertices. The two candidates are $i$ and $k$. Since
-only one is missing, only one must be added. In our case, $i$ will be added.
+tree has taken one of its vertices. The two free candidates are $i$ and $k$.
+Since only one is missing, only one must be added. In our case, $i$ is added.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 5}
@@ -143,10 +142,10 @@ $T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e$ & $T_e$ & $T_
 \paragraph{}
 At step 6, the tree rooted at $a$ has no available adjacent vertex, it then
 has to swap a vertex among the neighborhood: $e$,$g$,$h$,$i$. $e$ is not an
-option since it's the root of a partition. $g$ has an internal degree of 2, it
-can't be choosen since $h$ and $i$ have an internal degree of 1. The swapped
-vertex must be $h$ or $i$. Since nothing in the algorithm determines which one
-must be choosen, $h$ might be swapped at that step.
+option since it is the root of the other tree. Since $g$ has an internal degree
+of 2, it cannot be choosen since $h$ and $i$ have an internal degree of 1.
+The swapped vertex is then $h$ or $i$. Since nothing in the algorithm
+determines which one must be chosen, $h$ might be swapped at that step.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 6}
@@ -185,7 +184,8 @@ $T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ & $T_e, T_a$ & $T_e$ 
 \end{figure}
 
 \paragraph{}
-At step 8, the tree rooted at $a$ must take a last vertex, it has no available
+At step 8, the tree rooted at $a$ must take a last vertex but, since it has no
+available
 adjacent vertex, it must then take a vertex from the tree rooted at $e$. The
 swappable vertices are $g$ and $i$. Since they both have the
 same internal degree in the concerned tree, $g$ can be choosen as a valid
@@ -193,8 +193,8 @@ choice for the extension.
 
 \paragraph{}
 By swapping with $g$, the subtree rooted at $g$ must be cut from the tree
-rooted at $e$. All the removed vertices ($i$,$j$,$k$) will be set back as
-unexplored, but not the swapped vertex, $g$.
+rooted at $e$. All the removed vertices ($i$,$j$,$k$) are then set back as
+unexplored, but not the swapped vertex $g$.
 
 \begin{figure}[H]
   \caption{Failed Execution : Step 8}
@@ -213,9 +213,9 @@ $T_a$ & $T_a$ & $T_a$ & $T_a$ & $T_e$ & $T_e, T_a$ & $T_e,T_a$ & $T_e, T_a$ & & 
 \end{figure}
 
 \paragraph{}
-After step 8, we're in a situation where the algorithm will be stucked in a
-dead-loop. The tree rooted at $a$ has the right amount of vertices, and step
-concerning this tree won't produce any modification. The tree rooted at $e$
-can't expand anymore, because all the adjacent vertices have already belong to
-him\footnote{See line 28 of the algorithm} and haven't been reseted\footnote{
+After step 8, we are in a situation where the algorithm is stucked in a
+dead-loop. The tree rooted at $a$ has the right amount of vertices, and steps
+concerning this tree will not produce any modification. The tree rooted at $e$
+cannot expand anymore, because all the adjacent vertices have already belong to
+him\footnote{See line 28 of the algorithm} and have not been reset\footnote{
 See line 47 of the algorithm}.
