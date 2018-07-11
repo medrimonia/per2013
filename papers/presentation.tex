@@ -6,7 +6,7 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{multimedia}
-\usepackage[style=authortitle, backend=bibtex]{biblatex}
+\usepackage[style=authoryear,citestyle=authoryear, backend=bibtex,maxnames=1]{biblatex}
 \addbibresource{bibliography.bib}
 \usepackage{tikz}
 \usepackage{tkz-graph}
@@ -49,11 +49,12 @@
 \input{presentation/WorkNeeded}
 \input{presentation/WorkDone}
 
-%\section*{References}
-%\begin{frame}[allowframebreaks]
-%  \frametitle{References}
-%  \bibliographystyle{amsalpha}
-%  \bibliography{bibliography}
-%\end{frame}
+\section*{References}
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \printbibliography
+  %\bibliographystyle{amsalpha}
+  %\bibliography{bibliography}
+\end{frame}
 
 \end{document}
